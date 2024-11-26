@@ -10,4 +10,6 @@ public interface CategoryDAO {
     public Category saveCategory(Category category);
 
     public List<Category> getAllCategory();
+
+    public Boolean existCategory(String name);
 }

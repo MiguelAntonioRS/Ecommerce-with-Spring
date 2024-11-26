@@ -23,4 +23,9 @@ public class CategoryDAOImpl implements CategoryDAO {
     public List<Category> getAllCategory() {
         return categoryRepository.findAll();
     }
+
+    @Override
+    public Boolean existCategory(String name) {
+        return categoryRepository.existsByName(name);
+    }
 }

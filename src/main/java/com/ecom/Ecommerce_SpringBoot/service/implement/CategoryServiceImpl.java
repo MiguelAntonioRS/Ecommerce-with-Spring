@@ -12,20 +12,20 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryDAO categoryDAO;
 
     @Override
     public Category saveCategory(Category category) {
-        return categoryRepository.save(category);
+        return categoryDAO.saveCategory(category);
     }
 
     @Override
     public List<Category> getAllCategory() {
-        return categoryRepository.findAll();
+        return categoryDAO.getAllCategory();
     }
 
     @Override
     public Boolean existCategory(String name) {
-        return categoryRepository.existsByName(name);
+        return categoryDAO.existCategory(name);
     }
 }
