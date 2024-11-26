@@ -13,10 +13,10 @@
                     <div class="card card-sh">
                         <div class="card-header text-center fs-4">Add Category</div>
                         <div class="card header">
-                            <form>
+                            <form action="/admin/saveCategory" method="post" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label>Enter Category</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="name" class="form-control">
                                 </div>
 
                                 <div class="mb-3">
@@ -37,10 +37,11 @@
 
                                 <div class="mb-3">
                                     <label>Upload Image</label>
-                                    <input type="file" class="form-control">
+                                    <input type="file" name="file" class="form-control">
                                 </div>
+                                <button class="btn btn-primary col-md-12 mt-2">Add</button>
                             </form>
-                            <button class="btn btn-primary col-md-12">Add</button>
+
                         </div>
                     </div>
                 </div>
