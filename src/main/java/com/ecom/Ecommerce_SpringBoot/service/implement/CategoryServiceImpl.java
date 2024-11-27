@@ -28,4 +28,9 @@ public class CategoryServiceImpl implements CategoryService {
     public Boolean existCategory(String name) {
         return categoryDAO.existCategory(name);
     }
+
+    @Override
+    public Boolean deleteCategory(int id) {
+        return categoryDAO.deleteCategory(id);
+    }
 }
