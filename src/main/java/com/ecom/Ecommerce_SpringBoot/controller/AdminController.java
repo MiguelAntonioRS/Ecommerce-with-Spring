@@ -83,4 +83,10 @@ public class AdminController {
 
         return "redirect:/admin/category";
     }
+
+    @GetMapping("/loadEditCategory")
+    public String loadEditCategory() {
+
+        return "admin/edit_category";
+    }
 }
