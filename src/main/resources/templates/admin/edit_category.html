@@ -21,7 +21,8 @@
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
                     <div class="card header">
-                        <form action="/admin/saveCategory" method="post" enctype="multipart/form-data">
+                        <form action="/admin/updateCategory" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" th:value="${category.id}">
                             <div class="mb-3">
                                 <label>Enter Category</label>
                                 <input type="text" name="name" class="form-control" th:value="${category.name}">

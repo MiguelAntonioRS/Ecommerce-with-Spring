@@ -61,8 +61,6 @@ public class AdminController {
                 File saveFile = new ClassPathResource("static/img").getFile();
 
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator + file.getOriginalFilename());
-                System.out.println(path);
-
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
                 session.setAttribute("succMsg", "Saved successfully");
@@ -88,7 +86,40 @@ public class AdminController {
 
     @GetMapping("/loadEditCategory/{id}")
     public String loadEditCategory(@PathVariable int id, Model model) {
+
         model.addAttribute("category", categoryService.getCategoryById(id));
         return "admin/edit_category";
+    }
+
+    @PostMapping("/updateCategory")
+    public String updateCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+
+        Category oldCategory = categoryService.getCategoryById(category.getId());
+        String imageName = file.isEmpty() ? oldCategory.getImageName() : file.getOriginalFilename();
+
+        if (!ObjectUtils.isEmpty(category)) {
+
+            if (!file.isEmpty()) {
+                File saveFile = new ClassPathResource("static/img").getFile();
+                Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator + file.getOriginalFilename());
+                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            oldCategory.setName(category.getName());
+            oldCategory.setIsActive(category.getIsActive());
+            oldCategory.setImageName(imageName);
+
+        }
+
+        Category updateCategory = categoryService.saveCategory(oldCategory);
+
+        if (!ObjectUtils.isEmpty(updateCategory)) {
+
+            session.setAttribute("succMsg","Category update success");
+        } else {
+            session.setAttribute("errorMsg","Something wrong on server");
+        }
+
+        return "redirect:/admin/loadEditCategory/" + category.getId();
     }
 }
