@@ -59,8 +59,10 @@ public class AdminController {
             } else {
 
                 File saveFile = new ClassPathResource("static/img").getFile();
+
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator + file.getOriginalFilename());
                 System.out.println(path);
+
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
                 session.setAttribute("succMsg", "Saved successfully");
@@ -84,9 +86,9 @@ public class AdminController {
         return "redirect:/admin/category";
     }
 
-    @GetMapping("/loadEditCategory")
-    public String loadEditCategory() {
-
+    @GetMapping("/loadEditCategory/{id}")
+    public String loadEditCategory(@PathVariable int id, Model model) {
+        model.addAttribute("category", categoryService.getCategoryById(id));
         return "admin/edit_category";
     }
 }

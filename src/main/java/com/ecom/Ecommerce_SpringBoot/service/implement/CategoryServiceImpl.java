@@ -2,7 +2,6 @@ package com.ecom.Ecommerce_SpringBoot.service.implement;
 
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.persistence.CategoryDAO;
-import com.ecom.Ecommerce_SpringBoot.repository.CategoryRepository;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +31,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Boolean deleteCategory(int id) {
         return categoryDAO.deleteCategory(id);
+    }
+
+    @Override
+    public Category getCategoryById(int id) {
+        return categoryDAO.getCategoryById(id);
     }
 }
