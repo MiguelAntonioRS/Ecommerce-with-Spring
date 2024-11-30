@@ -16,6 +16,7 @@
                             <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
                             <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                         </th:block>
+
                         <th:block th:if="${session.errorMsg}">
                             <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
                             <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
