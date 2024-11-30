@@ -144,6 +144,7 @@ public class AdminController {
 
             File saveFile = new ClassPathResource("static/img").getFile();
             Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "product_img" + File.separator + image.getOriginalFilename());
+
             Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
             session.setAttribute("succMsg","Product Saved Success");
