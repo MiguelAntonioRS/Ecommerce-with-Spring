@@ -5,6 +5,7 @@ import com.ecom.Ecommerce_SpringBoot.persistence.ProductDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -22,5 +23,19 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Boolean deleteProduct(Integer id) {
+
+        Product product = productRepository.findById(id).orElse(null);
+
+        if (!ObjectUtils.isEmpty(product)) {
+
+            productRepository.delete(product);
+            return true;
+        }
+
+        return false;
     }
 }

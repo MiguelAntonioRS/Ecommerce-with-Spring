@@ -11,6 +11,15 @@
           <div class="card card-sh">
               <div class="card-header text-center">
                   <p class="fs-4">View Products</p>
+                  <th:block th:if="${session.succMsg}">
+                      <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
+                      <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                  </th:block>
+
+                  <th:block th:if="${session.errorMsg}">
+                      <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
+                      <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                  </th:block>
               </div>
               <div class="card-body">
                   <table class="table">
@@ -35,7 +44,7 @@
                           <td>[[${p.stock}]]</td>
                           <td><a href="#" class="btn btn-sm btn-primary"><i
                                   class="fa-solid fa-pen-to-square"></i> Edit</a>
-                              <a th:href="@{'/admin/deleteProduct'+${p.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+                              <a th:href="@{'/admin/deleteProduct/'+${p.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
                           </td>
                       </tr>
                       </tbody>
