@@ -154,4 +154,10 @@ public class AdminController {
 
         return "redirect:/admin/loadAddProduct";
     }
+
+    @GetMapping("/products")
+    public String loadViewProduct(Model model) {
+
+        return "admin/products";
+    }
 }
