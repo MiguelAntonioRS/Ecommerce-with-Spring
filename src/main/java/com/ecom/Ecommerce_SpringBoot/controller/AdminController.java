@@ -158,6 +158,7 @@ public class AdminController {
     @GetMapping("/products")
     public String loadViewProduct(Model model) {
 
+        model.addAttribute("products", productService.getAllProducts());
         return "admin/products";
     }
 }

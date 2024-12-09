@@ -6,6 +6,8 @@ import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ProductDAOImpl implements ProductDAO {
 
@@ -15,5 +17,10 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 }

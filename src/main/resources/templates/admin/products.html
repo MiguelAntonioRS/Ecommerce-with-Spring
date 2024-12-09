@@ -26,16 +26,16 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                          <th scope="row">1</th>
-                          <td>Name</td>
-                          <td>Name</td>
-                          <td>Name</td>
-                          <td>Name</td>
-                          <td>Name</td>
+                      <tr th:each="p,c:${products}">
+                          <th scope="row">[[${c.count}]]</th>
+                          <td><img th:src="@{'/img/product_img/'+${p.image}}" width="60px" height="60px"></td>
+                          <td>[[${p.title}]]</td>
+                          <td>[[${p.category}]]</td>
+                          <td>[[${p.price}]]</td>
+                          <td>[[${p.stock}]]</td>
                           <td><a href="#" class="btn btn-sm btn-primary"><i
                                   class="fa-solid fa-pen-to-square"></i> Edit</a>
-                              <a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+                              <a th:href="@{'/admin/deleteProduct'+${p.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
                           </td>
                       </tr>
                       </tbody>
