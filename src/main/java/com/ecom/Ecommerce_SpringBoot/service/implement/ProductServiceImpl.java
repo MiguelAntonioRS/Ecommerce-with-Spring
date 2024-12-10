@@ -28,4 +28,9 @@ public class ProductServiceImpl implements ProductService {
     public Boolean deleteProduct(Integer id) {
         return productDAO.deleteProduct(id);
     }
+
+    @Override
+    public Product getProductById(Integer id) {
+        return productDAO.getProductById(id);
+    }
 }

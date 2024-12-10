@@ -35,7 +35,13 @@ public class ProductDAOImpl implements ProductDAO {
             productRepository.delete(product);
             return true;
         }
-
         return false;
+    }
+
+    @Override
+    public Product getProductById(Integer id) {
+
+        Product product = productRepository.findById(id).orElse(null);
+        return product;
     }
 }

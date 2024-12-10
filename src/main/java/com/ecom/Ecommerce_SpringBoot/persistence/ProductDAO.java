@@ -12,4 +12,6 @@ public interface ProductDAO {
     public List<Product> getAllProducts();
 
     public Boolean deleteProduct(Integer id);
+
+    public Product getProductById(Integer id);
 }
