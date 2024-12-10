@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <section>
+        <div class="container p-5 mt-3">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card card-sh">
+                        <div class="card-header text-center">
+                            <p class="fs-4">Edit Product</p>
+                            <th:block th:if="${session.succMsg}">
+                                <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
+                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                            </th:block>
+
+                            <th:block th:if="${session.errorMsg}">
+                                <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
+                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                            </th:block>
+                        </div>
+                        <div class="card-body">
+                            <form action="/admin/saveProduct" method="post" enctype="multipart/form-data">
+                                <div class="mb_3">
+                                    <label>Enter Title</label>
+                                    <input type="text" name="title" class="form-control">
+                                </div>
+
+                                <div class="mb_3">
+                                    <label>Enter Description</label>
+                                    <textarea rows="3" cols="" class="form-control" name="description"></textarea>
+                                </div>
+
+                                <div class="mb_3">
+                                    <label>Category</label>
+                                    <select class="form-control" name="category">
+                                        <option>--select--</option>
+                                        <option th:each="c:${categories}">[[${c.name}]]</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb_3">
+                                    <label>Enter Price</label>
+                                    <input type="number" name="price" class="form-control">
+                                </div>
+                                <div class="row">
+
+                                    <div class="mb_3 col">
+                                        <label>Enter Stock</label>
+                                        <input type="text" name="stock" class="form-control">
+                                    </div>
+
+                                    <div class="mb_3 col">
+                                        <label>Upload Image</label>
+                                        <input type="file" name="file" class="form-control">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary col-md-12 mt-3">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

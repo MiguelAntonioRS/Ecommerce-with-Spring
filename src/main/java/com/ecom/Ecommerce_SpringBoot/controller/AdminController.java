@@ -175,4 +175,10 @@ public class AdminController {
 
         return "redirect:/admin/products";
     }
+
+    @GetMapping("/editProduct/{id}")
+    public String editProduct(Model model) {
+
+        return "admin/edit_product";
+    }
 }
