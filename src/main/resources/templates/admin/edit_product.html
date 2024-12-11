@@ -3,7 +3,7 @@
       th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Product</title>
 </head>
 <body>
     <section>
@@ -51,7 +51,8 @@
 
                                     <div class="mb_3 col">
                                         <label>Enter Stock</label>
-                                        <input type="text" name="stock" th:value="${product.stock}" class="form-control">
+                                        <input type="text" name="stock" th:value="${product.stock}"
+                                               class="form-control">
                                     </div>
 
                                     <div class="mb_3 col">
@@ -60,7 +61,8 @@
                                     </div>
                                 </div>
 
-                                <img th:src="@{'/img/product_img/'+${product.image}}" width="100px" height="100px" class="p-2">
+                                <img th:src="@{'/img/product_img/'+${product.image}}" width="100px" height="100px"
+                                     class="p-2">
 
                                 <button class="btn btn-primary col-md-12 mt-3">Update</button>
                             </form>
