@@ -180,6 +180,7 @@ public class AdminController {
     public String editProduct(@PathVariable int id, Model model) {
 
         model.addAttribute("product", productService.getProductById(id));
+        model.addAttribute("categories", categoryService.getAllCategory());
         return "admin/edit_product";
     }
 }

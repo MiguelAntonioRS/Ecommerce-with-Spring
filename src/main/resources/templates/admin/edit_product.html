@@ -27,31 +27,31 @@
                             <form action="/admin/saveProduct" method="post" enctype="multipart/form-data">
                                 <div class="mb_3">
                                     <label>Enter Title</label>
-                                    <input type="text" name="title" class="form-control">
+                                    <input type="text" name="title" th:value="${product.title}" class="form-control">
                                 </div>
 
                                 <div class="mb_3">
                                     <label>Enter Description</label>
-                                    <textarea rows="3" cols="" class="form-control" name="description"></textarea>
+                                    <textarea rows="3" cols="" class="form-control" name="description">[[${product.description}]]</textarea>
                                 </div>
 
                                 <div class="mb_3">
                                     <label>Category</label>
                                     <select class="form-control" name="category">
-                                        <option>--select--</option>
+                                        <option>[[${product.category}]]</option>
                                         <option th:each="c:${categories}">[[${c.name}]]</option>
                                     </select>
                                 </div>
 
                                 <div class="mb_3">
                                     <label>Enter Price</label>
-                                    <input type="number" name="price" class="form-control">
+                                    <input type="number" name="price" th:value="${product.price}" class="form-control">
                                 </div>
                                 <div class="row">
 
                                     <div class="mb_3 col">
                                         <label>Enter Stock</label>
-                                        <input type="text" name="stock" class="form-control">
+                                        <input type="text" name="stock" th:value="${product.stock}" class="form-control">
                                     </div>
 
                                     <div class="mb_3 col">
@@ -59,7 +59,10 @@
                                         <input type="file" name="file" class="form-control">
                                     </div>
                                 </div>
-                                <button class="btn btn-primary col-md-12 mt-3">Submit</button>
+
+                                <img th:src="@{'/img/product_img/'+${product.image}}" width="100px" height="100px" class="p-2">
+
+                                <button class="btn btn-primary col-md-12 mt-3">Update</button>
                             </form>
                         </div>
                     </div>
