@@ -64,6 +64,7 @@ public class ProductDAOImpl implements ProductDAO {
         dbProduct.setCategory(product.getCategory());
         dbProduct.setPrice(product.getPrice());
         dbProduct.setStock(product.getStock());
+        dbProduct.setImage(imageName);
 
         Product updateProduct = productRepository.save(dbProduct);
 
