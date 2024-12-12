@@ -53,7 +53,7 @@ public class AdminController {
     @PostMapping("/saveCategory")
     public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 
-        String imageName = file != null ? file.getOriginalFilename(): "default.jpg";
+        String imageName = file != null ? file.getOriginalFilename() : "default.jpg";
         category.setImageName(imageName);
 
         Boolean existCategory = categoryService.existCategory(category.getName());
@@ -85,9 +85,9 @@ public class AdminController {
         Boolean deleteCategory = categoryService.deleteCategory(id);
 
         if (deleteCategory) {
-            session.setAttribute("succMsg","Category delete success");
+            session.setAttribute("succMsg", "Category delete success");
         } else {
-            session.setAttribute("errorMsg","Something wrong on server");
+            session.setAttribute("errorMsg", "Something wrong on server");
         }
 
         return "redirect:/admin/category";
@@ -124,9 +124,9 @@ public class AdminController {
 
         if (!ObjectUtils.isEmpty(updateCategory)) {
 
-            session.setAttribute("succMsg","Category update success");
+            session.setAttribute("succMsg", "Category update success");
         } else {
-            session.setAttribute("errorMsg","Something wrong on server");
+            session.setAttribute("errorMsg", "Something wrong on server");
         }
 
         return "redirect:/admin/loadEditCategory/" + category.getId();
@@ -135,7 +135,7 @@ public class AdminController {
     @PostMapping("/saveProduct")
     public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image, HttpSession session) throws IOException {
 
-        String imageName = image.isEmpty() ? "default.jpg": image.getOriginalFilename();
+        String imageName = image.isEmpty() ? "default.jpg" : image.getOriginalFilename();
         product.setImage(imageName);
 
         Product saveProduct = productService.saveProduct(product);
@@ -147,9 +147,9 @@ public class AdminController {
 
             Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-            session.setAttribute("succMsg","Product Saved Success");
+            session.setAttribute("succMsg", "Product Saved Success");
         } else {
-            session.setAttribute("errorMsg","Something wrong on server");
+            session.setAttribute("errorMsg", "Something wrong on server");
         }
 
         return "redirect:/admin/loadAddProduct";
@@ -168,9 +168,9 @@ public class AdminController {
         Boolean deleteProduct = productService.deleteProduct(id);
 
         if (deleteProduct) {
-            session.setAttribute("succMsg","Product delete success");
+            session.setAttribute("succMsg", "Product delete success");
         } else {
-            session.setAttribute("errorMsg","Something wrong on server");
+            session.setAttribute("errorMsg", "Something wrong on server");
         }
 
         return "redirect:/admin/products";
@@ -182,5 +182,19 @@ public class AdminController {
         model.addAttribute("product", productService.getProductById(id));
         model.addAttribute("categories", categoryService.getAllCategory());
         return "admin/edit_product";
+    }
+
+    @PostMapping("/updateProduct")
+    public String updateProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image, HttpSession session, Model model) {
+
+        Product updateProduct = productService.updateProduct(product, image);
+
+        if (!ObjectUtils.isEmpty(updateProduct)) {
+            session.setAttribute("succMsg", "Product update success");
+        } else {
+            session.setAttribute("errorMsg", "Something wrong on server");
+        }
+
+        return "redirect:/admin/editProduct/" + product.getId();
     }
 }

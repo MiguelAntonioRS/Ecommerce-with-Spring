@@ -5,6 +5,7 @@ import com.ecom.Ecommerce_SpringBoot.persistence.ProductDAO;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -32,5 +33,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(Integer id) {
         return productDAO.getProductById(id);
+    }
+
+    @Override
+    public Product updateProduct(Product product, MultipartFile file) {
+        return productDAO.updateProduct(product, file);
     }
 }
