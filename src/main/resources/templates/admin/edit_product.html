@@ -56,14 +56,13 @@
                                            class="form-control">
                                 </div>
 
-
                                 <div class="mb-3 col">
                                     <label>Discount Price</label>
-                                    <input type="number" th:value="${product.discountPrice}" class="form-control">
+                                    <input type="number" th:value="${product.discountPrice}" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="row">
 
+                            <div class="row">
                                 <div class="mb_3 col">
                                     <label>Enter Stock</label>
                                     <input type="text" name="stock" th:value="${product.stock}"
