@@ -136,8 +136,10 @@ public class AdminController {
     public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image, HttpSession session) throws IOException {
 
         String imageName = image.isEmpty() ? "default.jpg" : image.getOriginalFilename();
-        product.setImage(imageName);
 
+        product.setImage(imageName);
+        product.setDiscount(0);
+        product.setDiscountPrice(product.getDiscountPrice());
         Product saveProduct = productService.saveProduct(product);
 
         if (!ObjectUtils.isEmpty(saveProduct)) {
