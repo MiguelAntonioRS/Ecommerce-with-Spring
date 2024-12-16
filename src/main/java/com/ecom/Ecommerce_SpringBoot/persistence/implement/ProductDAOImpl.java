@@ -92,4 +92,10 @@ public class ProductDAOImpl implements ProductDAO {
 
         return null;
     }
+
+    @Override
+    public List<Product> getAllActiveProducts() {
+        List<Product> products = productRepository.findByIsActiveTrue();
+        return products;
+    }
 }
