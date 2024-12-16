@@ -32,6 +32,7 @@
                           <th scope="col">Price</th>
                           <th scope="col">Discount</th>
                           <th scope="col">Discount Price</th>
+                          <th scope="col">Status</th>
                           <th scope="col">Stock</th>
                           <th scope="col">Action</th>
                       </tr>
@@ -45,6 +46,7 @@
                           <td>[[${p.price}]]</td>
                           <td>[[${p.discount}]]</td>
                           <td>[[${p.discountPrice}]]</td>
+                          <td>[[${p.isActive}]]</td>
                           <td>[[${p.stock}]]</td>
                           <td><a th:href="@{'/admin/editProduct/'+${p.id}}" class="btn btn-sm btn-primary"><i
                                   class="fa-solid fa-pen-to-square"></i> Edit</a>
