@@ -48,4 +48,11 @@ public class CategoryDAOImpl implements CategoryDAO {
         Category category = categoryRepository.findById(id).orElse(null);
         return category;
     }
+
+    @Override
+    public List<Category> getAllActiveCategory() {
+        List<Category> categories = categoryRepository.findByIsActiveTrue();
+
+        return categories;
+    }
 }
