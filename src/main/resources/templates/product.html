@@ -6,106 +6,60 @@
     <title>Product</title>
 </head>
 <body>
-    <section>
-        <div class="container-fluid bg-primary p-5 mt-5">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="ch">
-                            <button class="btn btn-light text-dark ms-3 col-md-2"><i
-                                    class="fa-solid fa-magnifying-glass"></i> Search
-                            </button>
-                        </div>
-                    </form>
-                </div>
+<section>
+    <div class="container-fluid bg-primary p-5 mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="ch">
+                        <button class="btn btn-light text-dark ms-3 col-md-2"><i
+                                class="fa-solid fa-magnifying-glass"></i> Search
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div class="container-fluid mt-1">
-            <div class="row">
-                <div class="col-md-2 p-0">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                            Categories
-                        </a>
-                        <a href="#" th:each="c:${categories}" class="list-group-item list-group-item-action">[[${c.name}]]</a>
-                    </div>
+    <div class="container-fluid mt-1">
+        <div class="row">
+            <div class="col-md-2 p-0">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                        Categories
+                    </a>
+                    <a href="#" th:each="c:${categories}"
+                       class="list-group-item list-group-item-action">[[${c.name}]]</a>
                 </div>
-                <div class="col-md-10">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="fs-3 text-center">Products</p>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <img src="/img/product_img/laptop.jpg" width="100%" height="150px">
-                                            <p class="fs-5 text-center">Laptop</p>
-                                            <div class="row text-center">
-                                                <p class="fs-6 fw-bold">$5000.0
-                                                <span class="fs-6 text-success">20% off</span>
-                                                </p>
-                                                <a class="btn btn-primary col-md-6 offset-md-3">View Details</a>
-                                            </div>
+            </div>
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="fs-3 text-center">Products</p>
+                        <div class="row">
+                            <div class="col-md-3" th:each="p:${products}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img th:src="@{'/img/product_img/'+${p.image}}" width="100%" height="150px">
+                                        <p class="fs-5 text-center">[[${p.title}]]</p>
+                                        <div class="row text-center">
+                                            <p class="fs-6 fw-bold">
+                                                <span>$[[${p.discountPrice}]]</span> <br>
+                                                <span class="text-decoration-line-through text-secondary">$[[${p.price}]]</span>
+                                                <span class="fs-6 text-success">[[${p.discount}]]% off</span>
+                                            </p>
+                                            <a class="btn btn-primary col-md-6 offset-md-3">View Details</a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- delete after backend -->
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <img src="/img/product_img/laptop.jpg" width="100%" height="150px">
-                                            <p class="fs-5 text-center">Laptop</p>
-                                            <div class="row text-center">
-                                                <p class="fs-6 fw-bold">$5000.0
-                                                    <span class="fs-6 text-success">20% off</span>
-                                                </p>
-                                                <a class="btn btn-primary col-md-6 offset-md-3">View Details</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <img src="/img/product_img/laptop.jpg" width="100%" height="150px">
-                                            <p class="fs-5 text-center">Laptop</p>
-                                            <div class="row text-center">
-                                                <p class="fs-6 fw-bold">$5000.0
-                                                    <span class="fs-6 text-success">20% off</span>
-                                                </p>
-                                                <a class="btn btn-primary col-md-6 offset-md-3">View Details</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <img src="/img/product_img/laptop.jpg" width="100%" height="150px">
-                                            <p class="fs-5 text-center">Laptop</p>
-                                            <div class="row text-center">
-                                                <p class="fs-6 fw-bold">$5000.0
-                                                    <span class="fs-6 text-success">20% off</span>
-                                                </p>
-                                                <a class="btn btn-primary col-md-6 offset-md-3">View Details</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- end -->
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 </html>
