@@ -29,7 +29,7 @@
                         <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                             Categories
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action">Electronics</a>
+                        <a href="#" th:each="c:${categories}" class="list-group-item list-group-item-action">[[${c.name}]]</a>
                     </div>
                 </div>
                 <div class="col-md-10">

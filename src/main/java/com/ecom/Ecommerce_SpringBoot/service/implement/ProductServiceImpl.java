@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService {
     public Product updateProduct(Product product, MultipartFile file) {
         return productDAO.updateProduct(product, file);
     }
+
+    @Override
+    public List<Product> getAllActiveProducts() {
+        return productDAO.getAllActiveProducts();
+    }
 }
