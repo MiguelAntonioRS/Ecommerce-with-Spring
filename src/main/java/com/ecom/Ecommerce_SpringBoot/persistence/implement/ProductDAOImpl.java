@@ -65,6 +65,7 @@ public class ProductDAOImpl implements ProductDAO {
         dbProduct.setPrice(product.getPrice());
         dbProduct.setStock(product.getStock());
         dbProduct.setImage(imageName);
+        dbProduct.setIsActive(product.getIsActive());
         dbProduct.setDiscount(product.getDiscount());
 
         double discount = product.getPrice()*(product.getDiscount() / 100.0);
