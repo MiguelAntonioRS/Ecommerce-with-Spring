@@ -94,8 +94,15 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> getAllActiveProducts() {
-        List<Product> products = productRepository.findByIsActiveTrue();
+    public List<Product> getAllActiveProducts(String category) {
+
+        List<Product> products = null;
+        if (ObjectUtils.isEmpty(category)) {
+            products = productRepository.findByIsActiveTrue();
+        } else {
+            products = productRepository.findByCategory(category);
+        }
+
         return products;
     }
 }

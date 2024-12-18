@@ -19,5 +19,5 @@ public interface ProductDAO {
 
     public Product updateProduct(Product product, MultipartFile file);
 
-    public List<Product> getAllActiveProducts();
+    public List<Product> getAllActiveProducts(String category);
 }
