@@ -46,6 +46,7 @@ public class HomeController {
         List<Product> products = productService.getAllActiveProducts(category);
         model.addAttribute("categories", categories);
         model.addAttribute("products", products);
+        model.addAttribute("paramValue", category);
 
         return "product";
     }
