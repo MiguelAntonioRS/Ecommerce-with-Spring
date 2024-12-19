@@ -2,17 +2,26 @@ package com.ecom.Ecommerce_SpringBoot.controller;
 
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
+import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
+import com.ecom.Ecommerce_SpringBoot.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
@@ -24,6 +33,9 @@ public class HomeController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/home")
     public String index() {
@@ -59,5 +71,31 @@ public class HomeController {
         model.addAttribute("product", productById);
 
         return "view_product";
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute UserDtls user, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
+
+        String imageName = file.isEmpty() ? "default.jpg" : file.getOriginalFilename();
+        user.setProfileImage(imageName);
+        UserDtls saveUser = userService.saveUser(user);
+
+        if (!ObjectUtils.isEmpty(saveUser)) {
+
+            if (!file.isEmpty()) {
+
+                File saveFile = new ClassPathResource("static/img").getFile();
+
+                Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "profile_img" + File.separator + file.getOriginalFilename());
+                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            }
+            session.setAttribute("succMsg", "Saved successfully");
+        } else {
+            session.setAttribute("errorMsg", "Not Saved ! internal server error");
+        }
+
+        userService.saveUser(user);
+
+        return "redirect:/register";
     }
 }
