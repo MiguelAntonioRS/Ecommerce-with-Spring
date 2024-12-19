@@ -89,7 +89,7 @@ public class HomeController {
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "profile_img" + File.separator + file.getOriginalFilename());
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
             }
-            session.setAttribute("succMsg", "Saved successfully");
+            session.setAttribute("succMsg", "Register successfully");
         } else {
             session.setAttribute("errorMsg", "Not Saved ! internal server error");
         }
