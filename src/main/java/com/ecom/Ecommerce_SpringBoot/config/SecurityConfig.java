@@ -3,6 +3,7 @@ package com.ecom.Ecommerce_SpringBoot.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,7 +33,14 @@ public class SecurityConfig {
         return authenticationProvider;
     }
 
-    public SecurityFilterChain securityFilterChain() {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 
+        httpSecurity.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
+                .authorizeHttpRequests(req -> req.requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/**").permitAll())
+                .formLogin(form -> form.loginPage("/signin"));
+
+        return httpSecurity.build();
     }
 }
