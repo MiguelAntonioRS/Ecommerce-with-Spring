@@ -94,8 +94,6 @@ public class HomeController {
             session.setAttribute("errorMsg", "Not Saved ! internal server error");
         }
 
-        userService.saveUser(user);
-
         return "redirect:/register";
     }
 }
