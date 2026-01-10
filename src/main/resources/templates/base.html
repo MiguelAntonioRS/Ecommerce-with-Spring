@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html  lang="en" xmlns:th="http://www.thymeleaf.org"
-       th:fragment="layout(content)">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="layout(content)">
 <head>
     <meta charset="UTF-8">
     <title>Ecommerce-with-Spring</title>
@@ -47,24 +49,28 @@
                 </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/signin"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Admin</a>
-                    </li>
+                    <th:block th:if="${user==null}">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/signin"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Admin</a>
+                        </li>
+                    </th:block>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/register">Miguel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Logout</a>
-                    </li>
+                    <th:block th:if="${user!=null}">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/#"><i class="fa-solid fa-right-to-bracket"></i>[[${user.name}]]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/#">Logout</a>
+                        </li>
+                    </th:block>
+
                 </ul>
-
             </div>
         </div>
     </nav>
