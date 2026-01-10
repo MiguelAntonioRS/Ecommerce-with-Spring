@@ -21,6 +21,11 @@ public class AuthSuccessHandlerImpl implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
         AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
 
+    }
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authorities);
@@ -30,10 +35,5 @@ public class AuthSuccessHandlerImpl implements AuthenticationSuccessHandler {
         } else {
             response.sendRedirect("/");
         }
-    }
-
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
     }
 }
