@@ -16,4 +16,9 @@ public class UserServiceImpl implements UserService {
     public UserDtls saveUser(UserDtls user) {
         return userDAO.saveUser(user);
     }
+
+    @Override
+    public UserDtls getUserByEmail(String email) {
+        return null;
+    }
 }
