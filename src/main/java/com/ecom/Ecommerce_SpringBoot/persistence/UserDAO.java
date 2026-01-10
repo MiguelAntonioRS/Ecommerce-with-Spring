@@ -7,4 +7,6 @@ import org.springframework.stereotype.Component;
 public interface UserDAO {
 
     public UserDtls saveUser(UserDtls user);
+
+    public UserDtls getUserByEmail(String email);
 }

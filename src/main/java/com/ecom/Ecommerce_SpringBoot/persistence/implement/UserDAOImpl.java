@@ -26,4 +26,9 @@ public class UserDAOImpl implements UserDAO {
         UserDtls saveUser = userRepository.save(user);
         return saveUser;
     }
+
+    @Override
+    public UserDtls getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
