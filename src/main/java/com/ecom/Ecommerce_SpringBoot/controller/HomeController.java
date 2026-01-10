@@ -42,7 +42,10 @@ public class HomeController {
     public void getUsersDetails(Principal principal, Model model) {
 
         if (principal != null) {
+
             String email = principal.getName();
+            UserDtls userDtls = userService.getUserByEmail(email);
+            model.addAttribute("user", userDtls);
         }
     }
 
