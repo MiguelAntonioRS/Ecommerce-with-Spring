@@ -19,6 +19,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDtls getUserByEmail(String email) {
-        return null;
+        return userDAO.getUserByEmail(email);
     }
 }
