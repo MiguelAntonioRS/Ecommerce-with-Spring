@@ -9,3 +9,64 @@
 .error {
 	color: red;
 }
+
+/* Estilo para el slider */
+.slider-image {
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Estilo para los círculos de categoría */
+.category-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+}
+
+.category-circle img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Estilo para las tarjetas de producto */
+.product-card {
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slider-image {
+        height: 250px;
+    }
+    .category-circle {
+        width: 80px;
+        height: 80px;
+    }
+    .product-card {
+        width: 140px;
+        height: 140px;
+    }
+}
