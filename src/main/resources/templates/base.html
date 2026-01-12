@@ -20,75 +20,80 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <!-- Start Navbar  -->
-    <nav class="navbar navbar-expand-lg  bg-primary fixed-top navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"><i class="fa-solid fa-cart-shopping"></i> Ecom Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/"><i class="fa-solid fa-house"></i> Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/products">Product</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li th:each="c:${categorys}"><a class="dropdown-item" th:href="@{'/products?category=' + ${c.name}}">[[${c.name}]]</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <th:block th:if="${user==null}">
+    <!-- Wrapper con altura mínima completa -->
+    <div class="d-flex flex-column min-vh-100">
+        <!-- Start Navbar -->
+        <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><i class="fa-solid fa-cart-shopping"></i> Ecom Store</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/signin"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a class="nav-link active" aria-current="page" href="/"><i class="fa-solid fa-house"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                            <a class="nav-link active" aria-current="page" href="/products">Product</a>
                         </li>
-                    </th:block>
-
-                    <th:block th:if="${user!=null}">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-user"></i> [[${user.name}]]
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Category
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li th:each="c:${categorys}"><a class="dropdown-item" th:href="@{'/products?category=' + ${c.name}}">[[${c.name}]]</a></li>
                             </ul>
                         </li>
+                    </ul>
 
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/logout"><i class="fa-solid fa-right-to-bracket"></i> Logout</a>
-                        </li>
-                    </th:block>
-                </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <th:block th:if="${user==null}">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/signin"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                            </li>
+                        </th:block>
+
+                        <th:block th:if="${user!=null}">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i> [[${user.name}]]
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/logout"><i class="fa-solid fa-right-to-bracket"></i> Logout</a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+        <!-- End Navbar -->
 
-    <!-- End Navbar -->
-    <div th:replace="${content}"></div>
+        <!-- Contenido principal (empujado abajo del navbar y expandible) -->
+        <main class="flex-grow-1 mt-4 pt-4">
+            <div th:replace="${content}"></div>
+        </main>
 
-    <!-- Start Footer -->
-    <div class="container-fluid p-1 bg-primary text-center text-white" style="margin-top: 80px">
-        <p>ecomstore.com</p>
-        <p class="m-0 mbt1">&copy; Ecommerce Store 2025</p>
+        <!-- Start Footer -->
+        <footer class="bg-primary text-white text-center py-2 mt-auto">
+            <p>ecomstore.com</p>
+            <p class="mb-0">&copy; Ecommerce Store 2025</p>
+        </footer>
+        <!-- End Footer -->
     </div>
-    <!-- End Footer -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
 </body>
 </html>
