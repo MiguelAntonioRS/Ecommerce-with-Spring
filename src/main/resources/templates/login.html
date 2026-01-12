@@ -23,6 +23,12 @@
                         <div th:if="${param.logout}" class="alert alert-success">
                             Logout Successfully
                         </div>
+
+                        <div class="alert alert-info text-center mt-3">
+                            <strong>¿Quieres probar como administrador?</strong><br>
+                            <span>Email: <b>admin@example.com</b></span><br>
+                            <span>Contraseña: <b>admin123</b></span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form action="/login" method="post">
