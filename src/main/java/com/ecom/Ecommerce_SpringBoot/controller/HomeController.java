@@ -49,7 +49,7 @@ public class HomeController {
         }
 
         List<Category> categories = categoryService.getAllActiveCategory();
-        model.addAttribute("category", categories);
+        model.addAttribute("categorys", categories);
     }
 
     @GetMapping("/home")
