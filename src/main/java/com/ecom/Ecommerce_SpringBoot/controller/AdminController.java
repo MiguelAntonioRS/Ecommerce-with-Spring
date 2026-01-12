@@ -46,6 +46,9 @@ public class AdminController {
             UserDtls userDtls = userService.getUserByEmail(email);
             model.addAttribute("user", userDtls);
         }
+
+        List<Category> categories = categoryService.getAllActiveCategory();
+        model.addAttribute("category", categories);
     }
 
     @GetMapping("/")
