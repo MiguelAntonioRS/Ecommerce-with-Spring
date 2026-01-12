@@ -48,7 +48,7 @@ public class AdminController {
         }
 
         List<Category> categories = categoryService.getAllActiveCategory();
-        model.addAttribute("category", categories);
+        model.addAttribute("categorys", categories);
     }
 
     @GetMapping("/")
