@@ -7,14 +7,15 @@
 </head>
 <body>
 <section>
-    <div class="container-fluid bg-primary p-5 mt-5">
+    <!-- Barra de búsqueda -->
+    <div class="container-fluid bg-primary p-3">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <form>
                     <div class="input-group">
                         <input type="text" class="form-control" name="ch">
-                        <button class="btn btn-light text-dark ms-3 col-md-2"><i
-                                class="fa-solid fa-magnifying-glass"></i> Search
+                        <button class="btn btn-light text-dark ms-3 col-md-2">
+                            <i class="fa-solid fa-magnifying-glass"></i> Search
                         </button>
                     </div>
                 </form>
@@ -22,7 +23,8 @@
         </div>
     </div>
 
-    <div class="container-fluid mt-1">
+    <!-- Contenido principal -->
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 p-0">
                 <div class="list-group">
@@ -41,7 +43,7 @@
                     <div class="card-body">
                         <p class="fs-3 text-center">Products</p>
                         <div class="row">
-                            <th:block th:if="${products.size}>0">
+                            <th:block th:if="${products.size > 0}">
                                 <div class="col-md-3" th:each="p:${products}">
                                     <div class="card">
                                         <div class="card-body">
@@ -60,7 +62,7 @@
                                     </div>
                                 </div>
                             </th:block>
-                            <th:block th:unless="${products.size>0}">
+                            <th:block th:unless="${products.size > 0}">
                                 <p class="fs-4 text-center mt-4 text-danger">Product not Available</p>
                             </th:block>
                         </div>
