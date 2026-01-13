@@ -42,9 +42,15 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Boolean updateAccountStatus(Integer id, String status) {
+    public Boolean updateAccountStatus(Integer id, Boolean status) {
 
         Optional<UserDtls> findByUser = userRepository.findById(id);
+
+        if (findByUser.isPresent()) {
+            UserDtls userDtls = findByUser.get();
+            userDtls.setIsEnabled(status);
+        }
+
         return null;
     }
 }
