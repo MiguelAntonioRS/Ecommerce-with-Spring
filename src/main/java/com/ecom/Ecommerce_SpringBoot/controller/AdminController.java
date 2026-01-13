@@ -231,4 +231,10 @@ public class AdminController {
         model.addAttribute("users", users);
         return "/admin/users";
     }
+
+    public String updateUserAccountStatus(@RequestParam String status, @RequestParam Integer id) {
+
+
+        return "redirect:/admin/users";
+    }
 }
