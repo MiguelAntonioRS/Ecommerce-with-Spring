@@ -49,8 +49,10 @@ public class UserDAOImpl implements UserDAO {
         if (findByUser.isPresent()) {
             UserDtls userDtls = findByUser.get();
             userDtls.setIsEnabled(status);
+            userRepository.save(userDtls);
+            return true;
         }
 
-        return null;
+        return false;
     }
 }
