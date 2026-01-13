@@ -1,2 +1,10 @@
 /mvnw text eol=lf
 *.cmd text eol=crlf
+# Ignorar archivos HTML, CSS y JS para el conteo de lenguajes
+*.html linguist-language=Text
+*.css linguist-language=Text
+*.js linguist-language=Text
+
+# Marcar carpetas como "vendidas" (no parte del código principal)
+src/main/resources/templates/* linguist-vendored=true
+src/main/resources/static/* linguist-vendored=true
