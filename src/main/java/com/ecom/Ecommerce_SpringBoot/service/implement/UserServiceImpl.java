@@ -6,6 +6,8 @@ import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -20,5 +22,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDtls getUserByEmail(String email) {
         return userDAO.getUserByEmail(email);
+    }
+
+    @Override
+    public List<UserDtls> getAllUsers() {
+        return userDAO.;
     }
 }
