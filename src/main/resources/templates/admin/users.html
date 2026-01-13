@@ -44,9 +44,8 @@
                         <td>[[${u.mobileNumber}]]</td>
                         <td>[[${u.address+',' +u.city+ ',' +u.state+ ',' +u.pinCode}]]</td>
                         <td>[[${u.isEnabled}]]</td>
-                        <td><a th:href="@{'/admin/editProduct/'+${u.id}}" class="btn btn-sm btn-primary"><i
-                                class="fa-solid fa-pen-to-square"></i> Edit</a>
-                            <a th:href="@{'/admin/deleteProduct/'+${u.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+                        <td><a th:href="@{'/admin/updateStatus?status=true&id='+${u.id}}" class="btn btn-sm btn-primary">Active</a>
+                            <a th:href="@{'/admin/updateStatus?status=false&id='+${u.id}}" class="btn btn-sm btn-danger">Inactive</a>
                         </td>
                     </tr>
                     </tbody>
