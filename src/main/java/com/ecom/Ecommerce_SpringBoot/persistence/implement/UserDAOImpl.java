@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserDAOImpl implements UserDAO {
@@ -38,5 +39,12 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<UserDtls> getAllUsers(String role) {
         return userRepository.findByRole(role);
+    }
+
+    @Override
+    public Boolean updateAccountStatus(Integer id, String status) {
+
+        Optional<UserDtls> findByUser = userRepository.findById(id);
+        return null;
     }
 }
