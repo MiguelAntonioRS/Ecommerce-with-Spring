@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean updateAccountStatus(Integer id, String status) {
+    public Boolean updateAccountStatus(Integer id, Boolean status) {
         return null;
     }
 }
