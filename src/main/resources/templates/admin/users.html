@@ -31,25 +31,22 @@
                         <th scope="col">Email</th>
                         <th scope="col">Mobile Number</th>
                         <th scope="col">Address</th>
-                        <th scope="col">State</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="p,c:${products}">
+                    <tr th:each="u,c:${users}">
                         <th scope="row">[[${c.count}]]</th>
-                        <td><img th:src="@{'/img/product_img/'+${p.image}}" width="60px" height="60px"></td>
-                        <td>[[${p.title}]]</td>
-                        <td>[[${p.category}]]</td>
-                        <td>[[${p.price}]]</td>
-                        <td>[[${p.discount}]]</td>
-                        <td>[[${p.discountPrice}]]</td>
-                        <td>[[${p.isActive}]]</td>
-                        <td>[[${p.stock}]]</td>
-                        <td><a th:href="@{'/admin/editProduct/'+${p.id}}" class="btn btn-sm btn-primary"><i
+                        <td><img th:src="@{'/img/profile_img/'+${u.profileImage}}" width="60px" height="60px"></td>
+                        <td>[[${u.name}]]</td>
+                        <td>[[${u.email}]]</td>
+                        <td>[[${u.mobileNumber}]]</td>
+                        <td>[[${u.address+',' +u.city+ ',' +u.state+ ',' +u.pinCode}]]</td>
+                        <td>[[${u.isEnabled}]]</td>
+                        <td><a th:href="@{'/admin/editProduct/'+${u.id}}" class="btn btn-sm btn-primary"><i
                                 class="fa-solid fa-pen-to-square"></i> Edit</a>
-                            <a th:href="@{'/admin/deleteProduct/'+${p.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+                            <a th:href="@{'/admin/deleteProduct/'+${u.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
                         </td>
                     </tr>
                     </tbody>
