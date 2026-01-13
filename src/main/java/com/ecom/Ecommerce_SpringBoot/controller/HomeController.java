@@ -105,10 +105,10 @@ public class HomeController {
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
             }
             session.setAttribute("succMsg", "Register successfully");
+            return "redirect:/signin";
         } else {
             session.setAttribute("errorMsg", "Not Saved ! internal server error");
+            return "redirect:/register";
         }
-
-        return "redirect:/register";
     }
 }
