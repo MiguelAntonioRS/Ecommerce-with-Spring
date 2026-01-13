@@ -227,6 +227,8 @@ public class AdminController {
     @GetMapping("/users")
     public String getAllUsers(Model model) {
 
+        List<UserDtls> users = userService.getAllUsers("ROLE_USER");
+        model.addAttribute("users", users);
         return "/admin/users";
     }
 }
