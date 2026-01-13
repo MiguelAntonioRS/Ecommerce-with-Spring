@@ -13,4 +13,6 @@ public interface UserService {
     public UserDtls getUserByEmail(String email);
 
     public List<UserDtls> getAllUsers(String role);
+
+    public Boolean updateAccountStatus(Integer id, String status);
 }
