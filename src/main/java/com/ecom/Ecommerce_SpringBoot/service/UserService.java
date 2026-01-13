@@ -12,5 +12,5 @@ public interface UserService {
 
     public UserDtls getUserByEmail(String email);
 
-    public List<UserDtls> getAllUsers();
+    public List<UserDtls> getAllUsers(String role);
 }

@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class UserDAOImpl implements UserDAO {
 
@@ -31,5 +33,10 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public UserDtls getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<UserDtls> getAllUsers(String role) {
+        return null;
     }
 }

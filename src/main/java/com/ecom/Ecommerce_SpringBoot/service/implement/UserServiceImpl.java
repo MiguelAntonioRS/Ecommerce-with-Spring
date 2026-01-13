@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDtls> getAllUsers() {
-        return userDAO.;
+    public List<UserDtls> getAllUsers(String role) {
+        return null;
     }
 }
