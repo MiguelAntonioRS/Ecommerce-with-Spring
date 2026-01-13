@@ -223,4 +223,10 @@ public class AdminController {
         }
         return "redirect:/admin/editProduct/" + product.getId();
     }
+
+    @GetMapping("/users")
+    public String getAllUsers(Model model) {
+
+        return "/admin/users";
+    }
 }
