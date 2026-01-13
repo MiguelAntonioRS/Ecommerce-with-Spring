@@ -1,10 +1,15 @@
 /mvnw text eol=lf
 *.cmd text eol=crlf
-# Ignorar archivos HTML, CSS y JS para el conteo de lenguajes
-*.html linguist-language=Text
-*.css linguist-language=Text
-*.js linguist-language=Text
 
-# Marcar carpetas como "vendidas" (no parte del código principal)
-src/main/resources/templates/* linguist-vendored=true
-src/main/resources/static/* linguist-vendored=true
+# Ignorar plantillas Thymeleaf (no son código fuente lógico)
+src/main/resources/templates/*.html linguist-vendored=true
+
+# Ignorar imágenes y assets binarios (no deben contarse como código)
+src/main/resources/static/img/** linguist-vendored=true
+src/main/resources/static/images/** linguist-vendored=true
+*.png linguist-vendored=true
+*.jpg linguist-vendored=true
+*.jpeg linguist-vendored=true
+*.gif linguist-vendored=true
+*.svg linguist-vendored=true
+*.ico linguist-vendored=true
