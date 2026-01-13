@@ -37,6 +37,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<UserDtls> getAllUsers(String role) {
-        return null;
+        return userRepository.findByRole(role);
     }
 }
