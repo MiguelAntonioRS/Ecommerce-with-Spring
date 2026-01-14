@@ -43,4 +43,6 @@ public class UserDtls {
     private Boolean isEnabled;
 
     private Boolean accountNonBlocked;
+
+    private Integer failedAttempt;
 }
