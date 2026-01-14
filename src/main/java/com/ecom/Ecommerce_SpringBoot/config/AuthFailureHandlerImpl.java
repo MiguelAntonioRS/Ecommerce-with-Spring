@@ -30,30 +30,39 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
         String email = request.getParameter("username");
         UserDtls userDtls = userRepository.findByEmail(email);
 
-        if (userDtls.getIsEnabled()) {
-
-            if (userDtls.getAccountNonBlocked()) {
-
-                if (userDtls.getFailedAttempt()<= AppConstant.ATTEMPT_TIME) {
-                    userService.increaseFailedAttempt(userDtls);
-                } else {
-                    userService.userAccountLock(userDtls);
-                    exception = new LockedException("Account is locked !! failed attempt 3");
-                }
-
-            } else {
-
-                if (userService.unlockAccountTimeExpired(userDtls)) {
-                    exception = new LockedException("Account is unlocked !! Please try to login");
-                } else {
-                    exception = new LockedException("Account locked !! Please try after sometimes");
-                }
-            }
-
-        }else {
-            exception = new LockedException("Account inactive");
+        // Si el usuario no existe, redirige al error
+        if (userDtls == null) {
+            super.setDefaultFailureUrl("/signin?error=Invalid email or password");
+            super.onAuthenticationFailure(request, response, exception);
+            return;
         }
 
+        // Verifica si la cuenta está habilitada
+        if (!userDtls.getIsEnabled()) {
+            exception = new LockedException("Account inactive");
+        }
+        // Verifica si la cuenta está bloqueada
+        else if (!userDtls.getAccountNonBlocked()) {
+            if (userService.unlockAccountTimeExpired(userDtls)) {
+                exception = new LockedException("Account is unlocked !! Please try to login");
+            } else {
+                exception = new LockedException("Account locked !! Please try after sometimes");
+            }
+        }
+        // Cuenta activa y desbloqueada: maneja intentos fallidos
+        else {
+            // Manejo seguro de nulos
+            int failedAttempts = (userDtls.getFailedAttempt() != null) ? userDtls.getFailedAttempt() : 0;
+
+            if (failedAttempts < AppConstant.ATTEMPT_TIME) {
+                userService.increaseFailedAttempt(userDtls);
+            } else {
+                userService.userAccountLock(userDtls);
+                exception = new LockedException("Account is locked !! failed attempt " + (AppConstant.ATTEMPT_TIME + 1));
+            }
+        }
+
+        super.setDefaultFailureUrl("/signin?error");
         super.onAuthenticationFailure(request, response, exception);
     }
 }
