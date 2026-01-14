@@ -19,4 +19,6 @@ public interface UserDAO {
     public void increaseFailedAttempt(UserDtls user);
 
     public void userAccountLock(UserDtls user);
+
+    public Boolean unlockAccountTimeExpired(UserDtls user);
 }
