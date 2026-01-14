@@ -65,4 +65,9 @@ public class UserDAOImpl implements UserDAO {
     public void userAccountLock(UserDtls user) {
 
     }
+
+    @Override
+    public Boolean unlockAccountTimeExpired(UserDtls user) {
+        return null;
+    }
 }
