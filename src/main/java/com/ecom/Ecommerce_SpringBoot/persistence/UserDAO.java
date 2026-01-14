@@ -15,4 +15,6 @@ public interface UserDAO {
     public List<UserDtls> getAllUsers(String role);
 
     public Boolean updateAccountStatus(Integer id, Boolean status);
+
+    public void increaseFailedAttempt(UserDtls user);
 }
