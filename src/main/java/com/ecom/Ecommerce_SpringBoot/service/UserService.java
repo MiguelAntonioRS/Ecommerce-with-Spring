@@ -21,4 +21,6 @@ public interface UserService {
     public void userAccountLock(UserDtls user);
 
     public Boolean unlockAccountTimeExpired(UserDtls user);
+
+    public void resetAttempt(int userId);
 }
