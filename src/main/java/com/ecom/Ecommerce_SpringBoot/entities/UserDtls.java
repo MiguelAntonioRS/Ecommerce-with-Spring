@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -45,4 +46,6 @@ public class UserDtls {
     private Boolean accountNonBlocked;
 
     private Integer failedAttempt;
+
+    private Date lockTime;
 }
