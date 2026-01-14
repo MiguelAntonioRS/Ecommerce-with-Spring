@@ -1,3 +1,5 @@
+// src/main/java/com/ecom/Ecommerce_SpringBoot/config/DefaultAdminSetup.java
+
 package com.ecom.Ecommerce_SpringBoot.config;
 
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
@@ -5,44 +7,36 @@ import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class DefaultAdminSetup {
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Bean
-    public ApplicationRunner createDefaultAdmin() {
+    public ApplicationRunner init() {
         return args -> {
-            String adminEmail = System.getenv("ADMIN_EMAIL");
-            String adminPassword = System.getenv("ADMIN_PASSWORD");
+            String adminEmail = "admin@example.com";
+            String adminPassword = "admin123";
 
-            // Valores por defecto si no hay variables de entorno
-            if (adminEmail == null || adminEmail.isEmpty()) {
-                adminEmail = "admin@example.com";
-            }
-            if (adminPassword == null || adminPassword.isEmpty()) {
-                adminPassword = "admin123";
-            }
-
-            // Solo crea si no existe
             if (userRepository.findByEmail(adminEmail) == null) {
                 UserDtls admin = new UserDtls();
                 admin.setName("Admin");
                 admin.setEmail(adminEmail);
                 admin.setPassword(passwordEncoder.encode(adminPassword));
                 admin.setRole("ROLE_ADMIN");
-                admin.setMobileNumber("0000000000");
+                admin.setAccountNonBlocked(true);
+                admin.setMobileNumber("1234567890");
                 admin.setAddress("Admin Address");
                 admin.setCity("Admin City");
                 admin.setState("Admin State");
-                admin.setPinCode("000000");
+                admin.setPinCode("12345");
                 admin.setProfileImage("default.jpg");
 
                 userRepository.save(admin);
