@@ -30,7 +30,6 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
         String email = request.getParameter("username");
         UserDtls userDtls = userRepository.findByEmail(email);
 
-        // Si el usuario no existe, redirige al error
         if (userDtls == null) {
             super.setDefaultFailureUrl("/signin?error=Invalid email or password");
             super.onAuthenticationFailure(request, response, exception);
@@ -42,7 +41,7 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
             exception = new LockedException("Account inactive");
         }
         // Verifica si la cuenta está bloqueada
-        else if (!userDtls.getAccountNonBlocked()) {
+        else if ((userDtls.getAccountNonBlocked() != null) && !userDtls.getAccountNonBlocked()) {
             if (userService.unlockAccountTimeExpired(userDtls)) {
                 exception = new LockedException("Account is unlocked !! Please try to login");
             } else {
@@ -51,7 +50,6 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
         }
         // Cuenta activa y desbloqueada: maneja intentos fallidos
         else {
-            // Manejo seguro de nulos
             int failedAttempts = (userDtls.getFailedAttempt() != null) ? userDtls.getFailedAttempt() : 0;
 
             if (failedAttempts < AppConstant.ATTEMPT_TIME) {

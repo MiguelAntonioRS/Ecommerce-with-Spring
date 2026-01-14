@@ -40,7 +40,8 @@ public class UserDtls {
 
     private Boolean isEnabled;
 
-    private Boolean accountNonBlocked;
+    @Column
+    private Boolean accountNonBlocked = true;
 
     @Column
     private Integer failedAttempt = 0;
