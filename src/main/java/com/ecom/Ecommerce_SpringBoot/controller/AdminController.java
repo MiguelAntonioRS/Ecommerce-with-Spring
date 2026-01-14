@@ -229,7 +229,7 @@ public class AdminController {
 
         List<UserDtls> users = userService.getAllUsers("ROLE_USER");
         model.addAttribute("users", users);
-        return "/admin/users";
+        return "admin/users";
     }
 
     @GetMapping("/updateStatus")
