@@ -55,4 +55,9 @@ public class UserDAOImpl implements UserDAO {
 
         return false;
     }
+
+    @Override
+    public void increaseFailedAttempt(UserDtls user) {
+
+    }
 }

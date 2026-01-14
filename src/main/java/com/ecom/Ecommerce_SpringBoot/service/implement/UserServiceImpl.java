@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
     public Boolean updateAccountStatus(Integer id, Boolean status) {
         return userDAO.updateAccountStatus(id, status);
     }
+
+    @Override
+    public void increaseFailedAttempt(UserDtls user) {
+
+    }
 }
