@@ -37,7 +37,7 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
         }
 
         // Verifica si la cuenta está habilitada
-        if (!userDtls.getIsEnabled()) {
+        if ((userDtls.getIsEnabled() != null) && !userDtls.getIsEnabled()) {
             exception = new LockedException("Account inactive");
         }
         // Verifica si la cuenta está bloqueada

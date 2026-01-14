@@ -38,7 +38,8 @@ public class UserDtls {
 
     private String role;
 
-    private Boolean isEnabled;
+    @Column
+    private Boolean isEnabled = true;
 
     @Column
     private Boolean accountNonBlocked = true;
