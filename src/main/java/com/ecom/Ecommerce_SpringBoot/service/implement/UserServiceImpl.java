@@ -7,6 +7,7 @@ import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void userAccountLock(UserDtls user) {
 
+        user.setAccountNonBlocked(false);
+        user.setLockTime(new Date());
+        userRepository.save(user);
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +68,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void userAccountLock(UserDtls user) {
 
+        user.setAccountNonBlocked(false);
+        user.setLockTime(new Date());
+        userRepository.save(user);
     }
 
     @Override
