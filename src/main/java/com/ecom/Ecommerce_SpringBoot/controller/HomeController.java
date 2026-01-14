@@ -26,7 +26,6 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
     @Autowired
@@ -50,6 +49,11 @@ public class HomeController {
 
         List<Category> categories = categoryService.getAllActiveCategory();
         model.addAttribute("categorys", categories);
+    }
+
+    @GetMapping("/")
+    public String home() {
+        return "index";
     }
 
     @GetMapping("/home")
