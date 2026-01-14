@@ -42,7 +42,12 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
                 }
 
             } else {
-                exception = new LockedException("Account locked");
+
+                if (userService.unlockAccountTimeExpired(userDtls)) {
+                    exception = new LockedException("Account is unlocked !! Please try to login");
+                } else {
+                    exception = new LockedException("Account locked !! Please try after sometimes");
+                }
             }
 
         }else {
