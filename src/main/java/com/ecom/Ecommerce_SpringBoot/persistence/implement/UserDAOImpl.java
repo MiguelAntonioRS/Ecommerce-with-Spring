@@ -59,6 +59,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void increaseFailedAttempt(UserDtls user) {
 
+        int attempt = user.getFailedAttempt() + 1;
+        user.setFailedAttempt(attempt);
+        userRepository.save(user);
     }
 
     @Override
