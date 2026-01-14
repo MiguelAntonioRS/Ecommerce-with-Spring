@@ -4,6 +4,7 @@ import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.persistence.UserDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
+import com.ecom.Ecommerce_SpringBoot.util.AppConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +59,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean unlockAccountTimeExpired(UserDtls user) {
-        return null;
+
+        Long lockTime = user.getLockTime().getTime();
+        Long unLockTime = lockTime + AppConstant.UNLOCK_DURATION_TIME;
+        long currentTime = System.currentTimeMillis();
+
+        if (unLockTime<currentTime) {
+
+            user.setAccountNonBlocked(true);
+            user.setFailedAttempt(0);
+            user.setLockTime(null);
+            userRepository.save(user);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
