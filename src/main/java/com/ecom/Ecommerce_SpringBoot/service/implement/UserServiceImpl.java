@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
     public Boolean unlockAccountTimeExpired(UserDtls user) {
         return null;
     }
+
+    @Override
+    public void resetAttempt(int userId) {
+
+    }
 }
