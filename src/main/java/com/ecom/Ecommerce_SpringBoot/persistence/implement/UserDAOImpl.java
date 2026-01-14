@@ -60,4 +60,9 @@ public class UserDAOImpl implements UserDAO {
     public void increaseFailedAttempt(UserDtls user) {
 
     }
+
+    @Override
+    public void userAccountLock(UserDtls user) {
+
+    }
 }

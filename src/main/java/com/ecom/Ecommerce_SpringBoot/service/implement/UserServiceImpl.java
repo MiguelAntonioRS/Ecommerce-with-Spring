@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService {
     public void increaseFailedAttempt(UserDtls user) {
 
     }
+
+    @Override
+    public void userAccountLock(UserDtls user) {
+
+    }
 }
