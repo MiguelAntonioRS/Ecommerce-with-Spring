@@ -121,4 +121,10 @@ public class HomeController {
 
         return "forgot_password";
     }
+
+    @GetMapping("/reset-password")
+    public String showResetPasswordPage() {
+
+        return "reset_password";
+    }
 }
