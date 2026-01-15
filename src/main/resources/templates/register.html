@@ -26,69 +26,74 @@
                             <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
                             <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                         </th:block>
-
                     </div>
                     <div class="card-body">
                         <form action="/saveUser" enctype="multipart/form-data" method="post">
-                            <div class="row">
-                                <div class="col">
+                            <!-- Fila 1: Name and Phone -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
                                     <label class="form-label">Full Name</label>
                                     <input required="true" class="form-control" name="name" type="text">
                                 </div>
-
-                                <div class="col">
+                                <div class="col-md-6">
                                     <label class="form-label">Mobile Number</label>
                                     <input required="true" class="form-control" name="mobileNumber" type="number">
                                 </div>
+                            </div>
 
-                                <div class="mb-3">
+                            <!-- Fila 2: Email -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
                                     <label class="form-label">Email</label>
                                     <input required="true" class="form-control" name="email" type="email">
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <label class="form-label">Address</label>
-                                        <input required="true" class="form-control" name="address" type="text">
-                                    </div>
+                            </div>
 
-                                    <div class="col">
-                                        <label class="form-label">City</label>
-                                        <input required="true" class="form-control" name="city" type="text">
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <label class="form-label">State</label>
-                                            <input required="true" class="form-control" name="state" type="text">
-                                        </div>
-
-                                        <div class="col ms-4">
-                                            <label class="form-label">Pin Code</label>
-                                            <input class="form-control" name="pinCode" type="number" required="true">
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col">
-                                                <label class="form-label">Password</label>
-                                                <input class="form-control" name="password" type="password"
-                                                       required="true">
-                                            </div>
-
-                                            <div class="col ms-5">
-                                                <label class="form-label">Confirm Password</label>
-                                                <input class="form-control" name="confirmPassword" type="password"
-                                                       required="true">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Profile Image</label>
-                                                <input class="form-control" name="img" type="file">
-                                            </div>
-                                        </div>
-                                    </div>
+                            <!-- Fila 3: Direction and City -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Address</label>
+                                    <input required="true" class="form-control" name="address" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">City</label>
+                                    <input required="true" class="form-control" name="city" type="text">
                                 </div>
                             </div>
-                            <button type="submit" class="btn bg-primary text-white col-md-12">Register</button>
+
+                            <!-- Fila 4: State y Pin Code -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">State</label>
+                                    <input required="true" class="form-control" name="state" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Pin Code</label>
+                                    <input required="true" class="form-control" name="pinCode" type="number">
+                                </div>
+                            </div>
+
+                            <!-- Fila 5: Password and Confirm-->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Password</label>
+                                    <input required="true" class="form-control" name="password" type="password">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input required="true" class="form-control" name="confirmPassword" type="password">
+                                </div>
+                            </div>
+
+                            <!-- Fila 6: Image -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Profile Image</label>
+                                    <input class="form-control" name="img" type="file" accept="image/*">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary col-md-12">Register</button>
                         </form>
                     </div>
                     <div class="card-footer">
