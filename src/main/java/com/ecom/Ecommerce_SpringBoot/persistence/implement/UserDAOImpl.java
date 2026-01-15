@@ -27,6 +27,8 @@ public class UserDAOImpl implements UserDAO {
 
         user.setRole("ROLE_USER");
         user.setIsEnabled(true);
+        user.setAccountNonBlocked(true);
+        user.setFailedAttempt(0);
         String encodePassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodePassword);
         UserDtls saveUser = userRepository.save(user);
