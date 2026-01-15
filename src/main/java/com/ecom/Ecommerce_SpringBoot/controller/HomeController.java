@@ -119,6 +119,6 @@ public class HomeController {
     @GetMapping("/forgot-password")
     public String showForgotPasswordPage() {
 
-        return "forgot_password.html";
+        return "forgot_password";
     }
 }
