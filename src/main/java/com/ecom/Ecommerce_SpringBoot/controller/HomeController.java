@@ -123,7 +123,7 @@ public class HomeController {
     }
 
     @PostMapping("/forgot-password")
-    public String processForgotPasswordPage(@RequestParam String email) {
+    public String processForgotPasswordPage(@RequestParam String email, HttpSession session) {
 
         UserDtls userByEmail = userService.getUserByEmail(email);
 
