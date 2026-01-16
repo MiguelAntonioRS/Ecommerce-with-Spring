@@ -128,11 +128,9 @@ public class HomeController {
         UserDtls userByEmail = userService.getUserByEmail(email);
 
         if (ObjectUtils.isEmpty(userByEmail)){
-
             session.setAttribute("msg", "Invalid Email");
         } else {
-
-
+            // Method sendMail
         }
 
         return "forgot_password";
