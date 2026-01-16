@@ -7,6 +7,7 @@ import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
+import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -130,7 +131,11 @@ public class HomeController {
         if (ObjectUtils.isEmpty(userByEmail)){
             session.setAttribute("msg", "Invalid Email");
         } else {
-            // Method sendMail
+            Boolean sendMail = CommonUtil.sendMail();
+
+            if (sendMail) {
+                session.setAttribute("msg", "Please check you mail: Password Reset");
+            }
         }
 
         return "forgot_password";
