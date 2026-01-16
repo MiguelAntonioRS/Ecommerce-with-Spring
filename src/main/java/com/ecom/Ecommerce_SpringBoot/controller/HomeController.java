@@ -122,6 +122,12 @@ public class HomeController {
         return "forgot_password";
     }
 
+    @PostMapping("/forgot-password")
+    public String processForgotPasswordPage() {
+
+        return "forgot_password";
+    }
+
     @GetMapping("/reset-password")
     public String showResetPasswordPage() {
 
