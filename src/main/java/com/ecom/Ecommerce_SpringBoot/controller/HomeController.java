@@ -123,7 +123,7 @@ public class HomeController {
     }
 
     @PostMapping("/forgot-password")
-    public String processForgotPasswordPage() {
+    public String processForgotPasswordPage(@RequestParam String email) {
 
         return "forgot_password";
     }
