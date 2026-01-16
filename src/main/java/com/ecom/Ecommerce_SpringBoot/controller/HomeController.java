@@ -125,6 +125,12 @@ public class HomeController {
     @PostMapping("/forgot-password")
     public String processForgotPasswordPage(@RequestParam String email) {
 
+        UserDtls userByEmail = userService.getUserByEmail(email);
+
+        if (ObjectUtils.isEmpty(userByEmail)){
+
+        }
+
         return "forgot_password";
     }
 
