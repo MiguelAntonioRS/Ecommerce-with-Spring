@@ -129,6 +129,10 @@ public class HomeController {
 
         if (ObjectUtils.isEmpty(userByEmail)){
 
+            session.setAttribute("msg", "Invalid Email");
+        } else {
+
+
         }
 
         return "forgot_password";
