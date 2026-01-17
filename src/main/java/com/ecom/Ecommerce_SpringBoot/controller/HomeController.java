@@ -129,7 +129,7 @@ public class HomeController {
         UserDtls userByEmail = userService.getUserByEmail(email);
 
         if (ObjectUtils.isEmpty(userByEmail)){
-            session.setAttribute("msg", "Invalid Email");
+            session.setAttribute("errorMsg", "Invalid Email");
         } else {
             Boolean sendMail = CommonUtil.sendMail();
 
@@ -140,7 +140,7 @@ public class HomeController {
             }
         }
 
-        return "forgot_password";
+        return "redirect:/forgot_password";
     }
 
     @GetMapping("/reset-password")
