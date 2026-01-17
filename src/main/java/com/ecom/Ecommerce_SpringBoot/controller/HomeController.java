@@ -140,7 +140,7 @@ public class HomeController {
             }
         }
 
-        return "redirect:/forgot_password";
+        return "redirect:/forgot-password";
     }
 
     @GetMapping("/reset-password")
