@@ -134,9 +134,9 @@ public class HomeController {
             Boolean sendMail = CommonUtil.sendMail();
 
             if (sendMail) {
-                session.setAttribute("msg", "Please check you mail: Password Reset");
+                session.setAttribute("succMsg", "Please check you mail: Password Reset");
             } else {
-                session.setAttribute("msg", "Something wrong on server");
+                session.setAttribute("errorMsg", "Something wrong on server");
             }
         }
 
