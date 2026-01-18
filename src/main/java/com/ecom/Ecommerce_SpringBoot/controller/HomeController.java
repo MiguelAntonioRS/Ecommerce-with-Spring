@@ -134,6 +134,8 @@ public class HomeController {
         } else {
 
             String resetToken = UUID.randomUUID().toString();
+            userService.updateUserResetToken(email, resetToken);
+
             Boolean sendMail = CommonUtil.sendMail();
 
             if (sendMail) {
