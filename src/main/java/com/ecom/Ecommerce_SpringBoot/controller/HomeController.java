@@ -136,6 +136,8 @@ public class HomeController {
             String resetToken = UUID.randomUUID().toString();
             userService.updateUserResetToken(email, resetToken);
 
+            // Generate url : http://localhost:8080/reset-password?token=fdssadgrghytjnmnbv
+
             Boolean sendMail = CommonUtil.sendMail();
 
             if (sendMail) {
