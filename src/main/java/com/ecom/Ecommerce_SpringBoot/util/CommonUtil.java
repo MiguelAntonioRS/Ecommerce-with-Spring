@@ -14,8 +14,6 @@ public class CommonUtil {
         // http://localhost:8080/forgot-password
         String siteUrl = request.getRequestURL().toString();
 
-        siteUrl.replace(request.getServletPath(), "");
-
-        return null;
+        return siteUrl.replace(request.getServletPath(), "");
     }
 }
