@@ -8,6 +8,7 @@ import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -125,7 +126,7 @@ public class HomeController {
     }
 
     @PostMapping("/forgot-password")
-    public String processForgotPasswordPage(@RequestParam String email, HttpSession session) {
+    public String processForgotPasswordPage(@RequestParam String email, HttpSession session, HttpServletRequest request) {
 
         UserDtls userByEmail = userService.getUserByEmail(email);
 
@@ -137,6 +138,8 @@ public class HomeController {
             userService.updateUserResetToken(email, resetToken);
 
             // Generate url : http://localhost:8080/reset-password?token=fdssadgrghytjnmnbv
+
+
 
             Boolean sendMail = CommonUtil.sendMail();
 
