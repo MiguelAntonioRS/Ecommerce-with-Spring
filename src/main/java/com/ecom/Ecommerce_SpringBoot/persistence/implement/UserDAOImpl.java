@@ -99,4 +99,9 @@ public class UserDAOImpl implements UserDAO {
     public void resetAttempt(int userId) {
 
     }
+
+    @Override
+    public void updateUserResetToken(String email, String resetToken) {
+
+    }
 }
