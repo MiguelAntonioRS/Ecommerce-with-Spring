@@ -25,6 +25,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -131,6 +132,8 @@ public class HomeController {
         if (ObjectUtils.isEmpty(userByEmail)){
             session.setAttribute("errorMsg", "Invalid Email");
         } else {
+
+            String token = UUID.randomUUID().toString();
             Boolean sendMail = CommonUtil.sendMail();
 
             if (sendMail) {
