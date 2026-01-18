@@ -139,7 +139,7 @@ public class HomeController {
 
             // Generate url : http://localhost:8080/reset-password?token=fdssadgrghytjnmnbv
 
-            String url = CommonUtil.generateUrl(request);
+            String url = CommonUtil.generateUrl(request) + "/reset-password?token=" + resetToken;
             Boolean sendMail = CommonUtil.sendMail();
 
             if (sendMail) {
