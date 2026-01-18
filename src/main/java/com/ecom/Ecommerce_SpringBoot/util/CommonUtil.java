@@ -4,7 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class CommonUtil {
 
-    public static Boolean sendMail() {
+    public static Boolean sendMail(String url, String email) {
 
         return false;
     }
