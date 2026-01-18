@@ -23,4 +23,6 @@ public interface UserDAO {
     public Boolean unlockAccountTimeExpired(UserDtls user);
 
     public void resetAttempt(int userId);
+
+    public void updateUserResetToken(String email, String resetToken);
 }
