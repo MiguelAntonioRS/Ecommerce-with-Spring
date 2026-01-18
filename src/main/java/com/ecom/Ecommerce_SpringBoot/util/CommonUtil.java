@@ -1,8 +1,13 @@
 package com.ecom.Ecommerce_SpringBoot.util;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 
 public class CommonUtil {
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     public static Boolean sendMail(String url, String email) {
 
