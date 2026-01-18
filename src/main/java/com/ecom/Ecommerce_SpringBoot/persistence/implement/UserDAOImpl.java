@@ -103,5 +103,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void updateUserResetToken(String email, String resetToken) {
 
+        UserDtls findByEmail = userRepository.findByEmail(email);
+        findByEmail.setResetToken(resetToken);
+        userRepository.save(findByEmail);
     }
 }
