@@ -11,6 +11,8 @@ public class CommonUtil {
 
     public static String generateUrl(HttpServletRequest request) {
 
-        return request.getRequestURL().toString();
+        String siteUrl = request.getRequestURL().toString();
+
+        return null;
     }
 }
