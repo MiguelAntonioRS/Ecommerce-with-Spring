@@ -133,7 +133,7 @@ public class HomeController {
             session.setAttribute("errorMsg", "Invalid Email");
         } else {
 
-            String token = UUID.randomUUID().toString();
+            String resetToken = UUID.randomUUID().toString();
             Boolean sendMail = CommonUtil.sendMail();
 
             if (sendMail) {
