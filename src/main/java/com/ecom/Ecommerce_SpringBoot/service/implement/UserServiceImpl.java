@@ -80,4 +80,9 @@ public class UserServiceImpl implements UserService {
     public void resetAttempt(int userId) {
 
     }
+
+    @Override
+    public void updateUserResetToken(String email, String resetToken) {
+        userRepository.findByEmail(email);
+    }
 }
