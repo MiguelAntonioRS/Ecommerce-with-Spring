@@ -1,5 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.util;
 
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +12,7 @@ public class CommonUtil {
 
     public static Boolean sendMail(String url, String recipientEmail) {
 
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
 
         return false;
     }
