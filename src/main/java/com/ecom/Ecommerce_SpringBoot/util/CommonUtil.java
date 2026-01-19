@@ -18,8 +18,12 @@ public class CommonUtil {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-
         helper.setFrom("rojassucarinomiguelantoni@gmail.com", "E-commerce");
+        helper.setTo(recipientEmail);
+
+        String content = "<p>Hello,</p>" + "<p>You have requested to reset your password.</p>"
+                + "<p>Click the link below to change your password:</p>" + "<p><a href=\"" + link
+                + "\">Change my password";
 
         return false;
     }
