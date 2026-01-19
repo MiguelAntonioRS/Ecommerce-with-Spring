@@ -29,7 +29,7 @@ public class CommonUtil {
         helper.setText(content, true);
         mailSender.send(mimeMessage);
 
-        return false;
+        return true;
     }
 
     public static String generateUrl(HttpServletRequest request) {
