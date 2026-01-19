@@ -9,7 +9,7 @@ public class CommonUtil {
     @Autowired
     private JavaMailSender mailSender;
 
-    public static Boolean sendMail(String url, String email) {
+    public static Boolean sendMail(String url, String recipientEmail) {
 
         return false;
     }
