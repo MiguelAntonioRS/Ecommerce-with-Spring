@@ -145,7 +145,7 @@ public class HomeController {
             // Generate url : http://localhost:8080/reset-password?token=fdss-adgrgh-ytjnmnbv
 
             String url = CommonUtil.generateUrl(request) + "/reset-password?token=" + resetToken;
-            Boolean sendMail = CommonUtil.sendMail(url, email);
+            Boolean sendMail = commonUtil.sendMail(url, email);
 
             if (sendMail) {
                 session.setAttribute("succMsg", "Please check you mail: Password Reset");
