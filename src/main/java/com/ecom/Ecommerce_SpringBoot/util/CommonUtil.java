@@ -4,6 +4,7 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class CommonUtil {
 
@@ -13,6 +14,7 @@ public class CommonUtil {
     public static Boolean sendMail(String url, String recipientEmail) {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 
         return false;
     }
