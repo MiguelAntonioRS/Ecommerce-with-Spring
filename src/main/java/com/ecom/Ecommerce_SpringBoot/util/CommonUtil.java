@@ -7,9 +7,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 public class CommonUtil {
 
     @Autowired
-    private JavaMailSender mailSender;
+    private static JavaMailSender mailSender;
 
     public static Boolean sendMail(String url, String recipientEmail) {
+
 
         return false;
     }
