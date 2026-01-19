@@ -42,6 +42,9 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CommonUtil commonUtil;
+
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
 
