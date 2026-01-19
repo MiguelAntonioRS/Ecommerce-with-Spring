@@ -12,9 +12,9 @@ import java.io.UnsupportedEncodingException;
 public class CommonUtil {
 
     @Autowired
-    private static JavaMailSender mailSender;
+    private JavaMailSender mailSender;
 
-    public static Boolean sendMail(String url, String recipientEmail) throws UnsupportedEncodingException, MessagingException {
+    public Boolean sendMail(String url, String recipientEmail) throws UnsupportedEncodingException, MessagingException {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
