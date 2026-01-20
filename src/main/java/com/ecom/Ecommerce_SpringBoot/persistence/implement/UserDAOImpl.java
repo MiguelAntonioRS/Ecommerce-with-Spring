@@ -107,4 +107,9 @@ public class UserDAOImpl implements UserDAO {
         findByEmail.setResetToken(resetToken);
         userRepository.save(findByEmail);
     }
+
+    @Override
+    public UserDtls getUserByToken(String token) {
+        return null;
+    }
 }
