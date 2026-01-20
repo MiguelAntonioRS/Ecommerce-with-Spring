@@ -160,6 +160,8 @@ public class HomeController {
     @GetMapping("/reset-password")
     public String showResetPasswordPage(@RequestParam String token) {
 
+
+
         return "reset_password";
     }
 }
