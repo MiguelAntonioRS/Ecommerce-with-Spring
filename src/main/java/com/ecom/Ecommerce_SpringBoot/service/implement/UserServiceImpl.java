@@ -90,6 +90,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDtls getUserByToken(String token) {
-        return null;
+
+        return userRepository.findByResetToken(token);
     }
 }
