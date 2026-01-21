@@ -182,6 +182,9 @@ public class HomeController {
         if (userByToken==null) {
             model.addAttribute("errorMsg", "Your link is invalid or expired");
             return "error";
+        } else {
+            userByToken.setPassword(passwordEncoder.encode(password));
+            userByToken.setResetToken(null);
         }
 
         return "reset_password";
