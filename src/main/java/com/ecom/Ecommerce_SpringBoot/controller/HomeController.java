@@ -158,11 +158,12 @@ public class HomeController {
     }
 
     @GetMapping("/reset-password")
-    public String showResetPasswordPage(@RequestParam String token, HttpSession session) {
+    public String showResetPasswordPage(@RequestParam String token, HttpSession session, Model model) {
 
         UserDtls userByToken = userService.getUserByToken(token);
 
         if (userByToken==null) {
+
             return "error";
         }
 
