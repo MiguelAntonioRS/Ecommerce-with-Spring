@@ -169,4 +169,17 @@ public class HomeController {
 
         return "reset_password";
     }
+
+    @PostMapping("/reset-password")
+    public String resetPasswordPage(@RequestParam String token, HttpSession session, Model model) {
+
+        UserDtls userByToken = userService.getUserByToken(token);
+
+        if (userByToken==null) {
+            model.addAttribute("errorMsg", "Your link is invalid or expired");
+            return "error";
+        }
+
+        return "reset_password";
+    }
 }
