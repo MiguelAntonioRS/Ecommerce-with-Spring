@@ -163,7 +163,7 @@ public class HomeController {
         UserDtls userByToken = userService.getUserByToken(token);
 
         if (userByToken==null) {
-
+            model.addAttribute("errorMsg", "Your link is invalid or expired");
             return "error";
         }
 
