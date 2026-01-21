@@ -163,7 +163,7 @@ public class HomeController {
         UserDtls userByToken = userService.getUserByToken(token);
 
         if (userByToken==null) {
-            session.setAttribute("errorMsg", "Invalid");
+            return "error";
         }
 
         return "reset_password";
