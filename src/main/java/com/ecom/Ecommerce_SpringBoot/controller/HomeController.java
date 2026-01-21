@@ -171,7 +171,7 @@ public class HomeController {
     }
 
     @PostMapping("/reset-password")
-    public String resetPasswordPage(@RequestParam String token, HttpSession session, Model model) {
+    public String resetPasswordPage(@RequestParam String token,@RequestParam String password, HttpSession session, Model model) {
 
         UserDtls userByToken = userService.getUserByToken(token);
 
