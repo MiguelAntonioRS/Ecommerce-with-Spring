@@ -187,7 +187,7 @@ public class HomeController {
             userByToken.setPassword(passwordEncoder.encode(password));
             userByToken.setResetToken(null);
             userService.updateUser(userByToken);
-            session.setAttribute("succMsg", "Password change successfully");
+            session.setAttribute("msg", "Password change successfully");
             model.addAttribute("", "Password change successfully");
 
             return "message";
