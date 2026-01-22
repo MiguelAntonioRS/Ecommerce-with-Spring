@@ -96,6 +96,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDtls updateUser(UserDtls user) {
-        return null;
+        return userRepository.save(user);
     }
 }
