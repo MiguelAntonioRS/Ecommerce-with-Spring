@@ -188,8 +188,9 @@ public class HomeController {
             userByToken.setResetToken(null);
             userService.updateUser(userByToken);
             session.setAttribute("succMsg", "Password change successfully");
+            model.addAttribute("", "Password change successfully");
 
-            return "redirect:/reset-password";
+            return "error";
         }
     }
 }
