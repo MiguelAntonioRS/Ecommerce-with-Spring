@@ -147,7 +147,6 @@ public class HomeController {
             userService.updateUserResetToken(email, resetToken);
 
             // Generate url : http://localhost:8080/reset-password?token=fdss-adgrgh-ytjnmnbv
-
             String url = CommonUtil.generateUrl(request) + "/reset-password?token=" + resetToken;
             Boolean sendMail = commonUtil.sendMail(url, email);
 
