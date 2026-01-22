@@ -116,6 +116,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public UserDtls updateUser(UserDtls user) {
-        return null;
+        return userRepository.save(user);
     }
 }
