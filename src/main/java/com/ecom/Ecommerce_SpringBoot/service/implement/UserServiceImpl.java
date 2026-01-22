@@ -93,4 +93,9 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByResetToken(token);
     }
+
+    @Override
+    public UserDtls updateUser(UserDtls user) {
+        return null;
+    }
 }
