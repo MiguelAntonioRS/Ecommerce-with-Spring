@@ -171,6 +171,7 @@ public class HomeController {
             return "error";
         }
 
+        model.addAttribute("token", token);
         return "reset_password";
     }
 
