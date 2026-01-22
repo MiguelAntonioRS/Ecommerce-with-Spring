@@ -167,8 +167,8 @@ public class HomeController {
         UserDtls userByToken = userService.getUserByToken(token);
 
         if (userByToken==null) {
-            model.addAttribute("errorMsg", "Your link is invalid or expired");
-            return "error";
+            model.addAttribute("msg", "Your link is invalid or expired");
+            return "message";
         }
 
         model.addAttribute("token", token);
@@ -182,7 +182,7 @@ public class HomeController {
 
         if (userByToken==null) {
             model.addAttribute("errorMsg", "Your link is invalid or expired");
-            return "error";
+            return "message";
         } else {
             userByToken.setPassword(passwordEncoder.encode(password));
             userByToken.setResetToken(null);
@@ -190,7 +190,7 @@ public class HomeController {
             session.setAttribute("succMsg", "Password change successfully");
             model.addAttribute("", "Password change successfully");
 
-            return "error";
+            return "message";
         }
     }
 }
