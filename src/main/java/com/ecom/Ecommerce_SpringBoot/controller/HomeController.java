@@ -185,6 +185,7 @@ public class HomeController {
         } else {
             userByToken.setPassword(passwordEncoder.encode(password));
             userByToken.setResetToken(null);
+            userService.updateUser(userByToken);
         }
 
         return "reset_password";
