@@ -3,14 +3,66 @@
       th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>LogIn</title>
+    <title>Password Reset</title>
+    <style>
+        .success-card {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            font-weight: 600;
+            padding: 10px 20px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+    </style>
 </head>
 <body>
 <section>
-    <div class="container mt-5 p-5">
-        <div class="row">
-            <div class="col-md-6 p-5 text-center offset-md-3">
-                <h3>[[${msg}]]</h3>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="success-card">
+                    <div class="success-icon">
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                    <h2 class="success-title">Password Changed Successfully!</h2>
+                    <p class="success-message">
+                        Your password has been updated. You can now log in with your new password.
+                    </p>
+                    <a href="/signin" class="btn btn-success">Go to Login</a>
+                </div>
             </div>
         </div>
     </div>
