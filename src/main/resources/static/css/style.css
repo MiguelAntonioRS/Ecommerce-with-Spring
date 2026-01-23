@@ -206,3 +206,28 @@ a:hover {
         height: 140px;
     }
 }
+
+/* ===== BARRA AZUL DEBAJO DEL NAVBAR ===== */
+.container-fluid.bg-primary {
+    background-color: #fafafa !important; /* Fondo gris claro */
+}
+
+/* ===== SIDEBAR DE CATEGORÍAS ===== */
+.list-group {
+    background-color: #ffffff !important;
+}
+
+.list-group-item.active {
+    background-color: #e63946 !important; /* Rojo terracota para el activo */
+    border-color: #e63946 !important;
+    color: white !important;
+}
+
+.list-group-item {
+    border: 1px solid #dee2e6 !important;
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa !important;
+}
