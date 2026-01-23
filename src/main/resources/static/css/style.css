@@ -102,7 +102,7 @@ body {
     left: 0;
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important; /* 🔥 Muestra toda la imagen sin recortar */
     object-position: center !important;
     transition: transform 0.3s ease !important;
 }
