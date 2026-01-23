@@ -119,6 +119,7 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     height: 100%;
+    margin-top: 20px;
 }
 
 .card:hover {
@@ -272,4 +273,79 @@ a:hover {
 
 .search-btn i {
     margin-right: 0.5rem;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 150px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.card {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: none;
+}
+
+/* ===== PÁGINA DE FORGOT PASSWORD (versión compacta) ===== */
+.forgot-password-container {
+    max-width: 700px; /* 🔥 Más pequeño que antes */
+    margin: 100px auto 50px;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.forgot-password-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 450px; /* 🔥 Ancho fijo para la card */
+    max-height: 300px;
+    margin-top: 100px;
+}
+
+.forgot-password-card .card-header {
+    padding: 1rem 1.25rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.forgot-password-card .card-body {
+    padding: 1.25rem; /* 🔥 Padding reducido */
+}
+
+/* Botón más grande */
+.forgot-password-btn {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.forgot-password-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Imagen en la sección de forgot password */
+.forgot-password-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.forgot-password-image img {
+    max-height: 350px; /* 🔥 Un poco más pequeña */
+    object-fit: contain;
+    width: 100%;
+}
+
+.card-body {
+    width: 100%;
+    padding: 0px;
 }
