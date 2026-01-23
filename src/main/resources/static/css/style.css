@@ -231,3 +231,46 @@ a:hover {
 .list-group-item:hover {
     background-color: #f8f9fa !important;
 }
+
+/* ===== BARRA DE BÚSQUEDA ===== */
+.search-container {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-top: 1rem; /* 🔥 Esto lo baja un poco */
+}
+
+.search-input {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #e63946;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+
+.search-btn {
+    background-color: #e63946 !important;
+    border-color: #e63946 !important;
+    color: white !important;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.search-btn:hover {
+    background-color: #d92f3c !important;
+    border-color: #d92f3c !important;
+}
+
+.search-btn i {
+    margin-right: 0.5rem;
+}
