@@ -90,6 +90,8 @@ body {
     border-radius: 8px !important;
     background-color: #f8f9fa !important;
     margin-bottom: 10px !important;
+    padding: 0 !important; /* 🔥 Elimina cualquier padding */
+    margin: 0 !important; /* 🔥 Elimina cualquier margen */
 }
 
 /* Imagen dentro del contenedor */
@@ -119,6 +121,7 @@ body {
 
 .card-body {
     padding: 1rem !important;
+    padding-top: 0.5rem !important; /* 🔥 Reduce el padding superior */
 }
 
 .card-title {
