@@ -86,16 +86,20 @@ body {
 .product-image-container {
     width: 100% !important;
     height: 150px !important;
+    position: relative; /* 🔥 Necesario para el posicionamiento absoluto */
     overflow: hidden !important;
     border-radius: 8px !important;
     background-color: #f8f9fa !important;
     margin-bottom: 10px !important;
-    padding: 0 !important; /* 🔥 Elimina cualquier padding */
-    margin: 0 !important; /* 🔥 Elimina cualquier margen */
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 /* Imagen dentro del contenedor */
 .product-card-image {
+    position: absolute; /* 🔥 Posicionamiento absoluto */
+    top: 0;
+    left: 0;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
