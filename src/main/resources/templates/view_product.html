@@ -64,6 +64,10 @@
                                 <a href="/signin" class="btn btn-danger col-md-12">Add To Cart</a>
                             </th:block>
 
+                            <th:block th:if="${user==null}">
+                                <a href="/signin" class="btn btn-danger col-md-12">Add To Cart</a>
+                            </th:block>
+
                         </th:block>
 
                         <th:block th:unless="${product.stock>0}">
