@@ -59,7 +59,7 @@
                         </div>
 
                         <th:block th:if="${product.stock>0}">
-                            <th:block>
+                            <th:block th:if="${user==null}">
                                 <a href="#" class="btn btn-danger col-md-12">Add To Cart</a>
                             </th:block>
                         </th:block>
