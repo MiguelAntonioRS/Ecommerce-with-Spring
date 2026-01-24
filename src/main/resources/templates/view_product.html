@@ -59,7 +59,9 @@
                         </div>
 
                         <th:block th:if="${product.stock>0}">
-                            <a href="#" class="btn btn-danger col-md-12">Add To Cart</a>
+                            <th:block>
+                                <a href="#" class="btn btn-danger col-md-12">Add To Cart</a>
+                            </th:block>
                         </th:block>
 
                         <th:block th:unless="${product.stock>0}">
