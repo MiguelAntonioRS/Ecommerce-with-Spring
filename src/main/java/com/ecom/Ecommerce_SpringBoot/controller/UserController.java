@@ -42,4 +42,10 @@ public class UserController {
         List<Category> categories = categoryService.getAllActiveCategory();
         model.addAttribute("categorys", categories);
     }
+
+
+    public String addToCart() {
+
+        return "";
+    }
 }
