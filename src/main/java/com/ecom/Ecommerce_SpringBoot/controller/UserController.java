@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping("/addCart")
-    public String addToCart(@RequestParam int productId) {
+    public String addToCart(@RequestParam int productId, @RequestParam int userId) {
 
         return "";
     }
