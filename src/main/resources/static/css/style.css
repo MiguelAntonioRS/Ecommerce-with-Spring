@@ -349,3 +349,29 @@ a:hover {
     width: 100%;
     padding: 0px;
 }
+
+/* ===== CONTENEDOR DE IMAGEN DEL PRODUCTO ===== */
+.product-image-container {
+    width: 330px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+/* ===== IMAGEN DEL PRODUCTO ===== */
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Muestra toda la imagen sin recortar */
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
