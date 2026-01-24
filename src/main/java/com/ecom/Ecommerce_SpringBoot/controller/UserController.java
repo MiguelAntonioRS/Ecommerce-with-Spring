@@ -43,7 +43,7 @@ public class UserController {
         model.addAttribute("categorys", categories);
     }
 
-
+    @GetMapping("/addCart")
     public String addToCart() {
 
         return "";
