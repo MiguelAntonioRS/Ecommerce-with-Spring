@@ -65,7 +65,7 @@
                             </th:block>
 
                             <th:block th:unless="${user==null}">
-                                <a href="#" class="btn btn-danger col-md-12">Add To Cart</a>
+                                <a th:href="@{'/addCart'}" class="btn btn-danger col-md-12">Add To Cart</a>
                             </th:block>
 
                         </th:block>
