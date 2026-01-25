@@ -10,6 +10,29 @@
         <div class="container card-sh" style="margin-top: 70px;margin-bottom: 65px">
             <div class="col-md-12 paint-card p-5">
               <div class="row">
+                    <th:block th:if="${session.succMsg}">
+                        <!--<p class="text-success text-center fw-bold text-center">[[${session.succMsg}]]</p>
+                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>-->
+                        <div class="toast-container">
+                            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <img src="..." class="rounded me-2" alt="...">
+                                    <strong class="me-auto">Bootstrap</strong>
+                                    <small class="text-muted">just now</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body">
+                                    [[${session.succMsg}]]
+                                </div>
+                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                            </div>
+                        </div>
+                    </th:block>
+
+                    <th:block th:if="${session.errorMsg}">
+                        <!--<p class="text-danger text-center fw-bold text-center">[[${session.errorMsg}]]</p>
+                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block> -->
+                    </th:block>
                     <div class="product-image-container">
                         <img th:src="@{'/img/product_img/'+${product.image}}"
                              class="product-image"
@@ -68,7 +91,7 @@
                             </th:block>
 
                             <th:block th:unless="${user==null}">
-                                <a th:href="@{'/addCart?pid='+${product.id}+'&uid='+${user.id}}" class="btn btn-danger col-md-12">Add To Cart</a>
+                                <a th:href="@{/user/addCart(productId=${product.id}, userId=${user.id})}" class="btn btn-danger col-md-12">Add To Cart</a>
                             </th:block>
 
                         </th:block>
