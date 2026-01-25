@@ -32,10 +32,6 @@ public class UserController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/")
-    public String home() {
-        return "home";
-    }
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
