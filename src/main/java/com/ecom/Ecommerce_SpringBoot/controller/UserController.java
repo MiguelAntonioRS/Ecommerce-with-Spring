@@ -57,7 +57,9 @@ public class UserController {
         Cart saveCart = cartService.cartSave(productId, userId);
 
         if (ObjectUtils.isEmpty(saveCart)) {
-
+            session.setAttribute("errorMsg", "Error non-added product");
+        } else {
+            session.setAttribute("succMsg", "Product added to cart successfully");
         }
 
         return "redirect:/product/" + productId;
