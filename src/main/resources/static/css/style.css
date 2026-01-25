@@ -375,3 +375,17 @@ a:hover {
 .product-image:hover {
     transform: scale(1.05);
 }
+
+/* Logo sin interacción, pero con color blanco visible */
+.disabled-link {
+    pointer-events: none; /* Deshabilita clics y hover */
+    cursor: default !important; /* Cursor normal (flecha) */
+    text-decoration: none !important; /* Sin subrayado */
+    color: #ffffff !important; /* Fuerza color blanco */
+    opacity: 0.85; /* Ligera transparencia para no ser tan intenso */
+}
+
+/* Asegura que el ícono también sea blanco */
+.disabled-link i {
+    color: #ffffff !important;
+}
