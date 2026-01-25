@@ -1,4 +1,8 @@
 package com.ecom.Ecommerce_SpringBoot.service.implement;
 
-public class CartServiceImpl {
+import com.ecom.Ecommerce_SpringBoot.service.CartService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CartServiceImpl implements CartService {
 }
