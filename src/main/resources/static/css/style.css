@@ -389,3 +389,17 @@ a:hover {
 .disabled-link i {
     color: #ffffff !important;
 }
+
+/* Elimina el resaltado azul al hacer clic en los items del dropdown */
+.dropdown-item:focus,
+.dropdown-item:active {
+    background-color: transparent !important;
+    color: inherit !important;
+    outline: none !important;
+}
+
+/* Opcional: si quieres mantener un hover suave pero sin el azul fuerte */
+.dropdown-item:hover {
+    background-color: #f8f9fa !important; /* Gris claro suave */
+    color: #212529 !important;
+}
