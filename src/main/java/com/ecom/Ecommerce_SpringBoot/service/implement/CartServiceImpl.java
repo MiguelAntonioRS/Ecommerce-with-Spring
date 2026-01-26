@@ -55,4 +55,9 @@ public class CartServiceImpl implements CartService {
     public List<Cart> getCartsByUser(int userId) {
         return null;
     }
+
+    @Override
+    public int getCountCart(int userId) {
+        return 0;
+    }
 }
