@@ -20,10 +20,10 @@
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
                     <div class="product-image-container">
-                        <img th:src="@{'/img/product_img/'+${product.image}}"
+                        <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
                              class="product-image"
                              alt="[[${product.title}]]"
-                             onerror="this.src='/img/default-product.png'">
+                             onerror="this.src='/images/default-product.png'">
                     </div>
                     <div class="col-md-6">
                         <p class="fs-3">[[${product.title}]]</p>
