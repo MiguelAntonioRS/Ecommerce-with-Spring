@@ -53,4 +53,9 @@ public class CartDAOImpl implements CartDAO {
     public List<Cart> getCartsByUser(int userId) {
         return null;
     }
+
+    @Override
+    public int getCountCart(int userId) {
+        return 0;
+    }
 }
