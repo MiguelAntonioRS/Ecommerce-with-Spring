@@ -10,4 +10,6 @@ public interface CartService {
     public Cart cartSave(int productId, int userId);
 
     public List<Cart> getCartsByUser(int userId);
+
+    public int getCountCart(int userId);
 }
