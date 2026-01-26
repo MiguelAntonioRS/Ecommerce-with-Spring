@@ -49,10 +49,10 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="product-image-container">
-                                                <img th:src="@{'/img/product_img/'+${p.image}}"
+                                                <img th:src="@{/admin/images/product/{name}(name=${p.image})}"
                                                      class="product-card-image"
                                                      alt="[[${p.title}]]"
-                                                     onerror="this.src='/img/default-product.png'">
+                                                     onerror="this.src='/images/default-product.png'">
                                             </div>
                                             <p class="fs-5 text-center">[[${p.title}]]</p>
                                             <div class="row text-center">
