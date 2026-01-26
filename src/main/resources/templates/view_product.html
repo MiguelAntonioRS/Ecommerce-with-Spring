@@ -11,27 +11,13 @@
             <div class="col-md-12 paint-card p-5">
               <div class="row">
                     <th:block th:if="${session.succMsg}">
-                        <!--<p class="text-success text-center fw-bold text-center">[[${session.succMsg}]]</p>
-                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>-->
-                        <div class="toast-container">
-                            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    <img src="..." class="rounded me-2" alt="...">
-                                    <strong class="me-auto">Bootstrap</strong>
-                                    <small class="text-muted">just now</small>
-                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                                <div class="toast-body">
-                                    [[${session.succMsg}]]
-                                </div>
-                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                            </div>
-                        </div>
+                        <p class="text-success text-center fw-bold alert alert-success">[[${session.succMsg}]]</p>
+                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
 
                     <th:block th:if="${session.errorMsg}">
-                        <!--<p class="text-danger text-center fw-bold text-center">[[${session.errorMsg}]]</p>
-                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block> -->
+                        <p class="text-danger text-center fw-bold text-center alert alert-danger">[[${session.errorMsg}]]</p>
+                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
                     <div class="product-image-container">
                         <img th:src="@{'/img/product_img/'+${product.image}}"
