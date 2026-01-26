@@ -91,9 +91,7 @@
                                 </div>
                             </div>
 
-                            <img th:src="@{'/img/product_img/'+${product.image}}" width="100px" height="100px"
-                                 class="p-2">
-
+                            <img th:src="@{/admin/images/product/{name}(name=${product.image})}" width="100px" height="100px" class="p-2" onerror="this.src='/images/default-product.png'">
                             <button class="btn btn-primary col-md-12 mt-3">Update</button>
                         </form>
                     </div>
