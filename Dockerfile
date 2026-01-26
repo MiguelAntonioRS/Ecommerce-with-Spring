@@ -1,7 +1,7 @@
-# Usa OpenJDK 17 (recomendado para Spring Boot 3)
-FROM openjdk:17-jdk-slim
+# Usa Eclipse Temurin (OpenJDK oficial, compatible con Spring Boot 3)
+FROM eclipse-temurin:17-jre-alpine
 
-# Copia el JAR generado por Maven (asegúrate de que se llame app.jar o usa wildcard)
+# Copia el JAR generado por Maven
 COPY target/*.jar /app.jar
 
 # Expone el puerto (Render inyecta $PORT)
