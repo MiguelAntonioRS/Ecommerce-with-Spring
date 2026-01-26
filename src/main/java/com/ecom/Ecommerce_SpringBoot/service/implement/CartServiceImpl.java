@@ -32,7 +32,7 @@ public class CartServiceImpl implements CartService {
 
         UserDtls userDtls = userRepository.findById(userId).get();
         Product product = productRepository.findById(productId).get();
-        Cart statusCart = cartRepository.findByUserIdAndProductId(productId, userId);
+        Cart statusCart = cartRepository.findByProductIdAndUserId(productId, userId);
         Cart cart = null;
 
         if (ObjectUtils.isEmpty(statusCart)) {
