@@ -49,8 +49,6 @@ public class CartServiceImpl implements CartService {
         if (product.getStock() <= 0) {
             throw new RuntimeException("Out of stock");
         }
-
-        // Buscar carrito existente
         Cart existingCart = cartRepository.findByProductIdAndUserId(userId, productId);
 
         if (existingCart == null) {
