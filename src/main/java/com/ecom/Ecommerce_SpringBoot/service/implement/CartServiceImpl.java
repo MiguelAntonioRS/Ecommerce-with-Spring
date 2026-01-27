@@ -37,21 +37,19 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart cartSave(int productId, int userId) {
-
         UserDtls user = userRepository.findById(userId).get();
         Product product = productRepository.findById(productId).get();
 
         if (product == null || user == null) {
-            throw new RuntimeException("Product or User not found");
+            throw new RuntimeException("User or Product not found");
         }
-
         if (product.getStock() <= 0) {
             throw new RuntimeException("Out of stock");
         }
-        Cart existingCart = cartRepository.findByProductIdAndUserId(userId, productId);
+        Cart existingCart = cartRepository.findByProductIdAndUserId(productId, userId);
 
         if (existingCart == null) {
-            // Nuevo carrito
+
             Cart newCart = new Cart();
             newCart.setUser(user);
             newCart.setProduct(product);
@@ -62,11 +60,16 @@ public class CartServiceImpl implements CartService {
 
             return cartRepository.save(newCart);
         } else {
-            // Actualizar carrito existente
-            existingCart.setQuantity(existingCart.getQuantity() + 1);
-            existingCart.setTotalPrice(existingCart.getQuantity() * product.getDiscountPrice());
+            int newQuantity = existingCart.getQuantity() + 1;
 
-            // ✅ REDUCIR STOCK
+            if (product.getStock() < newQuantity) {
+                throw new RuntimeException("Not enough stock");
+            }
+
+            existingCart.setQuantity(newQuantity);
+            existingCart.setTotalPrice(newQuantity * product.getDiscountPrice());
+
+            // ✅ Reducir stock (solo 1 unidad más)
             product.setStock(product.getStock() - 1);
             productService.saveProduct(product);
 
