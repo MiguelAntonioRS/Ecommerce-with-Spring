@@ -58,6 +58,9 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public int getCountCart(int userId) {
-        return 0;
+
+        int countByUserId = cartRepository.countByUserId(userId);
+
+        return countByUserId;
     }
 }
