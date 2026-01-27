@@ -112,15 +112,6 @@ body {
 }
 
 /* ===== TARJETAS DE BOOTSTRAP ===== */
-.card {
-    background-color: #ffffff;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    height: 100%;
-    margin-top: 20px;
-}
 
 .card:hover {
     transform: translateY(-4px);
