@@ -37,7 +37,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart cartSave(int productId, int userId) {
-        // Obtener usuario y producto
+
         UserDtls user = userRepository.findById(userId).get();
         Product product = productRepository.findById(productId).get();
 
@@ -45,7 +45,6 @@ public class CartServiceImpl implements CartService {
             throw new RuntimeException("Product or User not found");
         }
 
-        // Verificar stock
         if (product.getStock() <= 0) {
             throw new RuntimeException("Out of stock");
         }
