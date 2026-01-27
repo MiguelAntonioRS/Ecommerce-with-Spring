@@ -7,6 +7,8 @@ import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.CartService;
+import com.ecom.Ecommerce_SpringBoot.service.ProductService;
+import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -27,28 +29,52 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ProductService productService;
+
     @Override
     public Cart cartSave(int productId, int userId) {
-
-        UserDtls userDtls = userRepository.findById(userId).get();
+        // Obtener usuario y producto
+        UserDtls user = userRepository.findById(userId).get();
         Product product = productRepository.findById(productId).get();
-        Cart statusCart = cartRepository.findByProductIdAndUserId(productId, userId);
-        Cart cart = null;
 
-        if (ObjectUtils.isEmpty(statusCart)) {
-            cart = new Cart();
-            cart.setProduct(product);
-            cart.setUser(userDtls);
-            cart.setQuantity(1);
-            cart.setTotalPrice(1 * product.getDiscountPrice());
-        } else {
-             cart = statusCart;
-             cart.setQuantity(cart.getQuantity() + 1);
-             cart.setTotalPrice(cart.getQuantity() * cart.getProduct().getDiscountPrice());
+        if (product == null || user == null) {
+            throw new RuntimeException("Product or User not found");
         }
-        Cart saveCart = cartRepository.save(cart);
 
-        return saveCart;
+        // Verificar stock
+        if (product.getStock() <= 0) {
+            throw new RuntimeException("Out of stock");
+        }
+
+        // Buscar carrito existente
+        Cart existingCart = cartRepository.findByProductIdAndUserId(userId, productId);
+
+        if (existingCart == null) {
+            // Nuevo carrito
+            Cart newCart = new Cart();
+            newCart.setUser(user);
+            newCart.setProduct(product);
+            newCart.setQuantity(1);
+            newCart.setTotalPrice(product.getDiscountPrice());
+            product.setStock(product.getStock() - 1);
+            productService.saveProduct(product);
+
+            return cartRepository.save(newCart);
+        } else {
+            // Actualizar carrito existente
+            existingCart.setQuantity(existingCart.getQuantity() + 1);
+            existingCart.setTotalPrice(existingCart.getQuantity() * product.getDiscountPrice());
+
+            // ✅ REDUCIR STOCK
+            product.setStock(product.getStock() - 1);
+            productService.saveProduct(product);
+
+            return cartRepository.save(existingCart);
+        }
     }
 
     @Override
