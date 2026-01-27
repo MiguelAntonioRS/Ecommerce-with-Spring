@@ -56,6 +56,9 @@ public class CartDAOImpl implements CartDAO {
 
     @Override
     public int getCountCart(int userId) {
-        return 0;
+
+        int countByUserId = cartRepository.countByUserId(userId);
+
+        return countByUserId;
     }
 }
