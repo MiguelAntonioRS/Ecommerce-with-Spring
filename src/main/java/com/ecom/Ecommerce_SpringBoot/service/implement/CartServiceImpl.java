@@ -68,8 +68,6 @@ public class CartServiceImpl implements CartService {
 
             existingCart.setQuantity(newQuantity);
             existingCart.setTotalPrice(newQuantity * product.getDiscountPrice());
-
-            // ✅ Reducir stock (solo 1 unidad más)
             product.setStock(product.getStock() - 1);
             productService.saveProduct(product);
 
