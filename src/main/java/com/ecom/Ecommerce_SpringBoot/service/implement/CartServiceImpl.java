@@ -79,6 +79,12 @@ public class CartServiceImpl implements CartService {
     public List<Cart> getCartsByUser(int userId) {
 
         List<Cart> cartList = cartRepository.findByUserId(userId);
+        double totalPrice = 0.0;
+
+        for (Cart c:cartList) {
+            totalPrice = (c.getProduct().getDiscountPrice() * c.getQuantity()) + totalPrice;
+        }
+
         return null;
     }
 
