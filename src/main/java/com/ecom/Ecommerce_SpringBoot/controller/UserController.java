@@ -66,6 +66,7 @@ public class UserController {
     @GetMapping("/cart")
     public String cartPage(Principal principal, Model model) {
 
+        UserDtls userDtls = getLoggedInUserDetails(principal);
 
         return "/user/cart";
     }
