@@ -66,6 +66,6 @@ public class UserController {
     @GetMapping("/cart")
     public String cartPage() {
 
-        return "";
+        return "/user/cart";
     }
 }
