@@ -72,7 +72,7 @@ public class UserController {
         return "/user/cart";
     }
 
-    private UserDtls getLoggedInUserDetails() {
+    private UserDtls getLoggedInUserDetails(Principal principal) {
         return null;
     }
 }
