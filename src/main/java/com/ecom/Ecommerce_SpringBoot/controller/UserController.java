@@ -71,4 +71,8 @@ public class UserController {
 
         return "/user/cart";
     }
+
+    private UserDtls getLoggedInUserDetails() {
+        return null;
+    }
 }
