@@ -66,6 +66,9 @@ public class UserController {
     @GetMapping("/cart")
     public String cartPage(Principal principal, Model model) {
 
+        String email = principal.getName();
+        UserDtls userDtls = userService.getUserByEmail(email);
+
         return "/user/cart";
     }
 }
