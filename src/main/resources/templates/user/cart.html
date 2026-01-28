@@ -3,51 +3,58 @@
       th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>LogIn</title>
+    <title>Products</title>
 </head>
 <body>
 <section>
-    <div class="container mt-5 p-5">
-        <div class="row">
-            <div class="col-md-6 p-5">
-                <img src="img/ecom.png" alt="..." width="100%" height="400px">
+    <div class="container-fluid mt-5 p-5">
+        <div class="card card-sh">
+            <div class="card-header text-center">
+                <p class="fs-4">View Products</p>
+                <th:block th:if="${session.succMsg}">
+                    <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
+                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+
+                <th:block th:if="${session.errorMsg}">
+                    <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
+                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
             </div>
-            <div class="col-md-6 mt-3 p-5">
-                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-                    <div class="card-header">
-                        <p class="fs-4 text-center">Cart</p>
-                        <div th:if="${param.error}" class="alert alert-danger text-center">
-                            [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
-                        </div>
-
-                        <div th:if="${param.logout}" class="alert alert-success text-center">
-                            Logout Successfully
-                        </div>
-
-                        <!-- Mensaje de éxito al registrarse -->
-                        <div th:if="${session.succMsg}" class="alert alert-success text-center">
-                            [[${session.succMsg}]]
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form action="/login" method="post">
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input class="form-control" name="username" type="email">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input class="form-control" name="password" type="password">
-                            </div>
-                            <button type="submit" class="btn-primary text-white col-md-12">Login</button>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <a href="/forgot-password" class="text-decoration-none">Forgot Password</a><br>
-                        Don't have an account?
-                        <a href="/register" class="text-decoration-none">Create one</a>
-                    </div>
-                </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Si No</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Discount Price</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p,c:${products}">
+                        <th scope="row">[[${c.count}]]</th>
+                        <td><img th:src="@{'/img/product_img/'+${p.image}}" width="60px" height="60px"></td>
+                        <td>[[${p.title}]]</td>
+                        <td>[[${p.category}]]</td>
+                        <td>[[${p.price}]]</td>
+                        <td>[[${p.discount}]]</td>
+                        <td>[[${p.discountPrice}]]</td>
+                        <td>[[${p.isActive}]]</td>
+                        <td>[[${p.stock}]]</td>
+                        <td><a th:href="@{'/admin/editProduct/'+${p.id}}" class="btn btn-sm btn-primary"><i
+                                class="fa-solid fa-pen-to-square"></i> Edit</a>
+                            <a th:href="@{'/admin/deleteProduct/'+${p.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
