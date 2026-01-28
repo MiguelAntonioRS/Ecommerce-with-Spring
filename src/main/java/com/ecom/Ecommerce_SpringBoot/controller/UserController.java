@@ -64,7 +64,7 @@ public class UserController {
     }
 
     @GetMapping("/cart")
-    public String cartPage() {
+    public String cartPage(Principal principal) {
 
         return "/user/cart";
     }
