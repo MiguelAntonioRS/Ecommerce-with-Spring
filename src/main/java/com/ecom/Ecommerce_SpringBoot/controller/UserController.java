@@ -76,6 +76,6 @@ public class UserController {
         String email = principal.getName();
         UserDtls userDtls = userService.getUserByEmail(email);
 
-        return null;
+        return userDtls;
     }
 }
