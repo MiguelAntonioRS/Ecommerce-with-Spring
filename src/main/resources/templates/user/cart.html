@@ -10,7 +10,7 @@
     <div class="container-fluid mt-5 p-5">
         <div class="card card-sh">
             <div class="card-header text-center">
-                <p class="fs-4">View Products</p>
+                <p class="fs-4">View Cart</p>
                 <th:block th:if="${session.succMsg}">
                     <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
                     <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
