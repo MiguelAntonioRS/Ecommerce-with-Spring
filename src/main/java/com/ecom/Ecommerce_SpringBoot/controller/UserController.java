@@ -62,4 +62,10 @@ public class UserController {
 
         return "redirect:/product/" + productId;
     }
+
+    @GetMapping("/cart")
+    public String cartPage() {
+
+        return "";
+    }
 }
