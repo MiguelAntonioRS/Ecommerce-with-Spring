@@ -69,8 +69,8 @@ public class UserController {
         UserDtls userDtls = getLoggedInUserDetails(principal);
         List<Cart> carts = cartService.getCartsByUser(userDtls.getId());
         model.addAttribute("carts", carts);
-        Double TotalOrderPrice = carts.get(carts.size() - 1).getTotalPriceOrders();
-        model.addAttribute("TotalOrderPrice", "");
+        Double totalOrderPrice = carts.get(carts.size() - 1).getTotalPriceOrders();
+        model.addAttribute("TotalOrderPrice", totalOrderPrice);
 
         return "user/cart";
     }
