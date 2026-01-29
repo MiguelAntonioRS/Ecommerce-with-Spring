@@ -27,4 +27,7 @@ public class Cart {
 
     @Transient
     private double totalPrice;
+
+    @Transient
+    private double totalAmountOrders;
 }
