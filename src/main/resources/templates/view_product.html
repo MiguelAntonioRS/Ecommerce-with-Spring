@@ -19,11 +19,12 @@
                         <p class="text-danger text-center fw-bold text-center alert alert-danger">[[${session.errorMsg}]]</p>
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
-                    <div class="product-image-container">
-                        <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
-                             class="product-image"
-                             alt="[[${product.title}]]"
-                             onerror="this.src='/images/default-product.png'">
+
+                    <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
+                       class="product-image"
+                       alt="[[${product.title}]]"
+                       onerror="this.src='/images/default-product.png'">
+
                     </div>
                     <div class="col-md-6">
                         <p class="fs-3">[[${product.title}]]</p>
@@ -47,7 +48,7 @@
                         </p>
 
                         <p class="fs-5 fw-bold">
-                            Price :&nbsp; &nbsp; &nbsp; &nbsp;<i class="fas fa-rupee-sign"></i>
+                            Price :&nbsp; &nbsp; &nbsp; &nbsp; $
                             [[${product.discountPrice}]] <span
                                 class="fs-6 text-decoration-line-through text-secondary">$[[${product.price}]]</span>
                             <span class="fs-6  text-success">[[${product.discount}]]% off</span>
