@@ -29,5 +29,5 @@ public class Cart {
     private double totalPrice;
 
     @Transient
-    private double totalAmountOrders;
+    private double totalPriceOrders;
 }
