@@ -67,6 +67,7 @@ public class UserController {
     public String cartPage(Principal principal, Model model) {
 
         UserDtls userDtls = getLoggedInUserDetails(principal);
+        List<Cart> carts = cartService.getCartsByUser(userDtls.getId());
 
         return "/user/cart";
     }
