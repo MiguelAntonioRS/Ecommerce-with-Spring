@@ -70,7 +70,7 @@ public class UserController {
         List<Cart> carts = cartService.getCartsByUser(userDtls.getId());
         model.addAttribute("carts", carts);
 
-        return "/user/cart";
+        return "/cart";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
