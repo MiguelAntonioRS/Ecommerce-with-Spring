@@ -88,8 +88,6 @@ public class CartServiceImpl implements CartService {
             c.setTotalPrice(totalPrice);
             updateCarts.add(c);
         }
-        cartList.get(0).setTotalPrice(totalPrice);
-
         return cartList;
     }
 
