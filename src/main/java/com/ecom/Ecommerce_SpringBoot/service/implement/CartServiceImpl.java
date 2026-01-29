@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -80,10 +81,12 @@ public class CartServiceImpl implements CartService {
 
         List<Cart> cartList = cartRepository.findByUserId(userId);
         double totalPrice = 0.0;
+        List<Cart> updateCarts = new ArrayList<>();
 
         for (Cart c:cartList) {
             totalPrice = (c.getProduct().getDiscountPrice() * c.getQuantity()) + totalPrice;
             c.setTotalPrice(totalPrice);
+            updateCarts.add(c);
         }
         cartList.get(0).setTotalPrice(totalPrice);
 
