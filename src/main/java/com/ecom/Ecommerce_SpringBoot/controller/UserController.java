@@ -70,6 +70,8 @@ public class UserController {
         List<Cart> carts = cartService.getCartsByUser(userDtls.getId());
         model.addAttribute("carts", carts);
 
+        model.addAttribute("TotalOrderPrice", "");
+
         return "user/cart";
     }
 
