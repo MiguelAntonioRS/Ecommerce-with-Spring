@@ -86,6 +86,8 @@ public class CartServiceImpl implements CartService {
         for (Cart c:cartList) {
             double totalPrice = (c.getProduct().getDiscountPrice() * c.getQuantity());
             c.setTotalPrice(totalPrice);
+            totalOrderPrice = totalOrderPrice + totalPrice;
+            c.setTotalPriceOrders(totalOrderPrice);
             updateCarts.add(c);
         }
         return cartList;
