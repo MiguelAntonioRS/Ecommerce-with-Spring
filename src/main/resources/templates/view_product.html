@@ -19,12 +19,11 @@
                         <p class="text-danger text-center fw-bold text-center alert alert-danger">[[${session.errorMsg}]]</p>
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
-
-                    <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
-                       class="product-image"
-                       alt="[[${product.title}]]"
-                       onerror="this.src='/images/default-product.png'">
-
+                    <div class="product-image-container">
+                        <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
+                             class="product-image"
+                             alt="[[${product.title}]]"
+                             onerror="this.src='/images/default-product.png'">
                     </div>
                     <div class="col-md-6">
                         <p class="fs-3">[[${product.title}]]</p>
