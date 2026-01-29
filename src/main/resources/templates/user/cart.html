@@ -36,15 +36,14 @@
                     <tbody>
                         <tr th:each="cart,c:${carts}">
                             <th scope="row">[[${c.count}]]</th>
-                            <td>
-                                <img th:src="@{/admin/images/product/{name}(name=${cart.product.image})}"
-                                     width="60px" height="60px"
-                                     onerror="this.src='/images/default-product.png'">
-                            </td>
+                            <td><img th:src="@{'/img/product_img/'+${cart.product.image}}" width="60px" height="60px"></td>
                             <td>[[${cart.product.title}]]</td>
                             <td>[[${cart.product.discountPrice}]]</td>
                             <td>[[${cart.quantity}]]</td>
                             <td>[[${cart.totalPrice}]]</td>
+                        </tr>
+                        <tr>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
