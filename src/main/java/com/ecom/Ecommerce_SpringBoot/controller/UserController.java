@@ -68,6 +68,7 @@ public class UserController {
 
         UserDtls userDtls = getLoggedInUserDetails(principal);
         List<Cart> carts = cartService.getCartsByUser(userDtls.getId());
+        model.addAttribute("carts", carts);
 
         return "/user/cart";
     }
