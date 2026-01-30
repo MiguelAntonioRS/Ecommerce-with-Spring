@@ -61,4 +61,9 @@ public class CartDAOImpl implements CartDAO {
 
         return countByUserId;
     }
+
+    @Override
+    public Boolean updateQuantity(String action, int cartId) {
+        return null;
+    }
 }
