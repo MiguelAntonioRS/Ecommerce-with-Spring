@@ -12,4 +12,6 @@ public interface CartService {
     public List<Cart> getCartsByUser(int userId);
 
     public int getCountCart(int userId);
+
+    public Boolean updateQuantity(String action, int cartId);
 }
