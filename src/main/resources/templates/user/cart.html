@@ -29,7 +29,7 @@
                         <th scope="col">Image</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Price</th>
-                        <th scope="col" class="text-center">Quantity <i class="fa-solid fa-plus"></i></th>
+                        <th scope="col">Quantity <i class="fa-solid fa-plus"></i></th>
                         <th scope="col">Total Price</th>
                     </tr>
                     </thead>
@@ -39,7 +39,7 @@
                             <td><img th:src="@{'/img/product_img/'+${cart.product.image}}" width="60px" height="60px"></td>
                             <td>[[${cart.product.title}]]</td>
                             <td>$[[${cart.product.discountPrice}]]</td>
-                            <td>[[${cart.quantity}]]</td>
+                            <td class="text-center">[[${cart.quantity}]]</td>
                             <td>$[[${cart.totalPrice}]]</td>
                         </tr>
                         <tr>
