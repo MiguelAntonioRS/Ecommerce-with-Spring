@@ -75,6 +75,11 @@ public class UserController {
         return "user/cart";
     }
 
+    public String updateQuantityCart(@RequestParam String action, @RequestParam("cid") int userId) {
+
+        return "";
+    }
+
     private UserDtls getLoggedInUserDetails(Principal principal) {
 
         String email = principal.getName();
