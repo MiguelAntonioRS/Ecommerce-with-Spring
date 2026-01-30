@@ -40,7 +40,8 @@
                             <td>[[${cart.product.title}]]</td>
                             <td>$[[${cart.product.discountPrice}]]</td>
                             <td class="text-center"> <a th:href="@{'/user/cartUpdate?sy=mi&cid='+cart.id}"><i class="fa-solid fa-minus"></i></a>
-                                [ [[${cart.quantity}]] ] <i class="fa-solid fa-plus"></i></td>
+                                [ [[${cart.quantity}]] ] <a th:href="@{'/user/cartUpdate?sy=mi&cid='+cart.id}">
+                                    <i class="fa-solid fa-plus"></i></a></td>
                             <td>$[[${cart.totalPrice}]]</td>
                         </tr>
                         <tr>
