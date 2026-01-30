@@ -100,4 +100,9 @@ public class CartServiceImpl implements CartService {
 
         return countByUserId;
     }
+
+    @Override
+    public Boolean updateQuantity(String action, int cartId) {
+        return null;
+    }
 }
