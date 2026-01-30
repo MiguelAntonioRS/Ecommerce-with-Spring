@@ -75,9 +75,10 @@ public class UserController {
         return "user/cart";
     }
 
+    @GetMapping("/cartUpdate")
     public String updateQuantityCart(@RequestParam String action, @RequestParam("cid") int userId) {
 
-        return "";
+        return "redirect:/cart";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
