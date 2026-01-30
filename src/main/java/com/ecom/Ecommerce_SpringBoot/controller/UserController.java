@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @GetMapping("/cartUpdate")
-    public String updateQuantityCart(@RequestParam String action, @RequestParam("cid") int userId) {
+    public String updateQuantityCart(@RequestParam String action, @RequestParam("cid") int cartId) {
 
         return "redirect:/cart";
     }
