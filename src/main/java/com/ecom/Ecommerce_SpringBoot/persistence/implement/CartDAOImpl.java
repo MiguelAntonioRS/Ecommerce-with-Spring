@@ -80,7 +80,9 @@ public class CartDAOImpl implements CartDAO {
         } else {
             update = cart.getQuantity() + 1;
         }
+        cart.setQuantity(update);
+        cartRepository.save(cart);
 
-        return null;
+        return true;
     }
 }
