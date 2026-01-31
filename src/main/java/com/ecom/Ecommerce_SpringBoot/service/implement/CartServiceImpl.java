@@ -103,6 +103,21 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void updateQuantity(String action, int cartId) {
-        return null;
+
+        Cart cart = cartRepository.findById(cartId).get();
+        int update;
+
+        if (action.equalsIgnoreCase("de")) {
+
+            update = cart.getQuantity() - 1;
+
+            if (update<=0) {
+                cartRepository.deleteById(cartId);
+            }
+        } else {
+            update = cart.getQuantity() + 1;
+        }
+        cart.setQuantity(update);
+        Cart save = cartRepository.save(cart);
     }
 }
