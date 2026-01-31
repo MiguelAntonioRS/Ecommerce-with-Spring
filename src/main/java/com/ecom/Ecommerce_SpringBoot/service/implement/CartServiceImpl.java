@@ -113,6 +113,7 @@ public class CartServiceImpl implements CartService {
 
             if (update<=0) {
                 cartRepository.deleteById(cartId);
+                return;
             }
         } else {
             update = cart.getQuantity() + 1;
