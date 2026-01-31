@@ -64,6 +64,13 @@ public class CartDAOImpl implements CartDAO {
 
     @Override
     public Boolean updateQuantity(String action, int cartId) {
+
+        Cart cart = cartRepository.findById(cartId).get();
+
+        if ("de".equals(cartId)) {
+
+        }
+
         return null;
     }
 }
