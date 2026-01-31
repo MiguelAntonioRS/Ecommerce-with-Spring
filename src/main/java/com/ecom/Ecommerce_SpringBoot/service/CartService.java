@@ -13,5 +13,5 @@ public interface CartService {
 
     public int getCountCart(int userId);
 
-    public Boolean updateQuantity(String action, int cartId);
+    public void updateQuantity(String action, int cartId);
 }
