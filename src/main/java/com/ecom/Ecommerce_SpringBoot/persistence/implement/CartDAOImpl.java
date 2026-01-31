@@ -67,7 +67,7 @@ public class CartDAOImpl implements CartDAO {
 
         Cart cart = cartRepository.findById(cartId).get();
 
-        if ("de".equals(cartId)) {
+        if (action.equalsIgnoreCase("de")) {
 
         }
 
