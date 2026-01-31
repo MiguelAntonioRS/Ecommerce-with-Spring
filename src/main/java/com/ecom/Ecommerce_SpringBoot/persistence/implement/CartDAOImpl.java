@@ -63,7 +63,7 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
-    public Boolean updateQuantity(String action, int cartId) {
+    public void updateQuantity(String action, int cartId) {
 
         Cart cart = cartRepository.findById(cartId).get();
         int update;
@@ -81,11 +81,7 @@ public class CartDAOImpl implements CartDAO {
             update = cart.getQuantity() + 1;
         }
         cart.setQuantity(update);
-        Cart updateQuantity = cartRepository.save(cart);
-
-        if (updateQuantity) {
-
-        }
+        Cart save = cartRepository.save(cart);
 
         return true;
     }
