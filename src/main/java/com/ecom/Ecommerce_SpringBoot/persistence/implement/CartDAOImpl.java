@@ -69,6 +69,7 @@ public class CartDAOImpl implements CartDAO {
 
         if (action.equalsIgnoreCase("de")) {
 
+            int update = cart.getQuantity() - 1;
         }
 
         return null;
