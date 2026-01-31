@@ -77,6 +77,8 @@ public class CartDAOImpl implements CartDAO {
                 cartRepository.deleteById(cartId);
                 return true;
             }
+        } else {
+            update = cart.getQuantity() + 1;
         }
 
         return null;
