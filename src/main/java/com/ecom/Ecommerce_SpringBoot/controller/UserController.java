@@ -79,7 +79,7 @@ public class UserController {
     public String updateQuantityCart(@RequestParam String action, @RequestParam("cid") int cartId) {
 
         cartService.updateQuantity(action, cartId);
-        return "redirect:/cart";
+        return "redirect:/user/cart";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
