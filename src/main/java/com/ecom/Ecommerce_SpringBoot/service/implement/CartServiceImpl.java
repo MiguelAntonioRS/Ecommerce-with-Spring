@@ -102,7 +102,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Boolean updateQuantity(String action, int cartId) {
+    public void updateQuantity(String action, int cartId) {
         return null;
     }
 }
