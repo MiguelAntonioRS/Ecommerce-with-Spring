@@ -66,10 +66,11 @@ public class CartDAOImpl implements CartDAO {
     public Boolean updateQuantity(String action, int cartId) {
 
         Cart cart = cartRepository.findById(cartId).get();
+        int update;
 
         if (action.equalsIgnoreCase("de")) {
 
-            int update = cart.getQuantity() - 1;
+            update = cart.getQuantity() - 1;
         }
 
         return null;
