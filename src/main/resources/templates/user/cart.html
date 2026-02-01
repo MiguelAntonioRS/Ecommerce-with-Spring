@@ -34,31 +34,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="cart,c:${carts}">
-                            <th scope="row">[[${c.count}]]</th>
-                            <td>
-                                <img th:src="@{/admin/images/product/{name}(name=${cart.product.image})}"
-                                     width="60px" height="60px"
-                                     onerror="this.src='/images/default-product.png'">
-                            </td>
-                            <td>[[${cart.product.title}]]</td>
-                            <td>$[[${cart.product.discountPrice}]]</td>
-                            <td class="text-center"> <a th:href="@{'/user/cartUpdate?action=de&cid='+${cart.id}}"><i class="fa-solid fa-minus"></i></a>
-                                [ [[${cart.quantity}]] ] <a th:href="@{'/user/cartUpdate?action=in&cid='+${cart.id}}">
-                                    <i class="fa-solid fa-plus"></i></a></td>
-                            <td>$[[${cart.totalPrice}]]</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td class="fw-bold">Total Price</td>
-                            <td>$[[${totalOrderPrice}]]</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td><a href="#" class="btn btn-primary">Proceed Payment</a></td>
-                        </tr>
+                    <tr th:each="cart,c:${carts}">
+                        <th scope="row">[[${c.count}]]</th>
+                        <td>
+                            <img th:src="@{/admin/images/product/{name}(name=${cart.product.image})}"
+                                 width="60px" height="60px"
+                                 onerror="this.src='/images/default-product.png'">
+                        </td>
+                        <td>[[${cart.product.title}]]</td>
+                        <td>$[[${cart.product.discountPrice}]]</td>
+                        <td class="text-center"> <a th:href="@{'/user/cartUpdate?action=de&cid='+${cart.id}}"><i class="fa-solid fa-minus"></i></a>
+                            [ [[${cart.quantity}]] ] <a th:href="@{'/user/cartUpdate?action=in&cid='+${cart.id}}">
+                                <i class="fa-solid fa-plus"></i></a></td>
+                        <td>$[[${cart.totalPrice}]]</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td class="fw-bold">Total Price</td>
+                        <td>$[[${totalOrderPrice}]]</td>
+                    </tr>
                     </tbody>
                 </table>
+                <div>
+                    <a href="#" class="btn btn-primary">Proceed Payment</a>
+                </div>
             </div>
         </div>
     </div>
