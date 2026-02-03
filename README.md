@@ -66,6 +66,6 @@ New features, improvements, and refactoring are planned.
 
 ### Deploy 
 ```bash
-https://ecommerce-with-spring-boot.up.railway.app/
+https://ecommerce-with-spring-boot.onrender.com
 ```
 
