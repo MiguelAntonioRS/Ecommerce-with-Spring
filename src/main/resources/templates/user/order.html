@@ -60,7 +60,8 @@
 
                 </form>
             </div>
-            <div class="col-md-6 mt-3 p-5">
+            <div class="col-md-6 mt-3">
+                <p class="text-center fs-2">Payment Type</p>
                 <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                     <div class="card-header">
                         <p class="fs-4 text-center">Login</p>
@@ -72,7 +73,6 @@
                             Logout Successfully
                         </div>
 
-                        <!-- Mensaje de éxito al registrarse -->
                         <div th:if="${session.succMsg}" class="alert alert-success text-center">
                             [[${session.succMsg}]]
                         </div>
