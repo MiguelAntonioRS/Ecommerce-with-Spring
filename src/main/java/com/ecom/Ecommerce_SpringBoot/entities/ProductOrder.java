@@ -1,9 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,12 +22,14 @@ public class ProductOrder {
 
     private Date orderDate;
 
+    @ManyToOne
     private Product product;
 
     private double price;
 
     private int quantity;
 
+    @ManyToOne
     private UserDtls user;
 
     private String status;
