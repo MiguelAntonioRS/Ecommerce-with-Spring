@@ -19,4 +19,6 @@ public class ProductOrder {
     private UserDtls user;
 
     private String status;
+
+    private String paymentType;
 }
