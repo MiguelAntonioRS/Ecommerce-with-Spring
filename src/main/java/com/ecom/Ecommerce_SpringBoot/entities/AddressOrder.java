@@ -11,4 +11,12 @@ public class AddressOrder {
     private String email;
 
     private String mobile;
+
+    private String address;
+
+    private String city;
+
+    private String state;
+
+    private String pincode;
 }
