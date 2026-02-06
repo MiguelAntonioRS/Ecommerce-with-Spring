@@ -50,3 +50,31 @@ It’s actively being improved with new features, better UX, and deeper backend 
 1. Clone the repository:
    ```bash
    git clone https://github.com/MiguelAntonioRS/Ecommerce-with-Spring.git
+
+2. Configure your database in src/main/resources/application.properties:
+   ```
+   spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce_db
+   spring.datasource.username=your_user
+   spring.datasource.password=your_pass   
+   ```
+
+3. Set up Gmail for password reset:
+   ```
+   spring.mail.username=your_email@gmail.com
+   spring.mail.password=your_app_password
+   ```
+
+4. Run the app:
+   ```
+   mvn spring-boot:run
+   ```
+
+5. Visit:
+   ```
+   👉 http://localhost:8080
+   ```
+
+### Author
+
+   Built in public • By Miguel Antonio • Cuban Backend Developer 💪
+   "Learning by doing, failing, and shipping."
