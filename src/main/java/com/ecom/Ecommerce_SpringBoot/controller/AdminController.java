@@ -7,6 +7,7 @@ import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -64,6 +66,8 @@ public class AdminController {
     public String loadAddProduct(Model model) {
         List<Category> categories = categoryService.getAllCategory();
         model.addAttribute("categories", categories);
+        model.addAttribute("product", new Product());
+
         return "admin/add_product";
     }
 
@@ -149,7 +153,14 @@ public class AdminController {
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image, HttpSession session) throws IOException {
+    public String saveProduct(@Valid @ModelAttribute Product product, BindingResult result, @RequestParam("file") MultipartFile image, HttpSession session, Model model) throws IOException {
+
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categoryService.getAllCategory());
+            return "admin/add_product";
+        }
+
+        // Si no hay errores, procesa la imagen y guarda
         Path uploadPath = Paths.get(UPLOAD_DIR, "product_img");
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
@@ -165,14 +176,16 @@ public class AdminController {
         product.setImage(imageName);
         product.setDiscount(0);
         product.setDiscountPrice(product.getPrice());
+
         Product saveProduct = productService.saveProduct(product);
 
         if (!ObjectUtils.isEmpty(saveProduct)) {
             session.setAttribute("succMsg", "Product Saved Success");
+            return "redirect:/admin/products";
         } else {
             session.setAttribute("errorMsg", "Something wrong on server");
+            return "redirect:/admin/loadAddProduct";
         }
-        return "redirect:/admin/loadAddProduct";
     }
 
     @GetMapping("/products")
