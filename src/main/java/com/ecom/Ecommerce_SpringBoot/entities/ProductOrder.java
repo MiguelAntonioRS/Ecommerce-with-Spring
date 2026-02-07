@@ -36,6 +36,6 @@ public class ProductOrder {
 
     private String paymentType;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     private AddressOrder addressOrder;
 }
