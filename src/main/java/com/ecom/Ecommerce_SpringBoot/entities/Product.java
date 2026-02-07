@@ -1,6 +1,7 @@
 package com.ecom.Ecommerce_SpringBoot.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,17 +18,24 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 500)
+    @NotBlank(message = "Title is required")
+    @Size(max = 500, message = "Title must be less than 500 characters")
     private String title;
 
-    @Column(length = 5000)
+    @NotBlank(message = "Description is required")
+    @Size(max = 5000, message = "Description must be less than 5000 characters")
     private String description;
 
+    @NotBlank(message = "Category is required")
     private String category;
 
+    @NotNull(message = "Price is required")
+    @DecimalMin(value = "0.01", message = "Price must be greater than 0")
     private Double price;
 
-    private int stock;
+    @NotNull(message = "Stock is required")
+    @Min(value = 0, message = "Stock cannot be negative")
+    private Integer stock;
 
     private String image;
 
