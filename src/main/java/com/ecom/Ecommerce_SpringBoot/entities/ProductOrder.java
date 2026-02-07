@@ -35,4 +35,7 @@ public class ProductOrder {
     private String status;
 
     private String paymentType;
+
+    @OneToOne()
+    private AddressOrder addressOrder;
 }
