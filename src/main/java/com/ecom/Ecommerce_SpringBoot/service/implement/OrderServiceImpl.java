@@ -1,4 +1,8 @@
 package com.ecom.Ecommerce_SpringBoot.service.implement;
 
-public class OrderServiceImpl {
+import com.ecom.Ecommerce_SpringBoot.service.OrderService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class OrderServiceImpl implements OrderService {
 }
