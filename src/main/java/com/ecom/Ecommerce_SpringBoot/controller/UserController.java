@@ -2,6 +2,7 @@ package com.ecom.Ecommerce_SpringBoot.controller;
 
 import com.ecom.Ecommerce_SpringBoot.entities.Cart;
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
+import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.service.CartService;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
@@ -87,7 +88,7 @@ public class UserController {
     }
 
     @PostMapping("/save-order")
-    public String saveOrder() {
+    public String saveOrder(@ModelAttribute RequestOrder requestOrder) {
         return "user/order";
     }
 
