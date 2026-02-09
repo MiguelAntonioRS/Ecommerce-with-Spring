@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class OrderDaoImpl implements OrderDAO {
 
     @Override
-    public ProductOrder saveOrder(int userId, RequestOrder requestOrder) {
-        return null;
+    public void saveOrder(int userId, RequestOrder requestOrder) {
+
     }
 }
