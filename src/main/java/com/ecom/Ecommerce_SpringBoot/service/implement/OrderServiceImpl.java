@@ -1,5 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.service.implement;
 
+import com.ecom.Ecommerce_SpringBoot.entities.AddressOrder;
 import com.ecom.Ecommerce_SpringBoot.entities.Cart;
 import com.ecom.Ecommerce_SpringBoot.entities.ProductOrder;
 import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
@@ -42,6 +43,16 @@ public class OrderServiceImpl implements OrderService {
 
             productOrder.setStatus(StatusOrder.IN_PROGRESS.name());
             productOrder.setPaymentType(requestOrder.getPaymentType());
+
+            AddressOrder addressOrder = new AddressOrder();
+            addressOrder.setFirstName(requestOrder.getFirstName());
+            addressOrder.setLastName(requestOrder.getLastName());
+            addressOrder.setEmail(requestOrder.getEmail());
+            addressOrder.setMobile(requestOrder.getMobile());
+            addressOrder.setAddress(requestOrder.getAddress());
+            addressOrder.setCity(requestOrder.getCity());
+            addressOrder.setState(requestOrder.getState());
+            addressOrder.setPincode(requestOrder.getPincode());
         }
 
         return null;
