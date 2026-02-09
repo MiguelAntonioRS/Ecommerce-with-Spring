@@ -53,6 +53,9 @@ public class OrderServiceImpl implements OrderService {
             addressOrder.setCity(requestOrder.getCity());
             addressOrder.setState(requestOrder.getState());
             addressOrder.setPincode(requestOrder.getPincode());
+
+            productOrder.setAddressOrder(addressOrder);
+            orderRepository.save(productOrder);
         }
 
         return null;
