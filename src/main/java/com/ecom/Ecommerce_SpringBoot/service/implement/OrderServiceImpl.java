@@ -23,6 +23,10 @@ public class OrderServiceImpl implements OrderService {
 
         List<Cart> cartList = cartRepository.findByUserId(userId);
 
+        for (Cart cart:cartList) {
+
+        }
+
         return null;
     }
 }
