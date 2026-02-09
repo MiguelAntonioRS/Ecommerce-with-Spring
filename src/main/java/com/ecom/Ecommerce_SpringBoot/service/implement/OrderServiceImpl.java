@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     private CartRepository cartRepository;
 
     @Override
-    public ProductOrder saveOrder(int userId, RequestOrder requestOrder) {
+    public void saveOrder(int userId, RequestOrder requestOrder) {
 
         List<Cart> cartList = cartRepository.findByUserId(userId);
 
@@ -57,7 +57,5 @@ public class OrderServiceImpl implements OrderService {
             productOrder.setAddressOrder(addressOrder);
             orderRepository.save(productOrder);
         }
-
-        return null;
     }
 }
