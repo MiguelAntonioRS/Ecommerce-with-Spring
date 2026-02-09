@@ -1,7 +1,9 @@
 package com.ecom.Ecommerce_SpringBoot.entities;
 
-import jakarta.persistence.Entity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
