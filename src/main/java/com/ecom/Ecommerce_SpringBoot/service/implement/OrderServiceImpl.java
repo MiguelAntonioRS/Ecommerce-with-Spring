@@ -6,6 +6,7 @@ import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.OrderRepository;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
+import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,8 @@ public class OrderServiceImpl implements OrderService {
             productOrder.setQuantity(cart.getQuantity());
             productOrder.setUser(cart.getUser());
 
-            productOrder.setStatus("");
+            productOrder.setStatus(StatusOrder.IN_PROGRESS.name());
+            productOrder.setPaymentType(requestOrder.getPaymentType());
         }
 
         return null;
