@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public enum StatusOrder {
 
     IN_PROGRESS(1, "In Progress"), ORDER_RECEIVED(2, "Order Received"),
