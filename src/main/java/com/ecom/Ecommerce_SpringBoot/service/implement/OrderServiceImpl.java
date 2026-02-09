@@ -2,6 +2,7 @@ package com.ecom.Ecommerce_SpringBoot.service.implement;
 
 import com.ecom.Ecommerce_SpringBoot.entities.Cart;
 import com.ecom.Ecommerce_SpringBoot.entities.ProductOrder;
+import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.OrderRepository;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
@@ -19,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
     private CartRepository cartRepository;
 
     @Override
-    public ProductOrder saveOrder(int userId) {
+    public ProductOrder saveOrder(int userId, RequestOrder requestOrder) {
 
         List<Cart> cartList = cartRepository.findByUserId(userId);
 
