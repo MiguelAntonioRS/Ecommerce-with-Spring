@@ -2,10 +2,8 @@ package com.ecom.Ecommerce_SpringBoot.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 public enum StatusOrder {
 
@@ -13,7 +11,7 @@ public enum StatusOrder {
     PRODUCT_PACKED(3, "Product Packed"), OUT_FOR_DELIVERY(4, "Out for Delivery"),
     DELIVERED(5, "Delivered");
 
-    private int id;
+    private final int id;
 
-    private String name;
+    private final String name;
 }
