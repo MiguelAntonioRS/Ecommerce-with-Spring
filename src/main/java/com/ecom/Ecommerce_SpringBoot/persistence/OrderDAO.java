@@ -7,5 +7,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface OrderDAO {
 
-    public ProductOrder saveOrder(int userId, RequestOrder requestOrder);
+    public void saveOrder(int userId, RequestOrder requestOrder);
 }
