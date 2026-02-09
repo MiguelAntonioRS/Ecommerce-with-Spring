@@ -89,7 +89,6 @@ public class UserController {
 
     @PostMapping("/save-order")
     public String saveOrder(@ModelAttribute RequestOrder requestOrder) {
-        System.out.println(requestOrder);
         return "user/order";
     }
 
