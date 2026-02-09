@@ -19,4 +19,6 @@ public class RequestOrder {
     private String state;
 
     private String pincode;
+
+    private String paymentType;
 }
