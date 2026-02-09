@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
     <title>LogIn</title>
 </head>
+
 <body>
 <section>
     <div class="container mt-5 p-5">
         <div class="row">
-            <div class="col-md-6">
-                <form>
+            <form>
+                <div class="col-md-6">
+
                     <div class="mb-3 row">
                         <p class="text-center fs-4">Fill Address</p>
                         <hr>
@@ -57,15 +59,15 @@
                         </div>
                     </div>
 
-                </form>
-            </div>
-            <div class="col-md-6">
-                <p class="text-center fs-4">Payment Type</p>
-                <hr>
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table table-borderless">
-                            <tbody>
+                    <!--</form>-->
+                </div>
+                <div class="col-md-6">
+                    <p class="text-center fs-4">Payment Type</p>
+                    <hr>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-borderless">
+                                <tbody>
                                 <tr>
                                     <td>Total Price</td>
                                     <td>:</td>
@@ -86,13 +88,13 @@
                                     <td>:</td>
                                     <td>$ 3550</td>
                                 </tr>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="card shadow p-3 mb-5 mt-2 bg-body-tertiary rounded">
-                    <div class="card-body">
-                        <form action="/login" method="post">
+                    <div class="card shadow p-3 mb-5 mt-2 bg-body-tertiary rounded">
+                        <div class="card-body">
+                            <!--<form action="/login" method="post">-->
                             <div class="mb-3">
                                 <label class="form-label">Select Payment Type</label>
                                 <select class="form-control">
@@ -102,12 +104,14 @@
                                 </select>
                             </div>
                             <button type="submit" class="btn-primary text-white col-md-12">Place Order</button>
-                        </form>
+                            <!--</form>-->
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </section>
 </body>
+
 </html>
