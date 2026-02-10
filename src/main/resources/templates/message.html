@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
     <title>Password Reset</title>
@@ -11,7 +11,7 @@
             padding: 30px;
             border-radius: 12px;
             background-color: #ffffff;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
             text-align: center;
         }
 
@@ -48,24 +48,26 @@
         }
     </style>
 </head>
+
 <body>
-<section>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="success-card">
-                    <div class="success-icon">
-                        <i class="fa-solid fa-check-circle"></i>
+    <section>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="success-card">
+                        <div class="success-icon">
+                            <i class="fa-solid fa-check-circle"></i>
+                        </div>
+                        <h2 class="success-title">Password Changed Successfully!</h2>
+                        <p class="success-message">
+                            Your password has been updated. You can now log in with your new password.
+                        </p>
+                        <a href="/signin" class="btn btn-success">Go to Login</a>
                     </div>
-                    <h2 class="success-title">Password Changed Successfully!</h2>
-                    <p class="success-message">
-                        Your password has been updated. You can now log in with your new password.
-                    </p>
-                    <a href="/signin" class="btn btn-success">Go to Login</a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </body>
+
 </html>
