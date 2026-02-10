@@ -96,7 +96,7 @@ public class UserController {
         UserDtls user = getLoggedInUserDetails(principal);
         orderService.saveOrder(user.getId(), requestOrder);
 
-        return "redirect:/user/order";
+        return "user/order_success";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
