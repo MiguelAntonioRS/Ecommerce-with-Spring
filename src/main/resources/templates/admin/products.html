@@ -41,9 +41,9 @@
                     <tr th:each="p,c:${products}">
                         <th scope="row">[[${c.count}]]</th>
                         <td>
-                            <img th:src="${p.image}"
+                            <img th:src="@{/admin/images/product/{name}(name=${p.image})}"
                                  width="60px" height="60px"
-                                 onerror="this.src='https://via.placeholder.com/150/f0f0f0/999999?text=No+Image'">
+                                 onerror="this.src='/img/default-product.png'">
                         </td>
                         <td>[[${p.title}]]</td>
                         <td>[[${p.category}]]</td>
