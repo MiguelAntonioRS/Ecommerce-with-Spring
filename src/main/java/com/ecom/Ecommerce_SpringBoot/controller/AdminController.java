@@ -1,5 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.controller;
 
+import com.cloudinary.Cloudinary;
 import com.ecom.Ecommerce_SpringBoot.config.CloudinaryConfig;
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
@@ -19,8 +20,6 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -29,6 +28,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -45,7 +45,7 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
-    private CloudinaryConfig cloudinaryConfig;
+    private Cloudinary cloudinary;
 
     // Directorio de imágenes en Render
     private static final String UPLOAD_DIR = "/tmp/img";
@@ -82,20 +82,26 @@ public class AdminController {
     }
 
     @PostMapping("/saveCategory")
-    public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
-        // Crear directorio si no existe
-        Path uploadPath = Paths.get(UPLOAD_DIR, "category_img");
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
+    public String saveCategory(@ModelAttribute Category category,
+                               @RequestParam("file") MultipartFile file,
+                               HttpSession session) {
 
-        String imageName = "default.jpg";
+        String imageUrl = "https://via.placeholder.com/150/f0f0f0/999999?text=Category";
         if (!file.isEmpty()) {
-            imageName = UUID.randomUUID() + "_" + file.getOriginalFilename().replace(" ", "_");
-            Path filePath = uploadPath.resolve(imageName);
-            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            try {
+                java.util.Map<String, Object> uploadOptions = new java.util.HashMap<>();
+                uploadOptions.put("folder", "ecommerce/categories");
+                uploadOptions.put("public_id", "category_" + UUID.randomUUID().toString());
+                uploadOptions.put("resource_type", "image");
+
+                java.util.Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), uploadOptions);
+                imageUrl = uploadResult.get("secure_url").toString();
+            } catch (Exception e) {
+                System.err.println("Cloudinary upload failed: " + e.getMessage());
+                session.setAttribute("errorMsg", "Image upload failed. Using placeholder.");
+            }
         }
-        category.setImageName(imageName);
+        category.setImageName(imageUrl);
 
         Boolean existCategory = categoryService.existCategory(category.getName());
         if (existCategory) {
@@ -103,7 +109,7 @@ public class AdminController {
         } else {
             Category saveCategory = categoryService.saveCategory(category);
             if (ObjectUtils.isEmpty(saveCategory)) {
-                session.setAttribute("errorMsg", "Not Saved ! internal server error");
+                session.setAttribute("errorMsg", "Not Saved! Internal server error");
             } else {
                 session.setAttribute("succMsg", "Saved successfully");
             }
@@ -157,37 +163,42 @@ public class AdminController {
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct(@Valid @ModelAttribute Product product, BindingResult result, @RequestParam("file") MultipartFile image, HttpSession session, Model model) throws IOException {
+    public String saveProduct(@Valid @ModelAttribute Product product, BindingResult result,
+                              @RequestParam("file") MultipartFile image, HttpSession session, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("categories", categoryService.getAllCategory());
             return "admin/add_product";
         }
 
-        // Si no hay errores, procesa la imagen y guarda
-        Path uploadPath = Paths.get(UPLOAD_DIR, "product_img");
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-
-        String imageName = "default.jpg";
+        // Subir imagen a Cloudinary
+        String imageUrl = "https://via.placeholder.com/150/f0f0f0/999999?text=No+Image";
         if (!image.isEmpty()) {
-            imageName = UUID.randomUUID() + "_" + image.getOriginalFilename().replace(" ", "_");
-            Path filePath = uploadPath.resolve(imageName);
-            Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            try {
+                java.util.Map<String, Object> uploadOptions = new java.util.HashMap<>();
+                uploadOptions.put("folder", "ecommerce/products");
+                uploadOptions.put("public_id", "product_" + UUID.randomUUID().toString());
+                uploadOptions.put("resource_type", "image");
+
+                java.util.Map<String, Object> uploadResult = cloudinary.uploader().upload(image.getBytes(), uploadOptions);
+                imageUrl = uploadResult.get("secure_url").toString();
+            } catch (Exception e) {
+                System.err.println("Cloudinary upload failed: " + e.getMessage());
+                session.setAttribute("errorMsg", "Image upload failed. Using placeholder.");
+            }
         }
 
-        product.setImage(imageName);
+        product.setImage(imageUrl);
         product.setDiscount(0);
         product.setDiscountPrice(product.getPrice());
 
         Product saveProduct = productService.saveProduct(product);
 
         if (!ObjectUtils.isEmpty(saveProduct)) {
-            session.setAttribute("succMsg", "Product Saved Success");
+            session.setAttribute("succMsg", "Product Saved Successfully");
             return "redirect:/admin/products";
         } else {
-            session.setAttribute("errorMsg", "Something wrong on server");
+            session.setAttribute("errorMsg", "Something went wrong on server");
             return "redirect:/admin/loadAddProduct";
         }
     }
@@ -251,24 +262,5 @@ public class AdminController {
             session.setAttribute("errorMsg", "Something wrong on server");
         }
         return "redirect:/admin/users";
-    }
-
-    // Endpoint para servir imágenes
-    @GetMapping("/images/{type}/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveImage(@PathVariable String type, @PathVariable String filename) {
-        try {
-            Path imagePath = Paths.get(UPLOAD_DIR, type + "_img", filename);
-            Resource resource = new UrlResource(imagePath.toUri());
-            if (resource.exists()) {
-                return ResponseEntity.ok()
-                        .header("Cache-Control", "max-age=31536000") // 1 año
-                        .body(resource);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (MalformedURLException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 }
