@@ -93,7 +93,8 @@ public class UserController {
         model.addAttribute("carts", carts);
 
         if (carts.size() > 0) {
-
+            Double totalOrderPrice = carts.get(carts.size() -1).getTotalPriceOrders() + 250 + 100;
+            model.addAttribute("totalOrderPrice", totalOrderPrice);
         }
 
         return "user/order";
