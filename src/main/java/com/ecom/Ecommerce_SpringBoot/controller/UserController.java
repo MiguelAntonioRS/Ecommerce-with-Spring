@@ -91,6 +91,11 @@ public class UserController {
         UserDtls user = getLoggedInUserDetails(principal);
         List<Cart> carts = cartService.getCartsByUser(user.getId());
         model.addAttribute("carts", carts);
+
+        if (carts.size() > 0) {
+
+        }
+
         return "user/order";
     }
 
