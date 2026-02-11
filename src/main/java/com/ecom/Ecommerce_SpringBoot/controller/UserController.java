@@ -89,6 +89,7 @@ public class UserController {
     public String pageOrder(Principal principal, Model model) {
 
         UserDtls user = getLoggedInUserDetails(principal);
+        List<Cart> carts = cartService.getCartsByUser(user.getId());
         return "user/order";
     }
 
