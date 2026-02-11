@@ -1,5 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.controller;
 
+import com.ecom.Ecommerce_SpringBoot.config.CloudinaryConfig;
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
@@ -42,6 +43,9 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CloudinaryConfig cloudinaryConfig;
 
     // Directorio de imágenes en Render
     private static final String UPLOAD_DIR = "/tmp/img";
