@@ -56,41 +56,46 @@ public class ProductDAOImpl implements ProductDAO {
     public Product updateProduct(Product product, MultipartFile image) {
 
         Product dbProduct = getProductById(product.getId());
+        if (dbProduct == null) {
+            return null;
+        }
 
-        String imageName = image.isEmpty() ? dbProduct.getImage() : image.getOriginalFilename();
-
+        // Actualizar datos del producto
         dbProduct.setTitle(product.getTitle());
         dbProduct.setDescription(product.getDescription());
         dbProduct.setCategory(product.getCategory());
         dbProduct.setPrice(product.getPrice());
         dbProduct.setStock(product.getStock());
-        dbProduct.setImage(imageName);
         dbProduct.setIsActive(product.getIsActive());
         dbProduct.setDiscount(product.getDiscount());
 
-        double discount = product.getPrice()*(product.getDiscount() / 100.0);
+        double discount = product.getPrice() * (product.getDiscount() / 100.0);
         double discountPrice = product.getPrice() - discount;
         dbProduct.setDiscountPrice(discountPrice);
 
-        Product updateProduct = productRepository.save(dbProduct);
+        // Solo actualizar imagen si se sube una nueva
+        if (!image.isEmpty()) {
+            try {
+                // Directorio en Render
+                String UPLOAD_DIR = "/tmp/img";
+                Path uploadPath = Paths.get(UPLOAD_DIR, "product_img");
 
-        if (!ObjectUtils.isEmpty(updateProduct)) {
-
-            if (!image.isEmpty()) {
-                try {
-                    File saveFile = new ClassPathResource("static/img").getFile();
-                    Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "product_img" + File.separator + image.getOriginalFilename());
-
-                    Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-
-                } catch (Exception exception) {
-                    exception.printStackTrace();
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
                 }
+
+                String imageName = System.currentTimeMillis() + "_" + image.getOriginalFilename().replace(" ", "_");
+                Path filePath = uploadPath.resolve(imageName);
+                Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                dbProduct.setImage(imageName);
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Si falla la imagen, seguimos con la anterior
             }
-            return product;
         }
 
-        return null;
+        return productRepository.save(dbProduct);
     }
 
     @Override
