@@ -36,11 +36,9 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
             return;
         }
 
-        // Verifica si la cuenta está habilitada
         if ((userDtls.getIsEnabled() != null) && !userDtls.getIsEnabled()) {
             exception = new LockedException("Account inactive");
         }
-        // Verifica si la cuenta está bloqueada
         else if ((userDtls.getAccountNonBlocked() != null) && !userDtls.getAccountNonBlocked()) {
             if (userService.unlockAccountTimeExpired(userDtls)) {
                 exception = new LockedException("Account is unlocked !! Please try to login");
@@ -48,7 +46,6 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
                 exception = new LockedException("Account locked !! Please try after sometimes");
             }
         }
-        // Cuenta activa y desbloqueada: maneja intentos fallidos
         else {
             int failedAttempts = (userDtls.getFailedAttempt() != null) ? userDtls.getFailedAttempt() : 0;
 
