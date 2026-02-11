@@ -87,6 +87,8 @@ public class UserController {
 
     @GetMapping("/orders")
     public String pageOrder(Principal principal, Model model) {
+
+        UserDtls user = getLoggedInUserDetails(principal);
         return "user/order";
     }
 
