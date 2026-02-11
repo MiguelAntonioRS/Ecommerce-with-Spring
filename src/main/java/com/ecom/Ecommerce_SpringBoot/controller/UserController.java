@@ -68,11 +68,11 @@ public class UserController {
     public String cartPage(Principal principal, Model model) {
 
         UserDtls userDtls = getLoggedInUserDetails(principal);
-        List<Cart> carts = cartService.getCartsByUser(userDtls.getId());
-        model.addAttribute("carts", carts);
+        List<Cart> cartList = cartService.getCartsByUser(userDtls.getId());
+        model.addAttribute("carts", cartList);
 
-        if (carts.size() > 0) {
-            Double totalOrderPrice = carts.get(carts.size() - 1).getTotalPriceOrders();
+        if (cartList.size() > 0) {
+            Double totalOrderPrice = cartList.get(cartList.size() - 1).getTotalPriceOrders();
             model.addAttribute("totalOrderPrice", totalOrderPrice);
         }
         return "user/cart";
@@ -90,6 +90,7 @@ public class UserController {
 
         UserDtls user = getLoggedInUserDetails(principal);
         List<Cart> carts = cartService.getCartsByUser(user.getId());
+        model.addAttribute("carts", carts);
         return "user/order";
     }
 
