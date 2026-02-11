@@ -20,10 +20,10 @@
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
                     <div class="product-image-container">
-                        <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
+                        <img th:src="${product.image}"
                              class="product-image"
                              alt="[[${product.title}]]"
-                             onerror="this.src='/images/default-product.png'">
+                             onerror="this.src='https://via.placeholder.com/300/f0f0f0/999999?text=No+Image'">
                     </div>
                     <div class="col-md-6">
                         <p class="fs-3">[[${product.title}]]</p>
