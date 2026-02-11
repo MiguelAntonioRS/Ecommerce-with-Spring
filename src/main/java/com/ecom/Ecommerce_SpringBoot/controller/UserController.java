@@ -86,7 +86,7 @@ public class UserController {
     }
 
     @GetMapping("/orders")
-    public String pageOrder(Principal principal) {
+    public String pageOrder(Principal principal, Model model) {
         return "user/order";
     }
 
