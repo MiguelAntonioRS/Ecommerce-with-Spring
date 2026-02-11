@@ -95,6 +95,7 @@ public class UserController {
         if (carts.size() > 0) {
             Double orderPrice = carts.get(carts.size() -1).getTotalPriceOrders();
             Double totalOrderPrice = carts.get(carts.size() -1).getTotalPriceOrders() + 250 + 100;
+            model.addAttribute("orderPrice", orderPrice);
             model.addAttribute("totalOrderPrice", totalOrderPrice);
         }
 
