@@ -60,7 +60,6 @@ public class ProductDAOImpl implements ProductDAO {
             return null;
         }
 
-        // Actualizar datos del producto
         dbProduct.setTitle(product.getTitle());
         dbProduct.setDescription(product.getDescription());
         dbProduct.setCategory(product.getCategory());
@@ -73,10 +72,8 @@ public class ProductDAOImpl implements ProductDAO {
         double discountPrice = product.getPrice() - discount;
         dbProduct.setDiscountPrice(discountPrice);
 
-        // Solo actualizar imagen si se sube una nueva
         if (!image.isEmpty()) {
             try {
-                // Directorio en Render
                 String UPLOAD_DIR = "/tmp/img";
                 Path uploadPath = Paths.get(UPLOAD_DIR, "product_img");
 
@@ -91,7 +88,6 @@ public class ProductDAOImpl implements ProductDAO {
                 dbProduct.setImage(imageName);
             } catch (Exception e) {
                 e.printStackTrace();
-                // Si falla la imagen, seguimos con la anterior
             }
         }
 
