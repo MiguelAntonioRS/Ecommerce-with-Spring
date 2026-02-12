@@ -111,6 +111,11 @@ public class UserController {
         return "redirect:/user/order_success";
     }
 
+    @GetMapping()
+    public String loadSuccess() {
+        return "";
+    }
+
     private UserDtls getLoggedInUserDetails(Principal principal) {
 
         String email = principal.getName();
