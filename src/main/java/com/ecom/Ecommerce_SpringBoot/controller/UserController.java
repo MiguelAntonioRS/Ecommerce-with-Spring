@@ -111,7 +111,7 @@ public class UserController {
         return "redirect:/user/order_success";
     }
 
-    @GetMapping()
+    @GetMapping("/order_success")
     public String loadSuccess() {
         return "";
     }
