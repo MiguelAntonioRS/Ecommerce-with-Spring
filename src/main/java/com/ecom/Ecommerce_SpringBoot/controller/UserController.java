@@ -113,7 +113,7 @@ public class UserController {
 
     @GetMapping("/order_success")
     public String loadSuccess() {
-        return "";
+        return "user/order_success";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
