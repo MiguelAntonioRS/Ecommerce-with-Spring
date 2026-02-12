@@ -76,6 +76,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/guide")
+    public String showUserGuide() {
+        return "guide";
+    }
+
     @GetMapping("/home")
     public String index() {
         return "index";
