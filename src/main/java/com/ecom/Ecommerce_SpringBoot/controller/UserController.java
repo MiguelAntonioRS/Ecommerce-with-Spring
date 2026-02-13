@@ -116,6 +116,11 @@ public class UserController {
         return "user/order_success";
     }
 
+    @GetMapping("/user-orders")
+    public String myOrder() {
+        return "user/my_order";
+    }
+
     private UserDtls getLoggedInUserDetails(Principal principal) {
 
         String email = principal.getName();
