@@ -58,4 +58,9 @@ public class OrderDaoImpl implements OrderDAO {
             orderRepository.save(productOrder);
         }
     }
+
+    @Override
+    public List<ProductOrder> getOrdersByUser(int userId) {
+        return null;
+    }
 }
