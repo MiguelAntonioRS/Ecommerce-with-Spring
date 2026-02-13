@@ -117,7 +117,7 @@ public class UserController {
     }
 
     @GetMapping("/user-orders")
-    public String myOrder() {
+    public String myOrder(Model model, Principal principal) {
         return "user/my_orders";
     }
 
