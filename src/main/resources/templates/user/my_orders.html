@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
     <title>Success</title>
 </head>
+
 <body>
 <section>
     <div class="container mt-5 p-5">
@@ -12,17 +13,20 @@
             <div class="col-md-12">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
+                    <tr>
+                        <th scope="col">SI No</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Product Details</th>
+                        <th scope="col">Action</th>
+                    </tr>
                     </thead>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
     </div>
 </section>
 </body>
+
 </html>
