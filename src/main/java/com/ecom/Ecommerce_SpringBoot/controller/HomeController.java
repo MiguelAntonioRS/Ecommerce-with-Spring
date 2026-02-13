@@ -190,7 +190,6 @@ public class HomeController {
         }
     }
 
-    // Endpoint para servir imágenes de perfil
     @GetMapping("/images/profile/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveProfileImage(@PathVariable String filename) {
