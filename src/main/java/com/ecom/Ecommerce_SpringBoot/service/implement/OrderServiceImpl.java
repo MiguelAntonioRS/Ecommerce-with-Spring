@@ -58,4 +58,9 @@ public class OrderServiceImpl implements OrderService {
             orderRepository.save(productOrder);
         }
     }
+
+    @Override
+    public List<ProductOrder> getOrdersByUser(int userId) {
+        return null;
+    }
 }
