@@ -118,7 +118,7 @@ public class UserController {
 
     @GetMapping("/user-orders")
     public String myOrder() {
-        return "user/my_order";
+        return "user/my_orders";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
