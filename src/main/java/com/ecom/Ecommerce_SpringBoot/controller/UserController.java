@@ -1,9 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.controller;
 
-import com.ecom.Ecommerce_SpringBoot.entities.Cart;
-import com.ecom.Ecommerce_SpringBoot.entities.Category;
-import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
-import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
+import com.ecom.Ecommerce_SpringBoot.entities.*;
 import com.ecom.Ecommerce_SpringBoot.service.CartService;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
@@ -118,6 +115,11 @@ public class UserController {
 
     @GetMapping("/user-orders")
     public String myOrder(Model model, Principal principal) {
+
+        UserDtls logUser = getLoggedInUserDetails(principal);
+        List<ProductOrder> orders = orderService.getOrdersByUser(logUser.getId());
+        model.addAttribute("orders", orders);
+
         return "user/my_orders";
     }
 
