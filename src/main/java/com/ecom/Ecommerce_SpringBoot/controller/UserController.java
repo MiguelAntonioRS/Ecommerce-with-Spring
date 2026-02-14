@@ -134,7 +134,7 @@ public class UserController {
         } else {
            session.setAttribute("errorMsg", "Status not Updated");
         }
-        return "redirect:/user/orders";
+        return "redirect:/user/user-orders";
     }
 
     @GetMapping("/user-orders")
