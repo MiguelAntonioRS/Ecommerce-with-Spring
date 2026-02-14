@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -67,6 +68,8 @@ public class OrderDaoImpl implements OrderDAO {
 
     @Override
     public Boolean orderStatusUpdate(int id, String status) {
+
+        Optional<ProductOrder> findById = orderRepository.findById(id);
         return null;
     }
 }
