@@ -12,4 +12,6 @@ public interface OrderDAO {
     public void saveOrder(int userId, RequestOrder requestOrder);
 
     public List<ProductOrder> getOrdersByUser(int userId);
+
+    public Boolean orderStatusUpdate(int id, String status);
 }
