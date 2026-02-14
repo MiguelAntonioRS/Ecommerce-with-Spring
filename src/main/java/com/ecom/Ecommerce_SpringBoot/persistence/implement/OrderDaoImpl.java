@@ -70,6 +70,15 @@ public class OrderDaoImpl implements OrderDAO {
     public Boolean orderStatusUpdate(int id, String status) {
 
         Optional<ProductOrder> findById = orderRepository.findById(id);
+
+        if (findById.isPresent()) {
+
+            ProductOrder productOrder = findById.get();
+            productOrder.setStatus(status);
+            orderRepository.save(productOrder);
+            return true;
+        }
+
         return null;
     }
 }
