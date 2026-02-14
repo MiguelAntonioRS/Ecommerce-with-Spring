@@ -39,9 +39,19 @@
                         <th scope="row">[[${o.orderId}]]</th>
                         <td>[[${o.orderDate}]]</td>
                         <td>[[${o.product.title}]]</td>
-                        <td>Quantity : [[${o.quantity}]] <br>Price : [[${o.price}]] <br>Total Price [[${o.quantity * o.price}]]</td>
+                        <td>Quantity : [[${o.quantity}]] <br>Price : [[${o.price}]] <br>Total Price
+                            [[${o.quantity * o.price}]]</td>
                         <td>[[${o.status}]]</td>
-                        <td><a th:href="@{'/user/status-update?id='+${o.id}+'&status=6'}" class="btn btn-sm btn-danger">Cancel</a></td>
+                        <td>
+                            <th:block th:if="${o.status!='Cancelled'}">
+                                <a th:href="@{'/user/status-update?id='+${o.id}+'&status=6'}"
+                                   class="btn btn-sm btn-danger">Cancel</a>
+                            </th:block>
+
+                            <th:block th:unless="${o.status!='Cancelled'}">
+                                <a href="#" class="btn btn-sm btn-danger disabled">Cancel</a>
+                            </th:block>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
