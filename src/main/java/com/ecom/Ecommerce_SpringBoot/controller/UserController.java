@@ -127,8 +127,13 @@ public class UserController {
             }
         }
 
-        orderService.orderStatusUpdate(id, oStatus);
+        Boolean orderUpdate = orderService.orderStatusUpdate(id, oStatus);
 
+        if (orderUpdate) {
+            session.setAttribute("succMsg", "Status Updated");
+        } else {
+           session.setAttribute("errorMsg", "Status not Updated");
+        }
         return "redirect:/user/orders";
     }
 
