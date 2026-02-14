@@ -117,8 +117,18 @@ public class UserController {
     @GetMapping("/status-update")
     public String updateStatusOrder(@RequestParam int id, @RequestParam int status) {
 
+        String oStatus = null;
         StatusOrder[] values = StatusOrder.values();
-        System.out.println("Values: " + values);
+
+        for (StatusOrder statusOrder:values) {
+
+            if (statusOrder.getId().equals(status)) {
+                oStatus = statusOrder.getName();
+            }
+        }
+
+        orderService.orderStatusUpdate(id, oStatus);
+
         return "redirect:/user/orders";
     }
 
