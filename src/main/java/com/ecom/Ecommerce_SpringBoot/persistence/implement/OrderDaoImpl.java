@@ -11,6 +11,7 @@ import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +35,7 @@ public class OrderDaoImpl implements OrderDAO {
             ProductOrder productOrder = new ProductOrder();
 
             productOrder.setOrderId(UUID.randomUUID().toString());
-            productOrder.setOrderDate(new Date());
+            productOrder.setOrderDate(LocalDate.now());
             productOrder.setProduct(cart.getProduct());
             productOrder.setPrice(cart.getProduct().getDiscountPrice());
 
