@@ -115,7 +115,7 @@ public class UserController {
 
     @GetMapping("/status-update")
     public String updateStatusOrder(@RequestParam int id, @RequestParam int status) {
-        return "user/order_success";
+        return "redirect:/user/orders";
     }
 
     @GetMapping("/user-orders")
