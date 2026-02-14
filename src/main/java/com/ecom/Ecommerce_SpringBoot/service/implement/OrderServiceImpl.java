@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -69,6 +70,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Boolean orderStatusUpdate(int id, String status) {
-        return null;
+
+        Optional<ProductOrder> findById = orderRepository.findById(id);
+
+        if (findById.isPresent()) {
+
+            ProductOrder productOrder = findById.get();
+            productOrder.setStatus(status);
+            orderRepository.save(productOrder);
+            return true;
+        }
+
+        return false;
     }
 }
