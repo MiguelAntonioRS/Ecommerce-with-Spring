@@ -114,7 +114,7 @@ public class UserController {
     }
 
     @GetMapping("/status-update")
-    public String updateStatusOrder(@RequestParam int id) {
+    public String updateStatusOrder(@RequestParam int id, @RequestParam int status) {
         return "user/order_success";
     }
 
