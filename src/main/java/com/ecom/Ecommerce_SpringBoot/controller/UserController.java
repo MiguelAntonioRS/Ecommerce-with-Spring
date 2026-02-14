@@ -113,7 +113,7 @@ public class UserController {
         return "user/order-success";
     }
 
-    @GetMapping("/order_success")
+    @GetMapping("/status-update")
     public String updateStatusOrder() {
         return "user/order_success";
     }
@@ -125,7 +125,7 @@ public class UserController {
         List<ProductOrder> orders = orderService.getOrdersByUser(logUser.getId());
         model.addAttribute("orders", orders);
 
-        return "user/my_orders";
+        return "user/my-orders";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
