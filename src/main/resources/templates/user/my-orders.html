@@ -30,7 +30,7 @@
                         <td>[[${o.product.title}]]</td>
                         <td>Quantity : [[${o.quantity}]] <br>Price : [[${o.price}]] <br>Total Price [[${o.quantity * o.price}]]</td>
                         <td>[[${o.status}]]</td>
-                        <td><a href="#" class="btn btn-sm btn-danger">Cancel</a></td>
+                        <td><a th:href="@{'/user/status-update?id='+${o.id}+'&status=6'}" class="btn btn-sm btn-danger">Cancel</a></td>
                     </tr>
                     </tbody>
                 </table>
