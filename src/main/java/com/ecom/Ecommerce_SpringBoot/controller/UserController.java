@@ -108,8 +108,13 @@ public class UserController {
         return "redirect:/user/order_success";
     }
 
-    @GetMapping("/order_success")
+    @GetMapping("/order-success")
     public String loadSuccess() {
+        return "user/order-success";
+    }
+
+    @GetMapping("/order_success")
+    public String updateStatusOrder() {
         return "user/order_success";
     }
 
