@@ -11,7 +11,7 @@ public enum StatusOrder {
     PRODUCT_PACKED(3, "Product Packed"), OUT_FOR_DELIVERY(4, "Out for Delivery"),
     DELIVERED(5, "Delivered"),CANCEL(6, "Cancelled");
 
-    private final int id;
+    private final Integer id;
 
     private final String name;
 }
