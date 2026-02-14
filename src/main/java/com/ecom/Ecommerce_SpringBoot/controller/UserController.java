@@ -105,7 +105,7 @@ public class UserController {
         UserDtls user = getLoggedInUserDetails(principal);
         orderService.saveOrder(user.getId(), requestOrder);
 
-        return "redirect:/user/order_success";
+        return "redirect:/user/order-success";
     }
 
     @GetMapping("/order-success")
