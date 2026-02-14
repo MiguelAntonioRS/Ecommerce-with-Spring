@@ -115,7 +115,7 @@ public class UserController {
     }
 
     @GetMapping("/status-update")
-    public String updateStatusOrder(@RequestParam int id, @RequestParam int status) {
+    public String updateStatusOrder(@RequestParam int id, @RequestParam int status, HttpSession session) {
 
         String oStatus = null;
         StatusOrder[] values = StatusOrder.values();
