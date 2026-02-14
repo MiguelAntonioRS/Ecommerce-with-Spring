@@ -79,6 +79,6 @@ public class OrderDaoImpl implements OrderDAO {
             return true;
         }
 
-        return null;
+        return false;
     }
 }
