@@ -64,4 +64,9 @@ public class OrderDaoImpl implements OrderDAO {
     public List<ProductOrder> getOrdersByUser(int userId) {
         return null;
     }
+
+    @Override
+    public Boolean orderStatusUpdate(int id, String status) {
+        return null;
+    }
 }
