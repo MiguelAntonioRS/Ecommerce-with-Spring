@@ -83,4 +83,9 @@ public class OrderServiceImpl implements OrderService {
 
         return false;
     }
+
+    @Override
+    public List<ProductOrder> getAllOrdersByUser() {
+        return null;
+    }
 }
