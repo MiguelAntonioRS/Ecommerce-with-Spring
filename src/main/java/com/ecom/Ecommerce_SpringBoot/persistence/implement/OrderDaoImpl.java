@@ -81,4 +81,9 @@ public class OrderDaoImpl implements OrderDAO {
 
         return false;
     }
+
+    @Override
+    public List<ProductOrder> getAllOrdersByUser() {
+        return null;
+    }
 }
