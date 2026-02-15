@@ -249,6 +249,12 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
+    @GetMapping("/orders")
+    public String getAllOrders() {
+
+        return "admin/orders";
+    }
+
     // Endpoint para servir imágenes
     @GetMapping("/images/{type}/{filename:.+}")
     @ResponseBody
