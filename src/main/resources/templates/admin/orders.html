@@ -13,27 +13,32 @@
             <div class="col-md-12">
                 <p class="text-center fs-3">My Orders</p>
 
+                <!-- Mensajes flash -->
                 <th:block th:if="${session.succMsg}">
                     <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
                     <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                 </th:block>
-
                 <th:block th:if="${session.errorMsg}">
                     <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
                     <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                 </th:block>
+            </div>
+        </div>
 
-                <div class="col-md-4">
-                    <form class="d-flex gap-2">
-                        <input type="text"
-                               name="orderId"
-                               class="form-control flex-grow-1"
-                               placeholder="Enter order id"
-                               aria-label="Order ID">
-                        <button class="btn btn-danger" type="submit">Search</button>
-                    </form>
-                </div>
+        <!-- Formulario de búsqueda -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <form class="d-flex gap-2" method="get">
+                    <input type="text" name="orderId" class="form-control flex-grow-1" placeholder="Enter order id"
+                           aria-label="Order ID">
+                    <button class="btn btn-danger" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
 
+        <!-- Tabla de órdenes -->
+        <div class="row">
+            <div class="col-md-12">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -46,20 +51,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="o:${orders}">
+                    <tr th:each="o : ${orders}">
                         <th scope="row">[[${o.orderId}]]</th>
-                        <td>[[${o.orderDate}]]</td>
+                        <td>[[${#temporals.format(o.orderDate, 'dd/MM/yyyy')}]]</td>
                         <td>[[${o.product.title}]]</td>
-                        <td>Quantity : [[${o.quantity}]] <br>Price : [[${o.price}]] <br>Total Price
-                            [[${o.quantity * o.price}]]</td>
+                        <td>
+                            Quantity: [[${o.quantity}]]<br>
+                            Price: $[[${o.price}]]<br>
+                            Total: $[[${o.quantity * o.price}]]
+                        </td>
                         <td>[[${o.status}]]</td>
                         <td>
-                            <th:block th:if="${o.status!='Cancelled'}">
-                                <a th:href="@{'/user/status-update?id='+${o.id}+'&status=6'}"
+                            <th:block th:if="${o.status != 'Cancelled'}">
+                                <a th:href="@{'/user/status-update?id=' + ${o.id} + '&status=6'}"
                                    class="btn btn-sm btn-danger">Cancel</a>
                             </th:block>
-
-                            <th:block th:unless="${o.status!='Cancelled'}">
+                            <th:block th:unless="${o.status != 'Cancelled'}">
                                 <a href="#" class="btn btn-sm btn-danger disabled">Cancel</a>
                             </th:block>
                         </td>
