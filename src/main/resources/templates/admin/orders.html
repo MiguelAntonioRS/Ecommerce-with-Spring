@@ -23,12 +23,14 @@
                     <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                 </th:block>
 
-                <div class="col-md-4 ps-4 pb-4">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="orderId" placeholder="Enter order id">
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </div>
+                <div class="col-md-4">
+                    <form class="d-flex gap-2">
+                        <input type="text"
+                               name="orderId"
+                               class="form-control flex-grow-1"
+                               placeholder="Enter order id"
+                               aria-label="Order ID">
+                        <button class="btn btn-danger" type="submit">Search</button>
                     </form>
                 </div>
 
