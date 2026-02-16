@@ -255,7 +255,7 @@ public class AdminController {
     }
 
     @GetMapping("/orders")
-    public String getAllOrders() {
+    public String getAllOrders(Model model) {
 
         List<ProductOrder> allOrders = orderService.getAllOrdersByUser();
 
