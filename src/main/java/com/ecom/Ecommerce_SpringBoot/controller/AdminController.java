@@ -2,6 +2,7 @@ package com.ecom.Ecommerce_SpringBoot.controller;
 
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
+import com.ecom.Ecommerce_SpringBoot.entities.ProductOrder;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
@@ -255,6 +256,8 @@ public class AdminController {
 
     @GetMapping("/orders")
     public String getAllOrders() {
+
+        List<ProductOrder> allOrders = orderService.getAllOrdersByUser();
 
         return "admin/orders";
     }
