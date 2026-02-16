@@ -84,6 +84,7 @@ public class OrderDaoImpl implements OrderDAO {
 
     @Override
     public List<ProductOrder> getAllOrdersByUser() {
-        return null;
+
+        return orderRepository.findAll();
     }
 }
