@@ -23,10 +23,16 @@
                     <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                 </th:block>
 
-                <div>
+                <div class="col-md-4">
                     <form>
-                        <input type="text" class="form-control" name="">
-                        <button class="btn btn-primary">Search</button>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" name="">
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary col">Search</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
 
