@@ -258,6 +258,7 @@ public class AdminController {
     public String getAllOrders(Model model) {
 
         List<ProductOrder> allOrders = orderService.getAllOrdersByUser();
+        model.addAttribute("orders", allOrders);
 
         return "admin/orders";
     }
