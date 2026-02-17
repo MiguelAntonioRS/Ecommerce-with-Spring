@@ -8,12 +8,14 @@
 
 <body>
     <section>
-        <div class="container mt-5 p-5">
+        <div class="container mt-3 mt-md-5 p-3 p-md-5">
             <div class="row">
-                <div class="col-md-5 p-5">
-                    <img src="img/ecom.png" alt="..." width="100%" height="400px">
+                <!-- Image: hidden on mobile -->
+                <div class="col-md-5 p-3 p-md-5 d-none d-md-block">
+                    <img src="img/ecom.png" alt="Ecommerce illustration" class="img-fluid"
+                        style="max-height: 400px; width: 100%; object-fit: contain;">
                 </div>
-                <div class="col-md-7 p-2">
+                <div class="col-12 col-md-7 p-2">
                     <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                         <div class="card-header">
                             <p class="fs-4 text-center">Register</p>
@@ -30,72 +32,72 @@
                         </div>
                         <div class="card-body">
                             <form action="/saveUser" enctype="multipart/form-data" method="post">
-                                <!-- Fila 1: Name and Phone -->
+                                <!-- Row 1: Name and Phone -->
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6">
                                         <label class="form-label">Full Name</label>
                                         <input required="true" class="form-control" name="name" type="text">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                                         <label class="form-label">Mobile Number</label>
                                         <input required="true" class="form-control" name="mobileNumber" type="number">
                                     </div>
                                 </div>
 
-                                <!-- Fila 2: Email -->
+                                <!-- Row 2: Email -->
                                 <div class="row mb-3">
-                                    <div class="col-md-12">
+                                    <div class="col-12">
                                         <label class="form-label">Email</label>
                                         <input required="true" class="form-control" name="email" type="email">
                                     </div>
                                 </div>
 
-                                <!-- Fila 3: Direction and City -->
+                                <!-- Row 3: Address and City -->
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6">
                                         <label class="form-label">Address</label>
                                         <input required="true" class="form-control" name="address" type="text">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                                         <label class="form-label">City</label>
                                         <input required="true" class="form-control" name="city" type="text">
                                     </div>
                                 </div>
 
-                                <!-- Fila 4: State y Pin Code -->
+                                <!-- Row 4: State and Pin Code -->
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6">
                                         <label class="form-label">State</label>
                                         <input required="true" class="form-control" name="state" type="text">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                                         <label class="form-label">Pin Code</label>
                                         <input required="true" class="form-control" name="pinCode" type="number">
                                     </div>
                                 </div>
 
-                                <!-- Fila 5: Password and Confirm-->
+                                <!-- Row 5: Password and Confirm -->
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6">
                                         <label class="form-label">Password</label>
                                         <input required="true" class="form-control" name="password" type="password">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                                         <label class="form-label">Confirm Password</label>
                                         <input required="true" class="form-control" name="confirmPassword"
                                             type="password">
                                     </div>
                                 </div>
 
-                                <!-- Fila 6: Image -->
+                                <!-- Row 6: Image -->
                                 <div class="row mb-3">
-                                    <div class="col-md-12">
+                                    <div class="col-12">
                                         <label class="form-label">Profile Image</label>
                                         <input class="form-control" name="img" type="file" accept="image/*">
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary col-md-12">Register</button>
+                                <button type="submit" class="btn btn-primary w-100">Register</button>
                             </form>
                         </div>
                         <div class="card-footer">
