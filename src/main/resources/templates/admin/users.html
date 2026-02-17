@@ -3,11 +3,11 @@
       th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Users</title>
 </head>
 <body>
 <section>
-    <div class="container-fluid mt-5 p-5">
+    <div class="container-fluid mt-3 mt-md-5 p-3 p-md-5">
         <div class="card card-sh">
             <div class="card-header text-center">
                 <p class="fs-4">Users</p>
@@ -22,34 +22,37 @@
                 </th:block>
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Si No</th>
-                        <th scope="col">Profile Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Mobile Number</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="u,c:${users}">
-                        <th scope="row">[[${c.count}]]</th>
-                        <td><img th:src="@{/images/profile/{name}(name=${u.profileImage})}" width="60px" height="60px" onerror="this.src='/images/default-profile.png'"></td>
-                        <td>[[${u.name}]]</td>
-                        <td>[[${u.email}]]</td>
-                        <td>[[${u.mobileNumber}]]</td>
-                        <td>[[${u.address+',' +u.city+ ',' +u.state+ ',' +u.pinCode}]]</td>
-                        <td>[[${u.isEnabled}]]</td>
-                        <td><a th:href="@{'/admin/updateStatus?status=true&id='+${u.id}}" class="btn btn-sm btn-primary">Active</a>
-                            <a th:href="@{'/admin/updateStatus?status=false&id='+${u.id}}" class="btn btn-sm btn-danger">Inactive</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Si No</th>
+                            <th scope="col">Profile</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="u,c:${users}">
+                            <th scope="row">[[${c.count}]]</th>
+                            <td><img th:src="@{/images/profile/{name}(name=${u.profileImage})}" width="60px" height="60px" onerror="this.src='/images/default-profile.png'" alt="Profile image"></td>
+                            <td>[[${u.name}]]</td>
+                            <td>[[${u.email}]]</td>
+                            <td>[[${u.mobileNumber}]]</td>
+                            <td>[[${u.address+',' +u.city+ ',' +u.state+ ',' +u.pinCode}]]</td>
+                            <td>[[${u.isEnabled}]]</td>
+                            <td class="text-nowrap">
+                                <a th:href="@{'/admin/updateStatus?status=true&id='+${u.id}}" class="btn btn-sm btn-primary mb-1">Active</a>
+                                <a th:href="@{'/admin/updateStatus?status=false&id='+${u.id}}" class="btn btn-sm btn-danger mb-1">Inactive</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
