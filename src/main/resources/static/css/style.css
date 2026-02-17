@@ -1,409 +1,495 @@
-/* ===== RESET Y CONFIGURACIÓN GENERAL ===== */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+/* =========================================
+   RESPONSIVE ECOMMERCE STYLES
+   ========================================= */
 
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: #fafafa; /* Fondo gris cálido muy claro */
-    color: #262626; /* Texto principal oscuro */
-}
-
-/* ===== CLASES PERSONALIZADAS ===== */
+/* ---------- Card Shadow ---------- */
 .card-sh {
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-.cat-div {
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-}
-
-.error {
-    color: red;
-}
-
-/* ===== SLIDER ===== */
+/* ---------- Slider Images ---------- */
 .slider-image {
-    height: 350px;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* ===== CÍRCULOS DE CATEGORÍA ===== */
-.category-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background-color: #f8f9fa;
-}
-
-.category-circle img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    object-position: center;
-}
-
-/* ===== TARJETAS DE PRODUCTO (GRID) ===== */
-.product-card {
-    width: 180px;
-    height: 180px;
-    overflow: hidden;
-    margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    background-color: white;
-}
-
-.product-card img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* ===== CONTENEDOR DE IMAGEN EN VISTA DE PRODUCTOS ===== */
-.product-image-container {
-    width: 100%;
-    height: 150px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    background-color: #f5f5f5;
-    margin-bottom: 12px;
-}
-
-.product-card-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-}
-
-/* ===== NAVBAR ===== */
-.navbar.bg-primary {
-    background-color: #1a1a1a !important; /* Negro suave */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    padding: 0.8rem 0;
-}
-
-.navbar-brand,
-.navbar-nav .nav-link {
-    color: #ffffff !important;
-    font-weight: 500;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #e63946 !important; /* Rojo terracota */
-}
-
-/* ===== TARJETAS DE BOOTSTRAP ===== */
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-/* ===== BOTONES ===== */
-.btn-primary {
-    background-color: #e63946 !important; /* Rojo terracota */
-    border-color: #e63946 !important;
-    font-weight: 600;
-}
-
-.btn-primary:hover {
-    background-color: #d92f3c !important;
-    border-color: #d92f3c !important;
-    transform: translateY(-1px);
-}
-
-/* ===== PRECIOS Y DESCUENTOS ===== */
-.price {
-    color: #e63946; /* Rojo terracota */
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.original-price {
-    text-decoration: line-through;
-    color: #777;
-    font-size: 0.9rem;
-}
-
-.discount {
-    color: #2a9d8f; /* Verde oliva */
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-/* ===== FOOTER ===== */
-footer.bg-primary {
-    background-color: #1a1a1a !important;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-    color: white;
-    padding: 1rem 0;
-}
-
-/* ===== LINKS Y TEXTOS ===== */
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.text-muted {
-    color: #6c757d !important;
-}
-
-/* ===== ALERTAS ===== */
-.alert-success {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .slider-image {
-        height: 250px;
-    }
-    .category-circle {
-        width: 80px;
-        height: 80px;
-    }
-    .product-card {
-        width: 140px;
-        height: 140px;
-    }
-}
-
-/* ===== BARRA AZUL DEBAJO DEL NAVBAR ===== */
-.container-fluid.bg-primary {
-    background-color: #fafafa !important; /* Fondo gris claro */
-}
-
-/* ===== SIDEBAR DE CATEGORÍAS ===== */
-.list-group {
-    background-color: #ffffff !important;
-}
-
-.list-group-item.active {
-    background-color: #e63946 !important; /* Rojo terracota para el activo */
-    border-color: #e63946 !important;
-    color: white !important;
-}
-
-.list-group-item {
-    border: 1px solid #dee2e6 !important;
-    transition: background-color 0.2s ease;
-}
-
-.list-group-item:hover {
-    background-color: #f8f9fa !important;
-}
-
-/* ===== BARRA DE BÚSQUEDA ===== */
-.search-container {
-    background-color: #ffffff;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-.search-input {
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-}
-
-.search-input:focus {
-    border-color: #e63946;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
-}
-
-.search-btn {
-    background-color: #e63946 !important;
-    border-color: #e63946 !important;
-    color: white !important;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-}
-
-.search-btn:hover {
-    background-color: #d92f3c !important;
-    border-color: #d92f3c !important;
-}
-
-.search-btn i {
-    margin-right: 0.5rem;
-}
-
-.form-container {
-    max-width: 800px;
-    margin: 150px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-
-.card {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    border: none;
-}
-
-/* ===== PÁGINA DE FORGOT PASSWORD (versión compacta) ===== */
-.forgot-password-container {
-    max-width: 700px; /* 🔥 Más pequeño que antes */
-    margin: 100px auto 50px;
-    padding: 25px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-
-.forgot-password-card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    max-width: 450px; /* 🔥 Ancho fijo para la card */
-    max-height: 300px;
-    margin-top: 100px;
-}
-
-.forgot-password-card .card-header {
-    padding: 1rem 1.25rem;
-    background-color: #ffffff;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-}
-
-.forgot-password-card .card-body {
-    padding: 1.25rem; /* 🔥 Padding reducido */
-}
-
-/* Botón más grande */
-.forgot-password-btn {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.forgot-password-btn:hover {
-    transform: translateY(-1px);
-}
-
-/* Imagen en la sección de forgot password */
-.forgot-password-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.forgot-password-image img {
-    max-height: 350px; /* 🔥 Un poco más pequeña */
-    object-fit: contain;
-    width: 100%;
-}
-
-.card-body {
-    width: 100%;
-    padding: 0px;
-}
-
-/* ===== CONTENEDOR DE IMAGEN DEL PRODUCTO ===== */
-.product-image-container {
-    width: 330px;
     height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 0 auto; /* Centra horizontalmente */
+    object-fit: cover;
 }
 
-/* ===== IMAGEN DEL PRODUCTO ===== */
-.product-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Muestra toda la imagen sin recortar */
-    object-position: center;
-    transition: transform 0.3s ease;
-}
-
-.product-image:hover {
-    transform: scale(1.05);
-}
-
-/* Logo sin interacción, pero con color blanco visible */
-.disabled-link {
-    pointer-events: none; /* Deshabilita clics y hover */
-    cursor: default !important; /* Cursor normal (flecha) */
-    text-decoration: none !important; /* Sin subrayado */
-    color: #ffffff !important; /* Fuerza color blanco */
-    opacity: 0.85; /* Ligera transparencia para no ser tan intenso */
-}
-
-/* Asegura que el ícono también sea blanco */
-.disabled-link i {
-    color: #ffffff !important;
-}
-
-/* Elimina el resaltado azul al hacer clic en los items del dropdown */
-.dropdown-item:focus,
-.dropdown-item:active {
-    background-color: transparent !important;
-    color: inherit !important;
-    outline: none !important;
-}
-
-/* Opcional: si quieres mantener un hover suave pero sin el azul fuerte */
-.dropdown-item:hover {
-    background-color: #f8f9fa !important; /* Gris claro suave */
-    color: #212529 !important;
-}
-
+/* ---------- Category Circles ---------- */
 .category-circle {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 8px;
-    border: 3px solid black;
+    border: 3px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
+}
+
+.category-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- Product Cards (Home) ---------- */
+.product-card {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- Product Catalog Image ---------- */
+.product-card-image {
+    max-width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+}
+
+.product-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+}
+
+/* ---------- Search Bar ---------- */
+.search-input {
+    border-radius: 20px 0 0 20px !important;
+}
+
+.search-btn {
+    background-color: #0d6efd;
+    color: #fff;
+    border-radius: 0 20px 20px 0 !important;
+    border: none;
+    padding: 6px 20px;
+}
+
+.search-btn:hover {
+    background-color: #0b5ed7;
+    color: #fff;
+}
+
+/* ---------- Forgot Password ---------- */
+.forgot-password-card {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.forgot-password-btn {
+    width: 100%;
+}
+
+/* ---------- Password Success ---------- */
+.success-card {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.success-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* ---------- Responsive Table Wrapper ---------- */
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================= */
+
+/* ---------- Tablets (max-width: 991px) ---------- */
+@media (max-width: 991.98px) {
+    .slider-image {
+        height: 250px;
+    }
+
+    /* Stack category sidebar on products page */
+    .col-md-2.p-0 .list-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 16px;
+    }
+
+    .col-md-2.p-0 .list-group .fs-5 {
+        width: 100%;
+    }
+
+    .col-md-2.p-0 .list-group a {
+        flex: 0 0 auto;
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}
+
+/* ---------- Mobile Phones (max-width: 767px) ---------- */
+@media (max-width: 767.98px) {
+    /* --- General Spacing --- */
+    .container.p-5,
+    .container-fluid.p-5 {
+        padding: 16px !important;
+    }
+
+    .container.mt-5,
+    .container-fluid.mt-5 {
+        margin-top: 16px !important;
+    }
+
+    .row.p-5 {
+        padding: 8px !important;
+    }
+
+    section > .container-fluid.mt-5.p-5 {
+        padding: 12px !important;
+        margin-top: 12px !important;
+    }
+
+    /* --- Navbar --- */
+    .navbar .container-fluid {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    /* --- Slider --- */
+    .slider-image {
+        height: 180px;
+    }
+
+    /* --- Category Circles (Home) --- */
+    .category-circle {
+        width: 80px;
+        height: 80px;
+        border-width: 2px;
+    }
+
+    /* Make category grid 3 across on mobile */
+    .container.mt-4 > .row > [class*="col-md-2"] {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+        padding: 4px;
+    }
+
+    .container.mt-4 > .row > [class*="col-md-2"] p {
+        font-size: 0.75rem;
+    }
+
+    /* --- Latest Products (Home) - 2 across on mobile --- */
+    .container-fluid.bg-light > .row > [class*="col-md-3"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 4px;
+    }
+
+    .product-card {
+        height: 140px;
+    }
+
+    /* --- Product Catalog - 2 across on mobile --- */
+    .col-md-10 .row.g-3 > .col-md-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .product-card-image {
+        max-height: 120px;
+    }
+
+    /* --- Product Detail Page --- */
+    .paint-card .row {
+        flex-direction: column;
+    }
+
+    .paint-card .product-image-container {
+        margin-bottom: 16px;
+    }
+
+    .paint-card .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .paint-card .col-md-4 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
+
+    .paint-card .col-md-4 i {
+        font-size: 1.2rem !important;
+    }
+
+    .paint-card .col-md-4 p {
+        font-size: 0.7rem;
+    }
+
+    /* --- Dashboard Cards (Admin) --- */
+    .container.p-5 > .row.p-5 > [class*="col-md-4"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 4px;
+    }
+
+    .container.p-5 > .row.p-5 > [class*="col-md-4"] .card-body i {
+        font-size: 2rem !important;
+    }
+
+    .container.p-5 > .row.p-5 > [class*="col-md-4"] .card-body h4 {
+        font-size: 0.9rem;
+    }
+
+    /* --- Forms: Stack side-by-side columns --- */
+    .row > .col,
+    .row > [class*="col-md-6"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* Fix offset columns on mobile (remove offset) */
+    .offset-md-3,
+    .offset-md-5,
+    .offset-md-2 {
+        margin-left: 0;
+    }
+
+    .col-md-3,
+    .col-md-4,
+    .col-md-6,
+    .col-md-7,
+    .col-md-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* Don't enlarge category sidebar items to 100% */
+    .col-md-2.p-0 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* --- Tables: Horizontal Scroll --- */
+    .table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    .table thead,
+    .table tbody,
+    .table tr {
+        display: table;
+        width: 100%;
+        table-layout: auto;
+    }
+
+    .table th,
+    .table td {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+        vertical-align: middle;
+    }
+
+    .table img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    /* --- Action buttons in tables --- */
+    .table .btn-sm {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+        margin-bottom: 2px;
+        display: inline-block;
+    }
+
+    /* --- Login/Register Image: Hide on mobile --- */
+    .col-md-6.p-5 > img[alt="..."],
+    .col-md-5.p-5 > img[alt="..."] {
+        display: none;
+    }
+
+    .col-md-6.p-5,
+    .col-md-5.p-5 {
+        display: none;
+    }
+
+    /* Show the form column full width */
+    .col-md-6.mt-3.p-5,
+    .col-md-7.p-2 {
+        padding: 0 !important;
+    }
+
+    /* --- Order/Checkout Page --- */
+    .card.shadow.p-3 {
+        padding: 12px !important;
+    }
+
+    /* --- Footer --- */
+    footer {
+        font-size: 0.85rem;
+        padding: 12px 8px;
+    }
+
+    /* --- Search bar on mobile --- */
+    .col-md-8.offset-md-2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    /* --- Cart quantity controls --- */
+    .text-center a i.fa-minus,
+    .text-center a i.fa-plus {
+        padding: 4px;
+    }
+
+    /* --- Cards: reduce internal padding --- */
+    .card-body {
+        padding: 12px;
+    }
+
+    .card-header {
+        padding: 10px;
+    }
+
+    /* --- Font sizes on mobile --- */
+    .fs-3 {
+        font-size: 1.25rem !important;
+    }
+
+    .fs-4 {
+        font-size: 1.1rem !important;
+    }
+
+    /* --- Button full width on mobile --- */
+    .btn-primary.col-md-12,
+    .btn-danger.col-md-12,
+    .btn-warning.col-md-12,
+    button.col-md-12,
+    .btn-primary.text-white.col-md-12 {
+        width: 100%;
+        display: block;
+    }
+}
+
+/* ---------- Very Small Phones (max-width: 400px) ---------- */
+@media (max-width: 400px) {
+    .category-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .slider-image {
+        height: 140px;
+    }
+
+    .container.p-5,
+    .container-fluid.p-5 {
+        padding: 8px !important;
+    }
+
+    .table th,
+    .table td {
+        font-size: 0.7rem;
+        padding: 4px 6px;
+    }
+
+    .product-card {
+        height: 100px;
+    }
+
+    .col-md-10 .row.g-3 > .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* =========================================
+   OVERRIDE V0: KEEP NAVBAR BLACK & BUTTONS RED
+   ========================================= */
+
+/* ---------- Navbar: keep it black ---------- */
+.navbar {
+    background-color: #000 !important;
+    border-bottom: 1px solid #333;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #ff6b6b !important; /* rojo claro para hover/activo */
+}
+
+/* ---------- Buttons: keep them red ---------- */
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+/* Si usas botones rojos personalizados (ej: Add To Cart) */
+.btn-red,
+.btn-red:hover,
+.btn-red:focus {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+.btn-primary {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
 }
