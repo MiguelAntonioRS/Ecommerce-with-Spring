@@ -1,94 +1,101 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
     <title>Details</title>
 </head>
+
 <body>
     <section>
-        <div class="container card-sh" style="margin-top: 70px;margin-bottom: 65px">
-            <div class="col-md-12 paint-card p-5">
-              <div class="row">
+        <div class="container card-sh p-3 p-md-5" style="margin-top: 70px; margin-bottom: 65px;">
+            <div class="row">
+                <!-- Messages -->
+                <div class="col-12">
                     <th:block th:if="${session.succMsg}">
                         <p class="text-success text-center fw-bold alert alert-success">[[${session.succMsg}]]</p>
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
 
                     <th:block th:if="${session.errorMsg}">
-                        <p class="text-danger text-center fw-bold text-center alert alert-danger">[[${session.errorMsg}]]</p>
+                        <p class="text-danger text-center fw-bold alert alert-danger">[[${session.errorMsg}]]</p>
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
                     </th:block>
+                </div>
+
+                <!-- Product Image -->
+                <div class="col-12 col-md-6 mb-3 mb-md-0">
                     <div class="product-image-container">
                         <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
-                             class="product-image"
-                             alt="[[${product.title}]]"
-                             onerror="this.src='/img/default-product.png'">
+                            class="product-image img-fluid" alt="[[${product.title}]]"
+                            onerror="this.src='/img/default-product.png'">
                     </div>
-                    <div class="col-md-6">
-                        <p class="fs-3">[[${product.title}]]</p>
-                        <p>
-                            <span class="fw-bold">Description : </span><br>[[${product.description}]]
-                        </p>
-                        <p>
-                            <span class="fw-bold"> Product Details: </span> <br>
-                            Status :
+                </div>
 
-                            <th:block th:if="${product.stock>0}">
-                                <span class="badge bg-success">Available</span>
-                            </th:block>
-
-                            <th:block th:unless="${product.stock>0}">
-                                <span class="badge bg-warning">out of stock</span>
-                            </th:block>
-
-                            <br> Category : [[${product.category}]]<br> Policy : 7
-                            Days Replacement & Return
-                        </p>
-
-                        <p class="fs-5 fw-bold">
-                            Price :&nbsp; &nbsp; &nbsp; &nbsp; $
-                            [[${product.discountPrice}]] <span
-                                class="fs-6 text-decoration-line-through text-secondary">$[[${product.price}]]</span>
-                            <span class="fs-6  text-success">[[${product.discount}]]% off</span>
-                        </p>
-
-                        <div class="row">
-                            <div class="col-md-4 text-success text-center p-2">
-                                <i class="fas fa-money-bill-wave fa-2x"></i>
-                                <p>Cash On Delivery</p>
-                            </div>
-
-                            <div class="col-md-4 text-danger text-center p-2">
-                                <i class="fas fa-undo-alt fa-2x"></i>
-                                <p>Return Available</p>
-                            </div>
-
-                            <div class="col-md-4 text-primary text-center p-2">
-                                <i class="fas fa-truck-moving fa-2x"></i>
-                                <p>Free Shipping</p>
-                            </div>
-                        </div>
+                <!-- Product Details -->
+                <div class="col-12 col-md-6">
+                    <p class="fs-3">[[${product.title}]]</p>
+                    <p>
+                        <span class="fw-bold">Description : </span><br>[[${product.description}]]
+                    </p>
+                    <p>
+                        <span class="fw-bold"> Product Details: </span> <br>
+                        Status :
 
                         <th:block th:if="${product.stock>0}">
-
-                            <th:block th:if="${user==null}">
-                                <a href="/signin" class="btn btn-danger col-md-12">Add To Cart</a>
-                            </th:block>
-
-                            <th:block th:unless="${user==null}">
-                                <a th:href="@{/user/addCart(productId=${product.id}, userId=${user.id})}" class="btn btn-danger col-md-12">Add To Cart</a>
-                            </th:block>
-
+                            <span class="badge bg-success">Available</span>
                         </th:block>
 
                         <th:block th:unless="${product.stock>0}">
-                            <a href="#" class="btn text-white btn-warning col-md-12">Out Of Stock</a>
+                            <span class="badge bg-warning">out of stock</span>
                         </th:block>
+
+                        <br> Category : [[${product.category}]]<br> Policy : 7
+                        Days Replacement &amp; Return
+                    </p>
+
+                    <p class="fs-5 fw-bold">
+                        Price : $[[${product.discountPrice}]]
+                        <span class="fs-6 text-decoration-line-through text-secondary">$[[${product.price}]]</span>
+                        <span class="fs-6 text-success">[[${product.discount}]]% off</span>
+                    </p>
+
+                    <!-- Features row -->
+                    <div class="row g-2 mb-3">
+                        <div class="col-4 text-success text-center p-2">
+                            <i class="fas fa-money-bill-wave fa-lg fa-md-2x"></i>
+                            <p class="mb-0" style="font-size: 0.75rem;">Cash On Delivery</p>
+                        </div>
+
+                        <div class="col-4 text-danger text-center p-2">
+                            <i class="fas fa-undo-alt fa-lg fa-md-2x"></i>
+                            <p class="mb-0" style="font-size: 0.75rem;">Return Available</p>
+                        </div>
+
+                        <div class="col-4 text-primary text-center p-2">
+                            <i class="fas fa-truck-moving fa-lg fa-md-2x"></i>
+                            <p class="mb-0" style="font-size: 0.75rem;">Free Shipping</p>
+                        </div>
                     </div>
+
+                    <th:block th:if="${product.stock>0}">
+                        <th:block th:if="${user==null}">
+                            <a href="/signin" class="btn btn-danger w-100">Add To Cart</a>
+                        </th:block>
+
+                        <th:block th:unless="${user==null}">
+                            <a th:href="@{/user/addCart(productId=${product.id}, userId=${user.id})}"
+                                class="btn btn-danger w-100">Add To Cart</a>
+                        </th:block>
+                    </th:block>
+
+                    <th:block th:unless="${product.stock>0}">
+                        <a href="#" class="btn text-white btn-warning w-100">Out Of Stock</a>
+                    </th:block>
                 </div>
             </div>
         </div>
     </section>
 </body>
+
 </html>
