@@ -42,8 +42,13 @@
                             <tbody>
                                 <tr th:each="p,c:${products}">
                                     <th scope="row">[[${c.count}]]</th>
-                                    <td><img th:src="@{'/img/product_img/'+${p.image}}" width="60px" height="60px"
-                                            alt="Product image"></td>
+                                    <td>
+                                        <img th:src="@{/admin/images/product/{name}(name=${p.image})}"
+                                             width="60px" height="60px"
+                                             class="img-fluid"
+                                             alt="[[${p.title}]]"
+                                             onerror="this.src='/img/default-product.png'">
+                                    </td>
                                     <td>[[${p.title}]]</td>
                                     <td>[[${p.category}]]</td>
                                     <td>[[${p.price}]]</td>
