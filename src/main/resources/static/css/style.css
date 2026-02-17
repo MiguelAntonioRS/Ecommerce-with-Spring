@@ -22,7 +22,7 @@
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 8px;
-    border: 3px solid red;
+    border: 3px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -526,17 +526,8 @@ footer p {
 .list-group-item {
     background-color: transparent !important;
     border: none !important;
-    color: #333 !important;
 }
 .list-group-item.active {
     background-color: #dc3545 !important;
-    color: #fff !important;
     font-weight: bold;
-}
-
-/* --- Remove any Bootstrap primary overrides --- */
-.bg-primary,
-.text-primary {
-    color: #fff !important;
-    background-color: #000 !important;
 }
