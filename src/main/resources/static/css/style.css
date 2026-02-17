@@ -76,7 +76,7 @@
 }
 
 .search-btn {
-    background-color: #0d6efd;
+    background-color: red;
     color: #fff;
     border-radius: 0 20px 20px 0 !important;
     border: none;
@@ -84,7 +84,7 @@
 }
 
 .search-btn:hover {
-    background-color: #0b5ed7;
+    background-color: red;
     color: #fff;
 }
 
@@ -451,45 +451,92 @@
 }
 
 /* =========================================
-   OVERRIDE V0: KEEP NAVBAR BLACK & BUTTONS RED
+   🔥 OVERRIDE TOTAL: RESTORE ORIGINAL BRAND STYLE
    ========================================= */
 
-/* ---------- Navbar: keep it black ---------- */
+/* --- Navbar: MUST be black, not blue --- */
 .navbar {
     background-color: #000 !important;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #333 !important;
 }
 
 .navbar .navbar-brand,
 .navbar .nav-link {
     color: #fff !important;
+    font-weight: 500;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-    color: #ff6b6b !important; /* rojo claro para hover/activo */
+    color: #fff !important;
+    border-radius: 4px;
 }
 
-/* ---------- Buttons: keep them red ---------- */
+/* --- Footer: MUST be black, not blue --- */
+footer {
+    background-color: #000 !important;
+    color: #fff !important;
+    padding: 12px 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* --- Login / Register pages: remove blue cards, use clean white/black --- */
+.card.forgot-password-card,
+.card.shadow.p-3.mb-5.bg-body-tertiary.rounded,
+.card.shadow.p-3.mb-5.bg-body-tertiary {
+    background-color: #fff !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+.card-header {
+    background-color: transparent !important;
+    border-bottom: none !important;
+}
+
+/* --- Buttons: ALL red (not blue!) --- */
+.btn-primary,
 .btn-danger,
+.btn-red {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover,
 .btn-danger:hover,
-.btn-danger:focus,
-.btn-danger:active {
+.btn-red:hover {
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+/* --- Product cards: keep "View Details" red --- */
+.card .btn.btn-primary,
+.card .btn.btn-danger {
     background-color: #dc3545 !important;
     border-color: #dc3545 !important;
     color: #fff !important;
 }
 
-/* Si usas botones rojos personalizados (ej: Add To Cart) */
-.btn-red,
-.btn-red:hover,
-.btn-red:focus {
+/* --- Home & Product page links (Category, etc.) --- */
+.list-group-item {
+    background-color: transparent !important;
+    border: none !important;
+    color: #333 !important;
+}
+.list-group-item.active {
     background-color: #dc3545 !important;
-    border-color: #dc3545 !important;
     color: #fff !important;
+    font-weight: bold;
 }
 
-.btn-primary {
-    background-color: #dc3545 !important;
-    border-color: #dc3545 !important;
+/* --- Remove any Bootstrap primary overrides --- */
+.bg-primary,
+.text-primary {
+    color: #fff !important;
+    background-color: #000 !important;
 }
