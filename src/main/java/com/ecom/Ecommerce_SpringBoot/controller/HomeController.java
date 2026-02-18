@@ -208,6 +208,7 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/search")
     public String search() {
         return "";
     }
