@@ -40,7 +40,22 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
-                                    <input class="form-control" name="password" type="password">
+                                    <div style="position: relative;">
+                                        <input class="form-control" name="password" type="password" id="login-pwd">
+                                        <button type="button"
+                                                onclick="
+                                                const input = document.getElementById('login-pwd');
+                                                const icon = this.querySelector('i');
+                                                input.type = input.type === 'password' ? 'text' : 'password';
+                                                icon.classList.toggle('fa-eye');
+                                                icon.classList.toggle('fa-eye-slash');
+                                                "
+                                                                                            style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+                                                background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #6c757d;">
+
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Login</button>
                             </form>
