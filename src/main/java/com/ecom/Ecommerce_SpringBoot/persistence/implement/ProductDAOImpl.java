@@ -106,4 +106,9 @@ public class ProductDAOImpl implements ProductDAO {
 
         return products;
     }
+
+    @Override
+    public List<Product> searchProduct(String search) {
+        return null;
+    }
 }
