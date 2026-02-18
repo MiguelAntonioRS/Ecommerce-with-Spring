@@ -109,6 +109,6 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<Product> searchProduct(String search) {
-        return null;
+        return productRepository.findByTitleContainingIgnoreCaseOrCategoryContainingIgnoreCase(search, search);
     }
 }
