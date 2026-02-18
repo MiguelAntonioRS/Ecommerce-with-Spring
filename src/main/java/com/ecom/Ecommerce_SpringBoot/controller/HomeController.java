@@ -213,6 +213,6 @@ public class HomeController {
 
         List<Product> searchProducts = productService.searchProduct(search);
         model.addAttribute("products", searchProducts);
-        return "";
+        return "product";
     }
 }
