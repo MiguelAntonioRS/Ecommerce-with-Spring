@@ -212,7 +212,7 @@ public class HomeController {
     public String search(@RequestParam String search, Model model) {
 
         List<Product> searchProduct = productService.searchProduct(search);
-
+        model.addAttribute("products", searchProduct);
         return "";
     }
 }
