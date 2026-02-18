@@ -207,4 +207,8 @@ public class HomeController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    public String search() {
+        return "";
+    }
 }
