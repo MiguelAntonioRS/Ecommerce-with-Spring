@@ -209,7 +209,7 @@ public class HomeController {
     }
 
     @GetMapping("/search")
-    public String search() {
+    public String search(@RequestParam String search) {
         return "";
     }
 }
