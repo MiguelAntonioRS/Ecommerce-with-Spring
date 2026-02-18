@@ -80,12 +80,37 @@
                                 <div class="row mb-3">
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Password</label>
-                                        <input required="true" class="form-control" name="password" type="password">
+                                        <div style="position: relative;">
+                                            <input required="true" class="form-control" name="password" type="password" id="register-pwd">
+                                            <button type="button"
+                                                    onclick="
+                                                      const input = document.getElementById('register-pwd');
+                                                      const icon = this.querySelector('i');
+                                                      input.type = input.type === 'password' ? 'text' : 'password';
+                                                      icon.classList.toggle('fa-eye');
+                                                      icon.classList.toggle('fa-eye-slash');
+                                                    "
+                                                    style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #6c757d;">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                                         <label class="form-label">Confirm Password</label>
-                                        <input required="true" class="form-control" name="confirmPassword"
-                                            type="password">
+                                        <div style="position: relative;">
+                                            <input required="true" class="form-control" name="confirmPassword" type="password" id="register-confirm-pwd">
+                                            <button type="button"
+                                                    onclick="
+                                                      const input = document.getElementById('register-confirm-pwd');
+                                                      const icon = this.querySelector('i');
+                                                      input.type = input.type === 'password' ? 'text' : 'password';
+                                                      icon.classList.toggle('fa-eye');
+                                                      icon.classList.toggle('fa-eye-slash');
+                                                    "
+                                                    style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #6c757d;">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
