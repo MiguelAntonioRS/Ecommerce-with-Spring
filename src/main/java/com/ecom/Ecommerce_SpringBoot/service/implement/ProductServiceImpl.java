@@ -44,4 +44,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllActiveProducts(String category) {
         return productDAO.getAllActiveProducts(category);
     }
+
+    @Override
+    public List<Product> searchProduct(String search) {
+        return null;
+    }
 }
