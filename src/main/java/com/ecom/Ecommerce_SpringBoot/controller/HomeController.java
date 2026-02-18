@@ -210,6 +210,9 @@ public class HomeController {
 
     @GetMapping("/search")
     public String search(@RequestParam String search, Model model) {
+
+        List<Product> searchProduct = productService.searchProduct(search);
+
         return "";
     }
 }
