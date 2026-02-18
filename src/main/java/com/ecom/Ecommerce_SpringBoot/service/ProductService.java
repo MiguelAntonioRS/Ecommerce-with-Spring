@@ -25,5 +25,5 @@ public interface ProductService {
 
     public List<Product> searchProduct(String search);
 
-    Product saveImageProduct(Product product, MultipartFile file) throws IOException;
+    //Product saveImageProduct(Product product, MultipartFile file) throws IOException;
 }
