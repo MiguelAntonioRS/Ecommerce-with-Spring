@@ -7,7 +7,6 @@
 
 src/main/resources/templates/** linguist-vendored=true
 src/main/resources/templates/*.html linguist-vendored=true
-
 src/main/resources/static/img/** linguist-vendored=true
 src/main/resources/static/images/** linguist-vendored=true
 src/main/resources/static/assets/** linguist-vendored=true
