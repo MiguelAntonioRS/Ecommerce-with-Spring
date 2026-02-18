@@ -13,9 +13,9 @@
         <div class="container-fluid mt-3 px-3 px-md-5">
             <div class="row">
                 <div class="col-12 col-md-8 offset-md-2">
-                    <form>
+                    <form action="search" method="get">
                         <div class="input-group">
-                            <input type="text" class="form-control search-input" name="ch"
+                            <input type="text" class="form-control search-input" name="search"
                                 placeholder="Search Products...">
                             <button class="btn search-btn ms-2">
                                 <i class="fa-solid fa-magnifying-glass"></i> Search
@@ -57,7 +57,7 @@
                                             <div class="card-body d-flex flex-column p-2 p-md-3">
                                                 <div class="product-image-container mb-2 text-center">
                                                     <img th:src="@{/admin/images/product/{name}(name=${p.image})}"
-                                                         class="product-card-image img-fluid"
+                                                         class="product-card-image"
                                                          alt="[[${p.title}]]"
                                                          onerror="this.src='/img/default-product.png'">
                                                 </div>
