@@ -5,6 +5,7 @@ import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -23,4 +24,6 @@ public interface ProductService {
     public List<Product> getAllActiveProducts(String category);
 
     public List<Product> searchProduct(String search);
+
+    Product saveImageProduct(Product product, MultipartFile file) throws IOException;
 }
