@@ -54,6 +54,15 @@
                     <tbody>
                     <tr th:each="o : ${orders}">
                         <th scope="row">[[${o.orderId}]]</th>
+                        <td>
+                            Name : [[${o.addressOrder.firstName+' '+o.addressOrder.lastName}]] <br>
+                            Email : [[${o.addressOrder.email}]]<br>
+                            Mobile : [[${o.addressOrder.mobile}]]<br>
+                            Address : [[${o.addressOrder.address}]] <br>
+                            City : [[${o.addressOrder.city}]] <br>
+                            state : [[${o.addressOrder.state}]] <br>
+                            Pin Code : [[${o.addressOrder.pincode}]]
+                        </td>
                         <td>[[${#temporals.format(o.orderDate, 'dd/MM/yyyy')}]]</td>
                         <td>[[${o.product.title}]]</td>
                         <td>
