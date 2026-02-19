@@ -264,7 +264,7 @@ public class AdminController {
         return "admin/orders";
     }
 
-    @GetMapping("/status-order-update")
+    @PostMapping("/status-order-update")
     public String updateStatusOrder(@RequestParam int id, @RequestParam int status, HttpSession session) {
 
         String oStatus = null;
@@ -284,7 +284,7 @@ public class AdminController {
         } else {
             session.setAttribute("errorMsg", "Status not Updated");
         }
-        return "redirect:/user/user-orders";
+        return "redirect:/admin/orders";
     }
 
     // Endpoint para servir imágenes
