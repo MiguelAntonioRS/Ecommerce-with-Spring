@@ -8,6 +8,7 @@ import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
+import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -261,6 +262,29 @@ public class AdminController {
         model.addAttribute("orders", allOrders);
 
         return "admin/orders";
+    }
+
+    @GetMapping("/status-update")
+    public String updateStatusOrder(@RequestParam int id, @RequestParam int status, HttpSession session) {
+
+        String oStatus = null;
+        StatusOrder[] values = StatusOrder.values();
+
+        for (StatusOrder statusOrder:values) {
+
+            if (statusOrder.getId().equals(status)) {
+                oStatus = statusOrder.getName();
+            }
+        }
+
+        Boolean orderUpdate = orderService.orderStatusUpdate(id, oStatus);
+
+        if (orderUpdate) {
+            session.setAttribute("succMsg", "Status Updated");
+        } else {
+            session.setAttribute("errorMsg", "Status not Updated");
+        }
+        return "redirect:/user/user-orders";
     }
 
     // Endpoint para servir imágenes
