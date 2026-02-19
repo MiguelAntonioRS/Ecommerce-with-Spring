@@ -264,7 +264,7 @@ public class AdminController {
         return "admin/orders";
     }
 
-    @GetMapping("/status-update")
+    @GetMapping("/status-order-update")
     public String updateStatusOrder(@RequestParam int id, @RequestParam int status, HttpSession session) {
 
         String oStatus = null;
