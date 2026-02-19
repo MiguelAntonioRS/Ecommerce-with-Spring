@@ -13,7 +13,6 @@
             <div class="col-md-12">
                 <p class="text-center fs-3">All Orders</p>
 
-                <!-- Mensajes flash -->
                 <th:block th:if="${session.succMsg}">
                     <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
                     <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
