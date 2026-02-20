@@ -83,13 +83,15 @@
                                     <option value="6">Cancelled</option>
                                 </select>
                                 <input th:value="${o.id}" name="id" type="hidden">
-                                <th:block th:if="${o.status!='Cancelled' || o.status!='Delivered'}">
-                                    <button class="btn btn-primary btn-sm disable">Update</button>
-                                </th:block>
+                                <div class="col">
+                                    <th:block th:if="${o.status!='Cancelled' || o.status!='Delivered'}">
+                                        <button class="btn btn-primary btn-sm disable">Update</button>
+                                    </th:block>
 
-                                <th:block th:unless="${o.status!='Cancelled' || o.status!='Delivered'}">
-                                    <a href="#" class="btn btn-sm btn-danger">Update</a>
-                                </th:block>
+                                    <th:block th:unless="${o.status!='Cancelled' || o.status!='Delivered'}">
+                                        <a href="#" class="btn btn-sm btn-danger">Update</a>
+                                    </th:block>
+                                </div>
                             </form>
                         </td>
                     </tr>
