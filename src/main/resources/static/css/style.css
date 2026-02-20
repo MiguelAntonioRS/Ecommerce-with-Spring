@@ -461,7 +461,7 @@
 }
 
 .navbar .navbar-brand,
-.navbar .nav-link {
+.navbar {
     color: #fff !important;
     font-weight: 500;
 }
@@ -543,4 +543,10 @@ footer p {
 .navbar .dropdown-menu .dropdown-item.active {
     background-color: #dc3545 !important;
     color: #fff !important;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-text a:hover {
+    color: #dc3545 !important;
+    text-decoration: none;
 }
