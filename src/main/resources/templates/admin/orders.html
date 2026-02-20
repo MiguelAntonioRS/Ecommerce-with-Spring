@@ -83,7 +83,7 @@
                                     <option value="6">Cancelled</option>
                                 </select>
                                 <input th:value="${o.id}" name="id" type="hidden">
-                                <th:block th:if="${o.status!='Cancelled'}">
+                                <th:block th:if="${o.status!='Cancelled' || o.status!=''}">
                                     <a th:href="@{'/user/status-update?id='+${o.id}+'&status=6'}"
                                        class="btn btn-sm btn-danger">Cancel</a>
                                 </th:block>
