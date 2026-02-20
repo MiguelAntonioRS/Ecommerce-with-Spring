@@ -84,11 +84,11 @@
                                 </select>
                                 <input th:value="${o.id}" name="id" type="hidden">
                                 <th:block th:if="${o.status!='Cancelled' || o.status!='Delivered'}">
-                                    <button class="btn btn-primary btn-sm">Update</button>
+                                    <button class="btn btn-primary btn-sm disable">Update</button>
                                 </th:block>
 
                                 <th:block th:unless="${o.status!='Cancelled'}">
-                                    <a href="#" class="btn btn-sm btn-danger disabled">Cancel</a>
+                                    <a href="#" class="btn btn-sm btn-danger">Cancel</a>
                                 </th:block>
                             </form>
                         </td>
