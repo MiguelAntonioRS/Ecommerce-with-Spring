@@ -40,4 +40,8 @@ public class CommonUtil {
 
         return siteUrl.replace(request.getServletPath(), "");
     }
+
+    public Boolean sendOrderMail() {
+        return null;
+    }
 }
