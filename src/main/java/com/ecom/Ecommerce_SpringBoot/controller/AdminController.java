@@ -232,38 +232,22 @@ public class AdminController {
     }
 
     @PostMapping("/updateProduct")
-    public String updateProduct(
-            @ModelAttribute Product product,
-            @RequestParam(value = "file", required = false) MultipartFile image,
-            HttpSession session,
-            Model model) {
-
-        // Si se envió una nueva imagen, la usamos; si no, dejamos la existente
-        if (image != null && !image.isEmpty()) {
-            // Aquí iría Cloudinary... pero por ahora, solo simula:
-            // product.setImage("https://via.placeholder.com/300?text=Updated");
-            // O si quieres usar /tmp temporalmente (solo en local):
+    public String updateProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image, HttpSession session, Model model) {
+        if (product.getDiscount() < 0 || product.getDiscount() > 100) {
+            session.setAttribute("errorMsg", "Invalid Discount");
+        } else {
             try {
-                String imageName = UUID.randomUUID() + "_" + image.getOriginalFilename().replace(" ", "_");
-                Path uploadPath = Paths.get(UPLOAD_DIR, "product_img");
-                Files.createDirectories(uploadPath);
-                Path filePath = uploadPath.resolve(imageName);
-                Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-                product.setImage(imageName); // guarda nombre del archivo
-            } catch (IOException e) {
-                session.setAttribute("errorMsg", "Error uploading image");
-                return "admin/edit_product";
+                Product updateProduct = productService.updateProduct(product, image);
+                if (!ObjectUtils.isEmpty(updateProduct)) {
+                    session.setAttribute("succMsg", "Product update success");
+                } else {
+                    session.setAttribute("errorMsg", "Something wrong on server");
+                }
+            } catch (Exception e) {
+                session.setAttribute("errorMsg", "Image upload failed: " + e.getMessage());
             }
         }
-
-        Product updated = productService.updateProduct(product, image);
-        if (updated != null) {
-            session.setAttribute("succMsg", "Producto actualizado");
-        } else {
-            session.setAttribute("errorMsg", "Error al actualizar");
-        }
-
-        return "redirect:/admin/products";
+        return "redirect:/admin/editProduct/" + product.getId();
     }
 
     @GetMapping("/users")
