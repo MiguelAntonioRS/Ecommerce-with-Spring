@@ -484,6 +484,10 @@ footer p {
     font-size: 0.875rem;
 }
 
+.forgot-password-card {
+    margin-top: 10rem; /* baja la card en todos los dispositivos */
+}
+
 /* --- Login / Register pages: remove blue cards, use clean white/black --- */
 .card.forgot-password-card,
 .card.shadow.p-3.mb-5.bg-body-tertiary.rounded,
