@@ -46,6 +46,8 @@ public class CommonUtil {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
+        helper.setFrom("rojassucarinomiguelantoni@gmail.com", "E-commerce");
+        helper.setTo(productOrder.getAddressOrder().getEmail());
 
         return null;
     }
