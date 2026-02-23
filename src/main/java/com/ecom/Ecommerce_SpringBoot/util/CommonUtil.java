@@ -50,11 +50,12 @@ public class CommonUtil {
         helper.setTo(productOrder.getAddressOrder().getEmail());
 
         String content = "<p>Thanks order successfully</p>" +
-                "<p>Product Details : </p>"
-                + "<p>Name : </p>"
-                + "<p>Category : </p>"
-                + "<p>Price : </p>"
-                + "<p>Payment Type : </p>";
+                "<p>Product Details :</p>"
+                + "<p>Name : [[productName]]</p>"
+                + "<p>Category : [[category]]</p>"
+                + "<p>Quantity : [[quantity]]</p>"
+                + "<p>Price : [[price]]</p>"
+                + "<p>Payment Type : [[paymentType]]</p>";
 
         helper.setSubject("Order Product Status");
         helper.setText(content);
