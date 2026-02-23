@@ -43,6 +43,10 @@ public class CommonUtil {
     }
 
     public Boolean sendOrderMail(ProductOrder productOrder) {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
+
         return null;
     }
 }
