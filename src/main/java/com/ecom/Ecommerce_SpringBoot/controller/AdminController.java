@@ -163,46 +163,37 @@ public class AdminController {
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct(
-            @Valid @ModelAttribute Product product,
-            BindingResult result,
-            @RequestParam("file") MultipartFile image,
-            HttpSession session,
-            Model model) {
+    public String saveProduct(@Valid @ModelAttribute Product product, BindingResult result, @RequestParam("file") MultipartFile image, HttpSession session, Model model) throws IOException {
 
-        // Validación
         if (result.hasErrors()) {
             model.addAttribute("categories", categoryService.getAllCategory());
             return "admin/add_product";
         }
 
-        // Subir imagen a Cloudinary (si existe)
-        if (!image.isEmpty()) {
-            try {
-                String imageUrl = cloudinaryService.uploadImage(image);
-                product.setImage(imageUrl); // guarda la URL completa
-            } catch (Exception e) {
-                session.setAttribute("errorMsg", "Error al subir la imagen: " + e.getMessage());
-                model.addAttribute("categories", categoryService.getAllCategory());
-                return "admin/add_product";
-            }
-        } else {
-            // Opcional: imagen por defecto si no se sube nada
-            product.setImage("https://res.cloudinary.com/demo/image/upload/v1700000000/default-product.jpg");
+        // Si no hay errores, procesa la imagen y guarda
+        Path uploadPath = Paths.get(UPLOAD_DIR, "product_img");
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
         }
 
-        // Calcular precio con descuento
+        String imageName = "default.jpg";
+        if (!image.isEmpty()) {
+            imageName = UUID.randomUUID() + "_" + image.getOriginalFilename().replace(" ", "_");
+            Path filePath = uploadPath.resolve(imageName);
+            Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        product.setImage(imageName);
         product.setDiscount(0);
         product.setDiscountPrice(product.getPrice());
 
-        // Guardar producto
-        Product savedProduct = productService.saveProduct(product);
+        Product saveProduct = productService.saveProduct(product);
 
-        if (savedProduct != null) {
-            session.setAttribute("succMsg", "Product Saved Successfully");
+        if (!ObjectUtils.isEmpty(saveProduct)) {
+            session.setAttribute("succMsg", "Product Saved Success");
             return "redirect:/admin/products";
         } else {
-            session.setAttribute("errorMsg", "Something went wrong on the server");
+            session.setAttribute("errorMsg", "Something wrong on server");
             return "redirect:/admin/loadAddProduct";
         }
     }
