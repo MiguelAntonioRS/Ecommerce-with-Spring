@@ -42,7 +42,7 @@ public class CommonUtil {
         return siteUrl.replace(request.getServletPath(), "");
     }
 
-    public Boolean sendOrderMail(ProductOrder productOrder) {
+    public Boolean sendOrderMail(ProductOrder productOrder) throws UnsupportedEncodingException, MessagingException {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
