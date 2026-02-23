@@ -49,6 +49,13 @@ public class CommonUtil {
         helper.setFrom("rojassucarinomiguelantoni@gmail.com", "E-commerce");
         helper.setTo(productOrder.getAddressOrder().getEmail());
 
-        return null;
+        String content = "<p>Thanks order successfully</p>" +
+                "<p>Product Details : </p>"
+                + "<p>Name : </p>"
+                + "<p>Category : </p>"
+                + "<p>Price : </p>"
+                + "<p>Payment Type : </p>";
+
+        return true;
     }
 }
