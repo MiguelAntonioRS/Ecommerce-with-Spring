@@ -7,113 +7,113 @@
 </head>
 
 <body>
-    <section>
-        <div class="container p-3 p-md-5 mt-3">
-            <div class="row">
-                <div class="col-12 col-md-8 offset-md-2">
-                    <div class="card card-sh">
-                        <div class="card-header text-center">
-                            <p class="fs-4">Edit Product</p>
-                            <th:block th:if="${session.succMsg}">
-                                <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                            </th:block>
+<section>
+    <div class="container p-3 p-md-5 mt-3">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+                <div class="card card-sh">
+                    <div class="card-header text-center">
+                        <p class="fs-4">Edit Product</p>
+                        <th:block th:if="${session.succMsg}">
+                            <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
+                            <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
 
-                            <th:block th:if="${session.errorMsg}">
-                                <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                            </th:block>
-                        </div>
-                        <div class="card-body">
-                            <form action="/admin/updateProduct" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="id" th:value="${product.id}">
-                                <div class="mb-3">
-                                    <label>Enter Title</label>
-                                    <input type="text" name="title" th:value="${product.title}" class="form-control">
+                        <th:block th:if="${session.errorMsg}">
+                            <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
+                            <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
+                    </div>
+                    <div class="card-body">
+                        <form action="/admin/updateProduct" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" th:value="${product.id}">
+                            <div class="mb-3">
+                                <label>Enter Title</label>
+                                <input type="text" name="title" th:value="${product.title}" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Enter Description</label>
+                                <textarea rows="3" class="form-control"
+                                          name="description">[[${product.description}]]</textarea>
+                            </div>
+
+                            <!-- Category + Price: stack on mobile -->
+                            <div class="row">
+                                <div class="mb-3 col-12 col-sm-6">
+                                    <label>Category</label>
+                                    <select class="form-control" name="category">
+                                        <option>[[${product.category}]]</option>
+                                        <option th:each="c:${categories}">[[${c.name}]]</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-12 col-sm-6">
+                                    <label>Enter Price</label>
+                                    <input type="number" name="price" th:value="${product.price}"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Discount + Discount Price: stack on mobile -->
+                            <div class="row">
+                                <div class="mb-3 col-12 col-sm-6">
+                                    <label>Discount</label>
+                                    <input type="number" name="discount" th:value="${product.discount}"
+                                           class="form-control">
                                 </div>
 
-                                <div class="mb-3">
-                                    <label>Enter Description</label>
-                                    <textarea rows="3" class="form-control"
-                                        name="description">[[${product.description}]]</textarea>
+                                <div class="mb-3 col-12 col-sm-6">
+                                    <label>Discount Price</label>
+                                    <input type="number" th:value="${product.discountPrice}" class="form-control"
+                                           readonly>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Status</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isActive"
+                                           id="flexRadioDefault1" value="true" th:checked="${product.isActive==true}">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Active
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isActive"
+                                           id="flexRadioDefault2" value="false"
+                                           th:checked="${product.isActive==false}">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Inactive
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Stock + Image: stack on mobile -->
+                            <div class="row">
+                                <div class="mb-3 col-12 col-sm-6">
+                                    <label>Enter Stock</label>
+                                    <input type="text" name="stock" th:value="${product.stock}"
+                                           class="form-control">
                                 </div>
 
-                                <!-- Category + Price: stack on mobile -->
-                                <div class="row">
-                                    <div class="mb-3 col-12 col-sm-6">
-                                        <label>Category</label>
-                                        <select class="form-control" name="category">
-                                            <option>[[${product.category}]]</option>
-                                            <option th:each="c:${categories}">[[${c.name}]]</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3 col-12 col-sm-6">
-                                        <label>Enter Price</label>
-                                        <input type="number" name="price" th:value="${product.price}"
-                                            class="form-control">
-                                    </div>
+                                <div class="mb-3 col-12 col-sm-6">
+                                    <label>Upload Image</label>
+                                    <input type="file" name="file" class="form-control">
                                 </div>
-
-                                <!-- Discount + Discount Price: stack on mobile -->
-                                <div class="row">
-                                    <div class="mb-3 col-12 col-sm-6">
-                                        <label>Discount</label>
-                                        <input type="number" name="discount" th:value="${product.discount}"
-                                            class="form-control">
-                                    </div>
-
-                                    <div class="mb-3 col-12 col-sm-6">
-                                        <label>Discount Price</label>
-                                        <input type="number" th:value="${product.discountPrice}" class="form-control"
-                                            readonly>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label>Status</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="isActive"
-                                            id="flexRadioDefault1" value="true" th:checked="${product.isActive==true}">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Active
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="isActive"
-                                            id="flexRadioDefault2" value="false"
-                                            th:checked="${product.isActive==false}">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Inactive
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Stock + Image: stack on mobile -->
-                                <div class="row">
-                                    <div class="mb-3 col-12 col-sm-6">
-                                        <label>Enter Stock</label>
-                                        <input type="text" name="stock" th:value="${product.stock}"
-                                            class="form-control">
-                                    </div>
-
-                                    <div class="mb-3 col-12 col-sm-6">
-                                        <label>Upload Image</label>
-                                        <input type="file" name="file" class="form-control">
-                                    </div>
-                                </div>
-                                <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
-                                     width="100px" height="100px"
-                                     class="p-2 img-fluid"
-                                     alt="[[${product.title}]]"
-                                     onerror="this.src='/img/default-product.png'">
-                                <button class="btn btn-primary w-100 mt-3">Update</button>
-                            </form>
-                        </div>
+                            </div>
+                            <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
+                                 width="100px" height="100px"
+                                 class="p-2 img-fluid"
+                                 alt="[[${product.title}]]"
+                                 onerror="this.src='/img/default-product.png'">
+                            <button class="btn btn-primary w-100 mt-3">Update</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 </body>
 
