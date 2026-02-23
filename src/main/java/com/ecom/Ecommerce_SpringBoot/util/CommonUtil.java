@@ -56,6 +56,10 @@ public class CommonUtil {
                 + "<p>Price : </p>"
                 + "<p>Payment Type : </p>";
 
+        helper.setSubject("Order Product Status");
+        helper.setText(content);
+        mailSender.send(mimeMessage);
+
         return true;
     }
 }
