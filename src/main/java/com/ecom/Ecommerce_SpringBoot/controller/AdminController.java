@@ -286,23 +286,4 @@ public class AdminController {
         }
         return "redirect:/admin/orders";
     }
-
-    // Endpoint para servir imágenes
-    @GetMapping("/images/{type}/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveImage(@PathVariable String type, @PathVariable String filename) {
-        try {
-            Path imagePath = Paths.get(UPLOAD_DIR, type + "_img", filename);
-            Resource resource = new UrlResource(imagePath.toUri());
-            if (resource.exists()) {
-                return ResponseEntity.ok()
-                        .header("Cache-Control", "max-age=31536000") // 1 año
-                        .body(resource);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (MalformedURLException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
 }
