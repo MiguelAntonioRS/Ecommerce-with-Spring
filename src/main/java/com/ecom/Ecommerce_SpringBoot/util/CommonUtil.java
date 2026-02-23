@@ -1,5 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.util;
 
+import com.ecom.Ecommerce_SpringBoot.entities.ProductOrder;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,7 +42,7 @@ public class CommonUtil {
         return siteUrl.replace(request.getServletPath(), "");
     }
 
-    public Boolean sendOrderMail() {
+    public Boolean sendOrderMail(ProductOrder productOrder) {
         return null;
     }
 }
