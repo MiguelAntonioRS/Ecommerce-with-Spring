@@ -8,7 +8,6 @@ import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
-import com.ecom.Ecommerce_SpringBoot.util.CloudinaryService;
 import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -37,9 +36,6 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
-    @Autowired
-    private CloudinaryService cloudinaryService;
 
     @Autowired
     private CategoryService categoryService;
@@ -289,5 +285,24 @@ public class AdminController {
             session.setAttribute("errorMsg", "Status not Updated");
         }
         return "redirect:/admin/orders";
+    }
+
+    // Endpoint para servir imágenes
+    @GetMapping("/images/{type}/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveImage(@PathVariable String type, @PathVariable String filename) {
+        try {
+            Path imagePath = Paths.get(UPLOAD_DIR, type + "_img", filename);
+            Resource resource = new UrlResource(imagePath.toUri());
+            if (resource.exists()) {
+                return ResponseEntity.ok()
+                        .header("Cache-Control", "max-age=31536000") // 1 año
+                        .body(resource);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (MalformedURLException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
