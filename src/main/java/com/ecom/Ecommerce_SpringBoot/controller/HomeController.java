@@ -115,7 +115,6 @@ public class HomeController {
 
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute UserDtls user, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
-        // Crear directorio si no existe
         Path uploadPath = Paths.get(UPLOAD_DIR, "profile_img");
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
@@ -123,7 +122,6 @@ public class HomeController {
 
         String imageName = "default.jpg";
         if (!file.isEmpty()) {
-            // Generar nombre único y seguro
             imageName = UUID.randomUUID() + "_" + file.getOriginalFilename().replace(" ", "_");
             Path filePath = uploadPath.resolve(imageName);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
