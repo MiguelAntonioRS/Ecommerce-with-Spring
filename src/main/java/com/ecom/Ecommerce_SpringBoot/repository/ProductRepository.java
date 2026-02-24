@@ -7,6 +7,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+
     List<Product> findByIsActiveTrue();
 
     List<Product> findByCategory(String category);
