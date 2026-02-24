@@ -57,6 +57,12 @@ public class CommonUtil {
                 + "<p>Price : [[price]]</p>"
                 + "<p>Payment Type : [[paymentType]]</p>";
 
+        content = content.replace("[[productName]]", productOrder.getProduct().getTitle());
+        content = content.replace("[[category]]", productOrder.getProduct().getCategory());
+        content = content.replace("[[quantity]]", String.valueOf(productOrder.getQuantity()));
+        content = content.replace("[[price]]", String.valueOf(productOrder.getPrice()));
+        content = content.replace("[[paymentType]]", productOrder.getPaymentType());
+
         helper.setSubject("Order Product Status");
         helper.setText(content);
         mailSender.send(mimeMessage);
