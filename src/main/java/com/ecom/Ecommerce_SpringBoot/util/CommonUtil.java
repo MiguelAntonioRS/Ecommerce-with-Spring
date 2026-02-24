@@ -49,7 +49,7 @@ public class CommonUtil {
         helper.setFrom("rojassucarinomiguelantoni@gmail.com", "E-commerce");
         helper.setTo(productOrder.getAddressOrder().getEmail());
 
-        String content = "<p>Thanks order successfully</p>" +
+        String content = "<p>Thanks order successfully [[orderStatus]]</p>" +
                 "<p>Product Details :</p>"
                 + "<p>Name : [[productName]]</p>"
                 + "<p>Category : [[category]]</p>"
