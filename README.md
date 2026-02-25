@@ -26,7 +26,6 @@
 - [Getting Started](#getting-started)
 - [Database Schema](#database-schema)
 - [API Endpoints](#api-endpoints)
-- [Screenshots](#screenshots)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
