@@ -13,8 +13,6 @@
 
 **A full-featured e-commerce platform built with Spring Boot**
 
-![Project Preview](https://via.placeholder.com/800x400/1e293b/6366f1?text=E-commerce+Spring+Boot+Preview)
-
 </div>
 
 ---
