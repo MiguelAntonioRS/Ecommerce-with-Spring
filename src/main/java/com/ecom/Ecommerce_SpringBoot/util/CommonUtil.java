@@ -49,14 +49,6 @@ public class CommonUtil {
         helper.setFrom("rojassucarinomiguelantoni@gmail.com", "E-commerce");
         helper.setTo(productOrder.getAddressOrder().getEmail());
 
-        StatusOrder[] values = StatusOrder.values();
-        for (StatusOrder statusOrder:values) {
-
-            if (statusOrder.getId().equals(codeStatus)) {
-
-            }
-        }
-
         String content = "<p>Thanks order successfully <b>[[orderStatus]]</b>.</p>" +
                 "<p><b>Product Details</b> :</p>"
                 + "<p>Name : [[productName]]</p>"
