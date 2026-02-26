@@ -50,6 +50,9 @@ public class CommonUtil {
         helper.setTo(productOrder.getAddressOrder().getEmail());
 
         StatusOrder[] values = StatusOrder.values();
+        for (StatusOrder statusOrder:values) {
+
+        }
 
         String content = "<p>Thanks order successfully [[orderStatus]]</p>" +
                 "<p>Product Details :</p>"
