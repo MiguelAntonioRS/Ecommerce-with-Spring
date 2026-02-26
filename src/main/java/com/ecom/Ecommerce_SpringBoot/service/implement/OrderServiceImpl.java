@@ -69,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Boolean orderStatusUpdate(int id, String status) {
+    public ProductOrder orderStatusUpdate(int id, String status) {
 
         Optional<ProductOrder> findById = orderRepository.findById(id);
 
