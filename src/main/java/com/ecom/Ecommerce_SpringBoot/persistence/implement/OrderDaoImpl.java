@@ -67,7 +67,7 @@ public class OrderDaoImpl implements OrderDAO {
     }
 
     @Override
-    public Boolean orderStatusUpdate(int id, String status) {
+    public ProductOrder orderStatusUpdate(int id, String status) {
 
         Optional<ProductOrder> findById = orderRepository.findById(id);
 
