@@ -127,9 +127,9 @@ public class UserController {
             }
         }
 
-        Boolean orderUpdate = orderService.orderStatusUpdate(id, oStatus);
+        ProductOrder orderUpdate = orderService.orderStatusUpdate(id, oStatus);
 
-        if (orderUpdate) {
+        if (!ObjectUtils.isEmpty(orderUpdate)) {
             session.setAttribute("succMsg", "Status Updated");
         } else {
            session.setAttribute("errorMsg", "Status not Updated");
