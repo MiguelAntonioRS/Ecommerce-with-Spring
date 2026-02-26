@@ -134,7 +134,7 @@ public class UserController {
         ProductOrder orderUpdate = orderService.orderStatusUpdate(id, oStatus);
 
         try {
-
+            commonUtil.sendOrderMail(orderUpdate, oStatus);
         } catch (Exception e){
             e.printStackTrace();
         }
