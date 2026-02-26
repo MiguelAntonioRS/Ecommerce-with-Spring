@@ -52,6 +52,9 @@ public class CommonUtil {
         StatusOrder[] values = StatusOrder.values();
         for (StatusOrder statusOrder:values) {
 
+            if (statusOrder.getId().equals(codeStatus)) {
+
+            }
         }
 
         String content = "<p>Thanks order successfully [[orderStatus]]</p>" +
