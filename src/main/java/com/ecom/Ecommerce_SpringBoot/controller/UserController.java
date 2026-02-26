@@ -5,6 +5,7 @@ import com.ecom.Ecommerce_SpringBoot.service.CartService;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
+import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class UserController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private CommonUtil commonUtil;
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
