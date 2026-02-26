@@ -133,6 +133,12 @@ public class UserController {
 
         ProductOrder orderUpdate = orderService.orderStatusUpdate(id, oStatus);
 
+        try {
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         if (!ObjectUtils.isEmpty(orderUpdate)) {
             session.setAttribute("succMsg", "Status Updated");
         } else {
