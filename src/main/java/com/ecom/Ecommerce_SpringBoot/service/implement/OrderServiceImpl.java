@@ -77,11 +77,11 @@ public class OrderServiceImpl implements OrderService {
 
             ProductOrder productOrder = findById.get();
             productOrder.setStatus(status);
-            orderRepository.save(productOrder);
-            return true;
+            ProductOrder updateOrder = orderRepository.save(productOrder);
+            return updateOrder;
         }
 
-        return false;
+        return null;
     }
 
     @Override
