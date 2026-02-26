@@ -13,7 +13,7 @@ public interface OrderDAO {
 
     public List<ProductOrder> getOrdersByUser(int userId);
 
-    public Boolean orderStatusUpdate(int id, String status);
+    public ProductOrder orderStatusUpdate(int id, String status);
 
     public List<ProductOrder> getAllOrdersByUser();
 }
