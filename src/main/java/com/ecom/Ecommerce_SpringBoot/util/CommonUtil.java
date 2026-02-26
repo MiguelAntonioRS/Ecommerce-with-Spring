@@ -57,8 +57,8 @@ public class CommonUtil {
             }
         }
 
-        String content = "<p>Thanks order successfully <b>[[orderStatus]]</b></p>" +
-                "<p>Product Details :</p>"
+        String content = "<p>Thanks order successfully <b>[[orderStatus]]</b>.</p>" +
+                "<p><b>Product Details</b> :</p>"
                 + "<p>Name : [[productName]]</p>"
                 + "<p>Category : [[category]]</p>"
                 + "<p>Quantity : [[quantity]]</p>"
