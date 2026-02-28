@@ -135,7 +135,7 @@ public class UserController {
 
         try {
             commonUtil.sendOrderMail(orderUpdate, oStatus);
-        } catch (Exception e){
+        } catch (Exception exception){
             e.printStackTrace();
         }
 
