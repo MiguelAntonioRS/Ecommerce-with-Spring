@@ -283,6 +283,12 @@ public class AdminController {
 
         ProductOrder orderUpdate = orderService.orderStatusUpdate(id, oStatus);
 
+        try {
+
+        } catch (Exception exception) {
+
+        }
+
         if (!ObjectUtils.isEmpty(orderUpdate)) {
             session.setAttribute("succMsg", "Status Updated");
         } else {
