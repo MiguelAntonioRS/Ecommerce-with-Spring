@@ -136,7 +136,7 @@ public class UserController {
         try {
             commonUtil.sendOrderMail(orderUpdate, oStatus);
         } catch (Exception exception){
-            e.printStackTrace();
+            exception.printStackTrace();
         }
 
         if (!ObjectUtils.isEmpty(orderUpdate)) {
