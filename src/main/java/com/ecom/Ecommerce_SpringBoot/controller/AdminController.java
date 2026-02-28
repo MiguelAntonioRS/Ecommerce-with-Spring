@@ -284,7 +284,7 @@ public class AdminController {
         ProductOrder orderUpdate = orderService.orderStatusUpdate(id, oStatus);
 
         try {
-
+            commonUtil.sendOrderMail(orderUpdate, oStatus);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
