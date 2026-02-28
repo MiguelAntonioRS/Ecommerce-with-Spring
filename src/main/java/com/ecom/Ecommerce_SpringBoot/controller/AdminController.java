@@ -286,7 +286,7 @@ public class AdminController {
         try {
 
         } catch (Exception exception) {
-
+            exception.printStackTrace();
         }
 
         if (!ObjectUtils.isEmpty(orderUpdate)) {
