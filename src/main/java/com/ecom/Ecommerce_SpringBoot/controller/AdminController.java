@@ -50,6 +50,9 @@ public class AdminController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private CommonUtil commonUtil;
+
     // Directorio de imágenes en Render
     private static final String UPLOAD_DIR = "/tmp/img";
 
