@@ -1,7 +1,3 @@
-¡Claro que sí! Aquí tienes la versión **profesional y limpia** del README, sin emojis pero manteniendo toda la estructura, badges y contenido:
-
----
-
 # E-commerce with Spring Boot
 
 <div align="center">
@@ -228,7 +224,6 @@ erDiagram
 - [ ] Integrate payment gateway (Stripe / PayPal)
 - [ ] Add advanced search & filters (price range, ratings)
 - [ ] Implement product reviews & ratings system
-- [ ] Add multi-language support (i18n)
 - [ ] Optimize for mobile with responsive PWA features
 - [ ] Add analytics dashboard for admin
 
