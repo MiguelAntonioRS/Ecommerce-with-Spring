@@ -5,8 +5,6 @@
 *.bash text eol=lf
 *.zsh text eol=lf
 
-src/main/resources/templates/admin*.html linguist-vendored=true
-src/main/resources/templates/user*.html linguist-vendored=true
 src/main/resources/static/img/** linguist-vendored=true
 src/main/resources/static/images/** linguist-vendored=true
 src/main/resources/static/assets/** linguist-vendored=true
