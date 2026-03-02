@@ -1,0 +1,6 @@
+# Suppress frontend files from language stats — project is Java/Spring Boot core
+*.html linguist-generated=true
+*.css linguist-generated=true
+*.js linguist-generated=true
+*.png linguist-generated=true
+*.jpg linguist-generated=true
