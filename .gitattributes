@@ -3,23 +3,18 @@
 *.bash text eol=lf
 /mvnw text eol=lf
 
-# === GitHub linguist: reduce peso de templates reusables ===
-# Estos se incluyen en muchos otros → exclúyelos del conteo
+# === Esconder SOLO los .html en raíz de templates (no admin/user) ===
 src/main/resources/templates/base.html linguist-generated=true
-src/main/resources/templates/_*.html linguist-generated=true
+src/main/resources/templates/forgot_password.html linguist-generated=true
+src/main/resources/templates/guide.html linguist-generated=true
+src/main/resources/templates/index.html linguist-generated=true
+src/main/resources/templates/login.html linguist-generated=true
+src/main/resources/templates/message.html linguist-generated=true
+src/main/resources/templates/register.html linguist-generated=true
+src/main/resources/templates/reset_password.html linguist-generated=true
+src/main/resources/templates/view_product.html linguist-generated=true
 
-# Si usas una carpeta "fragments" (aunque no la vea), añade esto:
-# src/main/resources/templates/fragments/*.html linguist-generated=true
-
-# === Mantén el resto visible (pero con menos líneas gracias a base.html extraído) ===
-# Los siguientes seguirán contando como HTML, pero con menos líneas totales:
-# - add_product.html
-# - edit_product.html
-# - cart.html
-# - order.html
-# - etc.
-
-# === Assets (opcional, pero recomendado) ===
+# === Opcional: si quieres también excluir assets ===
 *.png linguist-generated=true
 *.jpg linguist-generated=true
 *.jpeg linguist-generated=true
