@@ -1,38 +1,34 @@
 # === Line endings ===
-/mvnw text eol=lf
-*.cmd text eol=crlf
 *.sh text eol=lf
 *.bash text eol=lf
-*.zsh text eol=lf
+/mvnw text eol=lf
 
-src/main/resources/static/img/** linguist-vendored=true
-src/main/resources/static/images/** linguist-vendored=true
-src/main/resources/static/assets/** linguist-vendored=true
-src/main/resources/static/icons/** linguist-vendored=true
-src/main/resources/static/fonts/** linguist-vendored=true
+# === GitHub linguist: reduce peso de templates reusables ===
+# Estos se incluyen en muchos otros → exclúyelos del conteo
+src/main/resources/templates/base.html linguist-generated=true
+src/main/resources/templates/_*.html linguist-generated=true
 
-*.png linguist-vendored=true
-*.jpg linguist-vendored=true
-*.jpeg linguist-vendored=true
-*.gif linguist-vendored=true
-*.svg linguist-vendored=true
-*.ico linguist-vendored=true
-*.webp linguist-vendored=true
-*.pdf linguist-vendored=true
-*.zip linguist-vendored=true
-*.tar linguist-vendored=true
-*.gz linguist-vendored=true
+# Si usas una carpeta "fragments" (aunque no la vea), añade esto:
+# src/main/resources/templates/fragments/*.html linguist-generated=true
 
-target/** linguist-vendored=true
-build/** linguist-vendored=true
-node_modules/** linguist-vendored=true
-dist/** linguist-vendored=true
-.out/** linguist-vendored=true
-/tmp/** linguist-vendored=true
-/logs/** linguist-vendored=true
+# === Mantén el resto visible (pero con menos líneas gracias a base.html extraído) ===
+# Los siguientes seguirán contando como HTML, pero con menos líneas totales:
+# - add_product.html
+# - edit_product.html
+# - cart.html
+# - order.html
+# - etc.
 
-*.iml linguist-vendored=true
-*.idea/** linguist-vendored=true
-.vscode/** linguist-vendored=true
-*.sublime-project linguist-vendored=true
-*.sublime-workspace linguist-vendored=true
+# === Assets (opcional, pero recomendado) ===
+*.png linguist-generated=true
+*.jpg linguist-generated=true
+*.jpeg linguist-generated=true
+*.gif linguist-generated=true
+*.svg linguist-generated=true
+*.ico linguist-generated=true
+
+# === Build & IDE ===
+target/** linguist-generated=true
+build/** linguist-generated=true
+.vscode/** linguist-generated=true
+*.iml linguist-generated=true
