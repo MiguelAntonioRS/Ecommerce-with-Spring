@@ -39,7 +39,7 @@ public class Product {
 
     private String image;
 
-    private Integer discount;
+    private Integer discount = 0;
 
     private Double discountPrice;
 
