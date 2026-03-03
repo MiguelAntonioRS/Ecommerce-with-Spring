@@ -45,6 +45,7 @@
                                      class="img-fluid"
                                      th:alt="${cart.product.title}"
                                      onerror="this.src='/img/default-product.png'" />
+
                                 <img th:unless="${cart.product.image != null and !cart.product.image.isEmpty()}"
                                      src="/img/default-product.png"
                                      width="60px"
