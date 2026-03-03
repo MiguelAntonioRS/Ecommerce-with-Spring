@@ -47,6 +47,7 @@ public class HomeController {
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
         if (principal != null) {
+
             String email = principal.getName();
             UserDtls user = userService.getUserByEmail(email);
             model.addAttribute("user", user);
