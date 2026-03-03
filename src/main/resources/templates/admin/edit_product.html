@@ -108,7 +108,6 @@
                                  class="p-2 img-fluid"
                                  th:alt="${product.title}"
                                  onerror="this.src='/img/default-product.png'" />
-
                             <img th:unless="${product.image != null and !product.image.isEmpty()}"
                                  src="/img/default-product.png"
                                  width="100px"
