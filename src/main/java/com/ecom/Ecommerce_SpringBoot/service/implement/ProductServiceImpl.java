@@ -68,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
             double discount = product.getDiscount() / 100.0;
             product.setDiscountPrice(product.getPrice() * (1 - discount));
         } else {
-            product.setDiscountPrice(product.getPrice()); // sin descuento
+            product.setDiscountPrice(product.getPrice());
         }
     }
 
