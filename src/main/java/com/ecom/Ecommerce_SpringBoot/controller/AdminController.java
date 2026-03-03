@@ -42,7 +42,7 @@ public class AdminController {
     private CommonUtil commonUtil;
 
     @Autowired
-    private CloudinaryService cloudinaryService; // 👈 Inyectado
+    private CloudinaryService cloudinaryService;
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
