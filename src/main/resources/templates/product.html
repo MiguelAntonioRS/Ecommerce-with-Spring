@@ -61,7 +61,6 @@
                                                      class="product-card-image"
                                                      th:alt="${p.title}"
                                                      onerror="this.src='/img/default-product.png'" />
-
                                                 <img th:unless="${p.image != null and !p.image.isEmpty()}"
                                                      src="/img/default-product.png"
                                                      class="product-card-image"
