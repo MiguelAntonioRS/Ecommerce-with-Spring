@@ -56,10 +56,16 @@
                                     <div class="card h-100">
                                         <div class="card-body d-flex flex-column p-2 p-md-3">
                                             <div class="product-image-container mb-2 text-center">
-                                                <img th:src="@{/admin/images/product/{name}(name=${p.image})}"
+                                                <img th:if="${p.image != null and !p.image.isEmpty()}"
+                                                     th:src="${p.image}"
                                                      class="product-card-image"
-                                                     alt="[[${p.title}]]"
-                                                     onerror="this.src='/img/default-product.png'">
+                                                     th:alt="${p.title}"
+                                                     onerror="this.src='/img/default-product.png'" />
+
+                                                <img th:unless="${p.image != null and !p.image.isEmpty()}"
+                                                     src="/img/default-product.png"
+                                                     class="product-card-image"
+                                                     th:alt="${p.title}" />
                                             </div>
                                             <h6 class="fw-bold text-center flex-grow-1" style="font-size: 0.85rem;">
                                                 [[${p.title}]]</h6>

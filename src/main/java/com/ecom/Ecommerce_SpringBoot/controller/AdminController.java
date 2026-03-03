@@ -4,18 +4,13 @@ import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import com.ecom.Ecommerce_SpringBoot.entities.ProductOrder;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
-import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
-import com.ecom.Ecommerce_SpringBoot.service.OrderService;
-import com.ecom.Ecommerce_SpringBoot.service.ProductService;
-import com.ecom.Ecommerce_SpringBoot.service.UserService;
+import com.ecom.Ecommerce_SpringBoot.service.*;
+import com.ecom.Ecommerce_SpringBoot.service.CloudinaryService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -23,16 +18,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
@@ -53,8 +41,8 @@ public class AdminController {
     @Autowired
     private CommonUtil commonUtil;
 
-    // Directorio de imágenes en Render
-    private static final String UPLOAD_DIR = "/tmp/img";
+    @Autowired
+    private CloudinaryService cloudinaryService; // 👈 Inyectado
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
@@ -74,10 +62,8 @@ public class AdminController {
 
     @GetMapping("/loadAddProduct")
     public String loadAddProduct(Model model) {
-        List<Category> categories = categoryService.getAllCategory();
-        model.addAttribute("categories", categories);
+        model.addAttribute("categories", categoryService.getAllCategory());
         model.addAttribute("product", new Product());
-
         return "admin/add_product";
     }
 
@@ -88,30 +74,27 @@ public class AdminController {
     }
 
     @PostMapping("/saveCategory")
-    public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
-        // Crear directorio si no existe
-        Path uploadPath = Paths.get(UPLOAD_DIR, "category_img");
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-
-        String imageName = "default.jpg";
+    public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) {
+        String imageUrl = "https://res.cloudinary.com/demo/image/upload/v1/default.jpg"; // fallback público
         if (!file.isEmpty()) {
-            imageName = UUID.randomUUID() + "_" + file.getOriginalFilename().replace(" ", "_");
-            Path filePath = uploadPath.resolve(imageName);
-            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            try {
+                imageUrl = cloudinaryService.uploadImage(file, "categories");
+            } catch (IOException e) {
+                session.setAttribute("errorMsg", "Image upload failed");
+                return "redirect:/admin/category";
+            }
         }
-        category.setImageName(imageName);
+        category.setImageName(imageUrl);
 
         Boolean existCategory = categoryService.existCategory(category.getName());
         if (existCategory) {
             session.setAttribute("errorMsg", "Category Name already exists");
         } else {
-            Category saveCategory = categoryService.saveCategory(category);
-            if (ObjectUtils.isEmpty(saveCategory)) {
-                session.setAttribute("errorMsg", "Not Saved ! internal server error");
-            } else {
+            Category saved = categoryService.saveCategory(category);
+            if (saved != null) {
                 session.setAttribute("succMsg", "Saved successfully");
+            } else {
+                session.setAttribute("errorMsg", "Internal server error");
             }
         }
         return "redirect:/admin/category";
@@ -119,11 +102,11 @@ public class AdminController {
 
     @GetMapping("/deleteCategory/{id}")
     public String deleteCategory(@PathVariable int id, HttpSession session) {
-        Boolean deleteCategory = categoryService.deleteCategory(id);
-        if (deleteCategory) {
-            session.setAttribute("succMsg", "Category delete success");
+        Boolean deleted = categoryService.deleteCategory(id);
+        if (deleted) {
+            session.setAttribute("succMsg", "Category deleted");
         } else {
-            session.setAttribute("errorMsg", "Something wrong on server");
+            session.setAttribute("errorMsg", "Server error");
         }
         return "redirect:/admin/category";
     }
@@ -135,65 +118,59 @@ public class AdminController {
     }
 
     @PostMapping("/updateCategory")
-    public String updateCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+    public String updateCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) {
         Category oldCategory = categoryService.getCategoryById(category.getId());
-        String imageName = oldCategory.getImageName();
+        String imageUrl = oldCategory.getImageName();
 
         if (!file.isEmpty()) {
-            Path uploadPath = Paths.get(UPLOAD_DIR, "category_img");
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
+            try {
+                imageUrl = cloudinaryService.uploadImage(file, "categories");
+            } catch (IOException e) {
+                session.setAttribute("errorMsg", "Image update failed");
+                return "redirect:/admin/loadEditCategory/" + category.getId();
             }
-            imageName = UUID.randomUUID() + "_" + file.getOriginalFilename().replace(" ", "_");
-            Path filePath = uploadPath.resolve(imageName);
-            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         }
 
         oldCategory.setName(category.getName());
         oldCategory.setIsActive(category.getIsActive());
-        oldCategory.setImageName(imageName);
+        oldCategory.setImageName(imageUrl);
 
-        Category updateCategory = categoryService.saveCategory(oldCategory);
-        if (!ObjectUtils.isEmpty(updateCategory)) {
-            session.setAttribute("succMsg", "Category update success");
+        Category updated = categoryService.saveCategory(oldCategory);
+        if (updated != null) {
+            session.setAttribute("succMsg", "Category updated");
         } else {
-            session.setAttribute("errorMsg", "Something wrong on server");
+            session.setAttribute("errorMsg", "Server error");
         }
         return "redirect:/admin/loadEditCategory/" + category.getId();
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct(@Valid @ModelAttribute Product product, BindingResult result, @RequestParam("file") MultipartFile image, HttpSession session, Model model) throws IOException {
-
+    public String saveProduct(@Valid @ModelAttribute Product product, BindingResult result,
+                              @RequestParam("file") MultipartFile image, HttpSession session, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("categories", categoryService.getAllCategory());
             return "admin/add_product";
         }
 
-        // Si no hay errores, procesa la imagen y guarda
-        Path uploadPath = Paths.get(UPLOAD_DIR, "product_img");
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-
-        String imageName = "default.jpg";
+        String imageUrl = "https://res.cloudinary.com/demo/image/upload/v1/default.jpg";
         if (!image.isEmpty()) {
-            imageName = UUID.randomUUID() + "_" + image.getOriginalFilename().replace(" ", "_");
-            Path filePath = uploadPath.resolve(imageName);
-            Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            try {
+                imageUrl = cloudinaryService.uploadImage(image, "products");
+            } catch (IOException e) {
+                session.setAttribute("errorMsg", "Image upload failed");
+                return "redirect:/admin/loadAddProduct";
+            }
         }
 
-        product.setImage(imageName);
-        product.setDiscount(0);
-        product.setDiscountPrice(product.getPrice());
+        product.setImage(imageUrl);
+        product.setDiscountPrice(product.getPrice()); // ajusta si usas descuento
 
-        Product saveProduct = productService.saveProduct(product);
-
-        if (!ObjectUtils.isEmpty(saveProduct)) {
-            session.setAttribute("succMsg", "Product Saved Success");
+        Product saved = productService.saveProduct(product);
+        if (saved != null) {
+            session.setAttribute("succMsg", "Product saved");
             return "redirect:/admin/products";
         } else {
-            session.setAttribute("errorMsg", "Something wrong on server");
+            session.setAttribute("errorMsg", "Server error");
             return "redirect:/admin/loadAddProduct";
         }
     }
@@ -206,11 +183,11 @@ public class AdminController {
 
     @GetMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable int id, HttpSession session) {
-        Boolean deleteProduct = productService.deleteProduct(id);
-        if (deleteProduct) {
-            session.setAttribute("succMsg", "Product delete success");
+        Boolean deleted = productService.deleteProduct(id);
+        if (deleted) {
+            session.setAttribute("succMsg", "Product deleted");
         } else {
-            session.setAttribute("errorMsg", "Something wrong on server");
+            session.setAttribute("errorMsg", "Server error");
         }
         return "redirect:/admin/products";
     }
@@ -223,96 +200,84 @@ public class AdminController {
     }
 
     @PostMapping("/updateProduct")
-    public String updateProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image, HttpSession session, Model model) {
-        if (product.getDiscount() < 0 || product.getDiscount() > 100) {
-            session.setAttribute("errorMsg", "Invalid Discount");
-        } else {
+    public String updateProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image,
+                                HttpSession session) {
+        String currentImageUrl = product.getImage();
+        if (!image.isEmpty()) {
             try {
-                Product updateProduct = productService.updateProduct(product, image);
-                if (!ObjectUtils.isEmpty(updateProduct)) {
-                    session.setAttribute("succMsg", "Product update success");
-                } else {
-                    session.setAttribute("errorMsg", "Something wrong on server");
-                }
-            } catch (Exception e) {
-                session.setAttribute("errorMsg", "Image upload failed: " + e.getMessage());
+                currentImageUrl = cloudinaryService.uploadImage(image, "products");
+            } catch (IOException e) {
+                session.setAttribute("errorMsg", "Image update failed");
+                return "redirect:/admin/editProduct/" + product.getId();
             }
+        }
+
+        product.setImage(currentImageUrl);
+        Product updated = productService.updateProduct(product);
+
+        // Después de asignar la imagen...
+        if (product.getDiscount() == null) {
+            product.setDiscount(0);
+        }
+        if (product.getPrice() != null) {
+            double discountPercent = product.getDiscount() / 100.0;
+            product.setDiscountPrice(product.getPrice() * (1 - discountPercent));
+        }
+
+        if (updated != null) {
+            session.setAttribute("succMsg", "Product updated");
+        } else {
+            session.setAttribute("errorMsg", "Server error");
         }
         return "redirect:/admin/editProduct/" + product.getId();
     }
 
     @GetMapping("/users")
     public String getAllUsers(Model model) {
-        List<UserDtls> users = userService.getAllUsers("ROLE_USER");
-        model.addAttribute("users", users);
+        model.addAttribute("users", userService.getAllUsers("ROLE_USER"));
         return "admin/users";
     }
 
     @GetMapping("/updateStatus")
     public String updateUserAccountStatus(@RequestParam Boolean status, @RequestParam Integer id, HttpSession session) {
-        Boolean b = userService.updateAccountStatus(id, status);
-        if (b) {
-            session.setAttribute("succMsg", "Account Status Updated");
+        Boolean updated = userService.updateAccountStatus(id, status);
+        if (updated) {
+            session.setAttribute("succMsg", "Account status updated");
         } else {
-            session.setAttribute("errorMsg", "Something wrong on server");
+            session.setAttribute("errorMsg", "Server error");
         }
         return "redirect:/admin/users";
     }
 
     @GetMapping("/orders")
     public String getAllOrders(Model model) {
-
-        List<ProductOrder> allOrders = orderService.getAllOrdersByUser();
-        model.addAttribute("orders", allOrders);
-
+        model.addAttribute("orders", orderService.getAllOrdersByUser());
         return "admin/orders";
     }
 
     @PostMapping("/status-order-update")
     public String updateStatusOrder(@RequestParam int id, @RequestParam int status, HttpSession session) {
-
-        String oStatus = null;
         StatusOrder[] values = StatusOrder.values();
-
-        for (StatusOrder statusOrder:values) {
-
-            if (statusOrder.getId().equals(status)) {
-                oStatus = statusOrder.getName();
+        String oStatus = null;
+        for (StatusOrder s : values) {
+            if (s.getId().equals(status)) {
+                oStatus = s.getName();
+                break;
             }
         }
 
-        ProductOrder orderUpdate = orderService.orderStatusUpdate(id, oStatus);
-
+        ProductOrder order = orderService.orderStatusUpdate(id, oStatus);
         try {
-            commonUtil.sendOrderMail(orderUpdate, oStatus);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+            commonUtil.sendOrderMail(order, oStatus);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        if (!ObjectUtils.isEmpty(orderUpdate)) {
-            session.setAttribute("succMsg", "Status Updated");
+        if (order != null) {
+            session.setAttribute("succMsg", "Status updated");
         } else {
-            session.setAttribute("errorMsg", "Status not Updated");
+            session.setAttribute("errorMsg", "Update failed");
         }
         return "redirect:/admin/orders";
-    }
-
-    // Endpoint para servir imágenes
-    @GetMapping("/images/{type}/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveImage(@PathVariable String type, @PathVariable String filename) {
-        try {
-            Path imagePath = Paths.get(UPLOAD_DIR, type + "_img", filename);
-            Resource resource = new UrlResource(imagePath.toUri());
-            if (resource.exists()) {
-                return ResponseEntity.ok()
-                        .header("Cache-Control", "max-age=31536000") // 1 año
-                        .body(resource);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (MalformedURLException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 }

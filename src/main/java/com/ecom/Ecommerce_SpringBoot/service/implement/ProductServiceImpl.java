@@ -63,9 +63,19 @@ public class ProductServiceImpl implements ProductService {
         return productDAO.getProductById(id);
     }
 
+    private void calculateDiscountPrice(Product product) {
+        if (product.getPrice() != null && product.getDiscount() != null) {
+            double discount = product.getDiscount() / 100.0;
+            product.setDiscountPrice(product.getPrice() * (1 - discount));
+        } else {
+            product.setDiscountPrice(product.getPrice()); // sin descuento
+        }
+    }
+
     @Override
-    public Product updateProduct(Product product, MultipartFile file) {
-        return productDAO.updateProduct(product, file);
+    public Product updateProduct(Product product) {
+        calculateDiscountPrice(product);
+        return productRepository.save(product);
     }
 
     @Override

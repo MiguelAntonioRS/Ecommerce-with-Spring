@@ -39,7 +39,19 @@
                         <tbody>
                         <tr th:each="u,c:${users}">
                             <th scope="row">[[${c.count}]]</th>
-                            <td><img th:src="@{/images/profile/{name}(name=${u.profileImage})}" width="60px" height="60px" onerror="this.src='/images/default-profile.png'" alt="Profile image"></td>
+                            <td>
+                                <img th:if="${u.profileImage != null and !u.profileImage.isEmpty()}"
+                                     th:src="${u.profileImage}"
+                                     width="60px"
+                                     height="60px"
+                                     onerror="this.src='/images/default-profile.png'"
+                                     alt="Profile image" />
+                                <img th:unless="${u.profileImage != null and !u.profileImage.isEmpty()}"
+                                     src="/images/default-profile.png"
+                                     width="60px"
+                                     height="60px"
+                                     alt="Default profile" />
+                            </td>
                             <td>[[${u.name}]]</td>
                             <td>[[${u.email}]]</td>
                             <td>[[${u.mobileNumber}]]</td>

@@ -1,20 +1,13 @@
 package com.ecom.Ecommerce_SpringBoot.controller;
 
-import com.ecom.Ecommerce_SpringBoot.entities.Category;
-import com.ecom.Ecommerce_SpringBoot.entities.Product;
-import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
-import com.ecom.Ecommerce_SpringBoot.service.CartService;
-import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
-import com.ecom.Ecommerce_SpringBoot.service.ProductService;
-import com.ecom.Ecommerce_SpringBoot.service.UserService;
+import com.ecom.Ecommerce_SpringBoot.entities.*;
+import com.ecom.Ecommerce_SpringBoot.service.*;
+import com.ecom.Ecommerce_SpringBoot.service.CloudinaryService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -54,20 +41,18 @@ public class HomeController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    // Directorio de imágenes en Render
-    private static final String UPLOAD_DIR = "/tmp/img";
+    @Autowired
+    private CloudinaryService cloudinaryService;
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
         if (principal != null) {
             String email = principal.getName();
-            UserDtls userDtls = userService.getUserByEmail(email);
-            model.addAttribute("user", userDtls);
-            Integer countCart = cartService.getCountCart(userDtls.getId());
-            model.addAttribute("countCart", countCart);
+            UserDtls user = userService.getUserByEmail(email);
+            model.addAttribute("user", user);
+            model.addAttribute("countCart", cartService.getCountCart(user.getId()));
         }
-        List<Category> categories = categoryService.getAllActiveCategory();
-        model.addAttribute("categorys", categories);
+        model.addAttribute("categorys", categoryService.getAllActiveCategory());
     }
 
     @GetMapping("/")
@@ -79,11 +64,6 @@ public class HomeController {
     @GetMapping("/guide")
     public String showUserGuide() {
         return "guide";
-    }
-
-    @GetMapping("/home")
-    public String index() {
-        return "index";
     }
 
     @GetMapping("/signin")
@@ -98,42 +78,37 @@ public class HomeController {
 
     @GetMapping("/products")
     public String products(Model model, @RequestParam(value = "category", defaultValue = "") String category) {
-        List<Category> categories = categoryService.getAllActiveCategory();
-        List<Product> products = productService.getAllActiveProducts(category);
-        model.addAttribute("categories", categories);
-        model.addAttribute("products", products);
+        model.addAttribute("categories", categoryService.getAllActiveCategory());
+        model.addAttribute("products", productService.getAllActiveProducts(category));
         model.addAttribute("paramValue", category);
         return "product";
     }
 
     @GetMapping("/product/{id}")
     public String product(@PathVariable int id, Model model) {
-        Product productById = productService.getProductById(id);
-        model.addAttribute("product", productById);
+        model.addAttribute("product", productService.getProductById(id));
         return "view_product";
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute UserDtls user, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
-        Path uploadPath = Paths.get(UPLOAD_DIR, "profile_img");
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-
-        String imageName = "default.jpg";
+    public String saveUser(@ModelAttribute UserDtls user, @RequestParam("img") MultipartFile file, HttpSession session) {
+        String profileUrl = "https://res.cloudinary.com/demo/image/upload/v1/default-profile.png";
         if (!file.isEmpty()) {
-            imageName = UUID.randomUUID() + "_" + file.getOriginalFilename().replace(" ", "_");
-            Path filePath = uploadPath.resolve(imageName);
-            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            try {
+                profileUrl = cloudinaryService.uploadImage(file, "profiles");
+            } catch (IOException e) {
+                session.setAttribute("errorMsg", "Profile image upload failed");
+                return "redirect:/register";
+            }
         }
-        user.setProfileImage(imageName);
-        UserDtls saveUser = userService.saveUser(user);
+        user.setProfileImage(profileUrl);
+        UserDtls saved = userService.saveUser(user);
 
-        if (!ObjectUtils.isEmpty(saveUser)) {
-            session.setAttribute("succMsg", "Register successfully");
+        if (saved != null) {
+            session.setAttribute("succMsg", "Registered successfully");
             return "redirect:/signin";
         } else {
-            session.setAttribute("errorMsg", "Not Saved ! internal server error");
+            session.setAttribute("errorMsg", "Registration failed");
             return "redirect:/register";
         }
     }
@@ -144,29 +119,29 @@ public class HomeController {
     }
 
     @PostMapping("/forgot-password")
-    public String processForgotPasswordPage(@RequestParam String email, HttpSession session, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
-        UserDtls userByEmail = userService.getUserByEmail(email);
-        if (ObjectUtils.isEmpty(userByEmail)) {
+    public String processForgotPasswordPage(@RequestParam String email, HttpSession session, HttpServletRequest request)
+            throws MessagingException, UnsupportedEncodingException {
+        UserDtls user = userService.getUserByEmail(email);
+        if (user == null) {
             session.setAttribute("errorMsg", "Invalid Email");
         } else {
-            String resetToken = UUID.randomUUID().toString();
-            userService.updateUserResetToken(email, resetToken);
-            String url = CommonUtil.generateUrl(request) + "/reset-password?token=" + resetToken;
-            Boolean sendMail = commonUtil.sendMail(url, email);
-            if (sendMail) {
-                session.setAttribute("succMsg", "Please check you mail: Password Reset");
+            String token = java.util.UUID.randomUUID().toString();
+            userService.updateUserResetToken(email, token);
+            String url = CommonUtil.generateUrl(request) + "/reset-password?token=" + token;
+            if (commonUtil.sendMail(url, email)) {
+                session.setAttribute("succMsg", "Check your email to reset password");
             } else {
-                session.setAttribute("errorMsg", "Something wrong on server");
+                session.setAttribute("errorMsg", "Email sending failed");
             }
         }
         return "redirect:/forgot-password";
     }
 
     @GetMapping("/reset-password")
-    public String showResetPasswordPage(@RequestParam String token, HttpSession session, Model model) {
-        UserDtls userByToken = userService.getUserByToken(token);
-        if (userByToken == null) {
-            model.addAttribute("msg", "Your link is invalid or expired");
+    public String showResetPasswordPage(@RequestParam String token, Model model) {
+        UserDtls user = userService.getUserByToken(token);
+        if (user == null) {
+            model.addAttribute("msg", "Link expired or invalid");
             return "message";
         }
         model.addAttribute("token", token);
@@ -174,43 +149,22 @@ public class HomeController {
     }
 
     @PostMapping("/reset-password")
-    public String resetPasswordPage(@RequestParam String token, @RequestParam String password, HttpSession session, Model model) {
-        UserDtls userByToken = userService.getUserByToken(token);
-        if (userByToken == null) {
-            model.addAttribute("errorMsg", "Your link is invalid or expired");
-            return "message";
-        } else {
-            userByToken.setPassword(passwordEncoder.encode(password));
-            userByToken.setResetToken(null);
-            userService.updateUser(userByToken);
-            model.addAttribute("msg", "Password change successfully");
+    public String resetPasswordPage(@RequestParam String token, @RequestParam String password, Model model) {
+        UserDtls user = userService.getUserByToken(token);
+        if (user == null) {
+            model.addAttribute("errorMsg", "Invalid link");
             return "message";
         }
-    }
-
-    @GetMapping("/images/profile/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveProfileImage(@PathVariable String filename) {
-        try {
-            Path imagePath = Paths.get(UPLOAD_DIR, "profile_img", filename);
-            Resource resource = new UrlResource(imagePath.toUri());
-            if (resource.exists()) {
-                return ResponseEntity.ok()
-                        .header("Cache-Control", "max-age=31536000")
-                        .body(resource);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (MalformedURLException e) {
-            return ResponseEntity.notFound().build();
-        }
+        user.setPassword(passwordEncoder.encode(password));
+        user.setResetToken(null);
+        userService.updateUser(user);
+        model.addAttribute("msg", "Password changed successfully");
+        return "message";
     }
 
     @GetMapping("/search")
     public String search(@RequestParam String search, Model model) {
-
-        List<Product> searchProducts = productService.searchProduct(search);
-        model.addAttribute("products", searchProducts);
+        model.addAttribute("products", productService.searchProduct(search));
         return "product";
     }
 }

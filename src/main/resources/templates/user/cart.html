@@ -38,11 +38,19 @@
                         <tr th:each="cart,c:${carts}">
                             <th scope="row">[[${c.count}]]</th>
                             <td>
-                                <img th:src="@{/admin/images/product/{name}(name=${cart.product.image})}"
-                                     width="60px" height="60px"
+                                <img th:if="${cart.product.image != null and !cart.product.image.isEmpty()}"
+                                     th:src="${cart.product.image}"
+                                     width="60px"
+                                     height="60px"
                                      class="img-fluid"
-                                     alt="[[${cart.product.title}]]"
-                                     onerror="this.src='/img/default-product.png'">
+                                     th:alt="${cart.product.title}"
+                                     onerror="this.src='/img/default-product.png'" />
+                                <img th:unless="${cart.product.image != null and !cart.product.image.isEmpty()}"
+                                     src="/img/default-product.png"
+                                     width="60px"
+                                     height="60px"
+                                     class="img-fluid"
+                                     th:alt="${cart.product.title}" />
                             </td>
                             <td>[[${cart.product.title}]]</td>
                             <td>$[[${cart.product.discountPrice}]]</td>

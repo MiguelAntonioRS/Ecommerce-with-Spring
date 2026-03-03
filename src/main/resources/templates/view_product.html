@@ -26,9 +26,16 @@
                 <!-- Product Image -->
                 <div class="col-12 col-md-6 mb-3 mb-md-0">
                     <div class="product-image-container">
-                        <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
-                            class="product-image img-fluid" alt="[[${product.title}]]"
-                            onerror="this.src='/img/default-product.png'">
+                        <img th:if="${product.image != null and !product.image.isEmpty()}"
+                             th:src="${product.image}"
+                             class="product-image img-fluid"
+                             th:alt="${product.title}"
+                             onerror="this.src='/img/default-product.png'" />
+
+                        <img th:unless="${product.image != null and !product.image.isEmpty()}"
+                             src="/img/default-product.png"
+                             class="product-image img-fluid"
+                             th:alt="${product.title}" />
                     </div>
                 </div>
 

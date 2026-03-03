@@ -101,11 +101,20 @@
                                     <input type="file" name="file" class="form-control">
                                 </div>
                             </div>
-                            <img th:src="@{/admin/images/product/{name}(name=${product.image})}"
-                                 width="100px" height="100px"
+                            <img th:if="${product.image != null and !product.image.isEmpty()}"
+                                 th:src="${product.image}"
+                                 width="100px"
+                                 height="100px"
                                  class="p-2 img-fluid"
-                                 alt="[[${product.title}]]"
-                                 onerror="this.src='/img/default-product.png'">
+                                 th:alt="${product.title}"
+                                 onerror="this.src='/img/default-product.png'" />
+
+                            <img th:unless="${product.image != null and !product.image.isEmpty()}"
+                                 src="/img/default-product.png"
+                                 width="100px"
+                                 height="100px"
+                                 class="p-2 img-fluid"
+                                 th:alt="${product.title}" />
                             <button class="btn btn-primary w-100 mt-3">Update</button>
                         </form>
                     </div>

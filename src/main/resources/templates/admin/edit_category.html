@@ -53,8 +53,21 @@
                                     <input type="file" name="file" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <img th:src="@{'/img/category_img/'+${category.imageName}}" width="100px"
-                                        height="100px" alt="Current category image" class="img-fluid">
+                                    <td>
+                                        <img th:if="${category.imageName != null and !category.imageName.isEmpty()}"
+                                             th:src="${category.imageName}"
+                                             width="100px"
+                                             height="100px"
+                                             alt="Current category image"
+                                             class="img-fluid"
+                                             onerror="this.src='/img/default-category.png'" />
+                                        <img th:unless="${category.imageName != null and !category.imageName.isEmpty()}"
+                                             src="/img/default-category.png"
+                                             width="100px"
+                                             height="100px"
+                                             alt="Default category"
+                                             class="img-fluid" />
+                                    </td>
                                 </div>
                                 <button class="btn btn-primary w-100 mt-2">Edit</button>
                             </form>

@@ -43,11 +43,19 @@
                         <tr th:each="p,c:${products}">
                             <th scope="row">[[${c.count}]]</th>
                             <td>
-                                <img th:src="@{/admin/images/product/{name}(name=${p.image})}"
-                                     width="60px" height="60px"
+                                <img th:if="${p.image != null and !p.image.isEmpty()}"
+                                     th:src="${p.image}"
+                                     width="60px"
+                                     height="60px"
                                      class="img-fluid"
-                                     alt="[[${p.title}]]"
-                                     onerror="this.src='/img/default-product.png'">
+                                     th:alt="${p.title}"
+                                     onerror="this.src='/img/default-product.png'" />
+                                <img th:unless="${p.image != null and !p.image.isEmpty()}"
+                                     src="/img/default-product.png"
+                                     width="60px"
+                                     height="60px"
+                                     class="img-fluid"
+                                     th:alt="${p.title}" />
                             </td>
                             <td>[[${p.title}]]</td>
                             <td>[[${p.category}]]</td>

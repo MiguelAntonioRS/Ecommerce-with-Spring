@@ -80,11 +80,15 @@
                                             <td>[[${cat.name}]]</td>
                                             <td>[[${cat.isActive}]]</td>
                                             <td>
-                                                <img th:src="@{/admin/images/category/{name}(name=${cat.imageName})}"
+                                                <img th:if="${cat.imageName != null and !cat.imageName.isEmpty()}"
+                                                     th:src="${cat.imageName}"
                                                      width="50px" height="50px"
-                                                     class="img-fluid"
-                                                     alt="[[${cat.name}]]"
-                                                     onerror="this.src='/img/default-category.png'">
+                                                     alt="Category image"
+                                                     onerror="this.src='/img/default-category.png'" />
+                                                <img th:unless="${cat.imageName != null and !cat.imageName.isEmpty()}"
+                                                     src="/img/default-category.png"
+                                                     width="50px" height="50px"
+                                                     alt="Default category" />
                                             </td>
                                             <td class="text-nowrap">
                                                 <a th:href="@{'/admin/loadEditCategory/'+${cat.id}}"
