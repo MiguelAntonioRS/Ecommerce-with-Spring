@@ -17,14 +17,6 @@ public class CloudinaryService {
         this.cloudinary = cloudinary;
     }
 
-    /**
-     * Sube una imagen a Cloudinary
-     *
-     * @param file   archivo multipart
-     * @param folder carpeta en Cloudinary (ej: "products", "profiles")
-     * @return URL segura (HTTPS) de la imagen
-     * @throws IOException si falla la subida
-     */
     public String uploadImage(MultipartFile file, String folder) throws IOException {
         if (file.isEmpty()) {
             return null;
