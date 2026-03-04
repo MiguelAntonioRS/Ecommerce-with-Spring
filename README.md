@@ -58,9 +58,10 @@ This project was built as a **personal learning initiative** to deepen my expert
 - **User Management** – Manage registered users and roles
 
 ### Technical Features
-- **MySQL Database** – Relational data modeling with JPA/Hibernate
+- **PostgreSQL Database** – Relational data modeling with JPA/Hibernate (Render-compatible)
 - **Spring Security** – BCrypt password hashing, CSRF protection, session management
 - **Spring Mail** – Email service integration (SMTP configuration)
+- **Cloudinary Integration** – Product and profile images stored in the cloud with CDN delivery
 - **Docker Support** – Containerized deployment ready
 - **Cloud Deployment** – Live on Render with auto-deploy from GitHub
 
@@ -76,6 +77,7 @@ This project was built as a **personal learning initiative** to deepen my expert
 ![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=flat-square&logo=spring-security&logoColor=white)
 ![Spring Mail](https://img.shields.io/badge/Spring_Mail-6DB33F?style=flat-square&logo=spring&logoColor=white)
 ![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-34485C?style=flat-square&logo=cloudinary&logoColor=white)
 
 ### Frontend
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005C0F?style=flat-square&logo=html5&logoColor=white)
@@ -83,7 +85,7 @@ This project was built as a **personal learning initiative** to deepen my expert
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
 ### Database & DevOps
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4479A1?style=flat-square&logo=postgresql&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apache-maven&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=white)
@@ -96,20 +98,17 @@ This project was built as a **personal learning initiative** to deepen my expert
 
 ```
 src/main/java/com/miguel/ecommerce/
-├── config/              # Security, Mail, Web configuration
-├── controller/          # REST & MVC controllers
-├── model/              # JPA Entities (User, Product, Order, etc.)
-├── repository/         # Spring Data JPA repositories
-├── service/            # Business logic layer
-├── dto/                # Data Transfer Objects
-├── exception/          # Custom exceptions & handlers
-└── util/               # Utility classes
+├── config/              # Security, Mail, Cloudinary config
+├── controller/          # MVC controllers
+├── entity/              # JPA Entities (User, Product, Order, etc.)
+├── repository/          # Spring Data JPA repositories
+├── service/             # Business logic (ProductService, CloudinaryService, etc.)
+└── util/                # Utility classes
 
 src/main/resources/
 ├── templates/          # Thymeleaf views
 ├── static/             # CSS, JS, images
-├── application.properties
-└── data.sql            # Initial data (optional)
+└── application.properties
 ```
 
 ---
@@ -118,7 +117,7 @@ src/main/resources/
 
 ### Prerequisites
 - Java 17 or higher
-- MySQL 8.0+
+- PostgreSQL 14+
 - Maven 3.8+
 - Docker (optional)
 
@@ -129,7 +128,7 @@ src/main/resources/
 git clone https://github.com/MiguelAntonioRS/Ecommerce-with-Spring.git
 cd Ecommerce-with-Spring
 
-# 2. Configure database (application.properties)
+# 2. Configure database (application-local.properties)
 # Create database: ecommerce_db
 # Update credentials as needed
 
@@ -144,21 +143,11 @@ http://localhost:8080
 Default admin: admin@example.com / admin123 (change in production!)
 ```
 
-### Docker Deployment
-
-```bash
-# Build and run with Docker Compose
-docker-compose up --build
-
-# Access the app
-http://localhost:8080
-```
-
 ### Environment Variables (for Render/Production)
 
 ```env
 # Database
-SPRING_DATASOURCE_URL=jdbc:mysql://host:port/ecommerce_db
+SPRING_DATASOURCE_URL=jdbc:postgresql://host:port/db_name
 SPRING_DATASOURCE_USERNAME=your_user
 SPRING_DATASOURCE_PASSWORD=your_password
 
@@ -168,8 +157,10 @@ SPRING_MAIL_PORT=587
 SPRING_MAIL_USERNAME=your_email@gmail.com
 SPRING_MAIL_PASSWORD=your_app_password
 
-# Security
-JWT_SECRET=your-secret-key-here
+# Cloudinary (for image uploads)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
 ---
@@ -220,12 +211,14 @@ erDiagram
 
 ## Roadmap
 
-- [ ] Migrate product images to **Cloudinary** for cloud storage
+- [x] Migrated product and profile images to **Cloudinary** ✅
+- [ ] Add unit tests with JUnit + Mockito
 - [ ] Integrate payment gateway (Stripe / PayPal)
 - [ ] Add advanced search & filters (price range, ratings)
 - [ ] Implement product reviews & ratings system
 - [ ] Optimize for mobile with responsive PWA features
 - [ ] Add analytics dashboard for admin
+- [ ] Refactor service layer by feature (e.g., `user/service/`)
 
 *Have an idea? Open an issue or submit a PR!*
 
