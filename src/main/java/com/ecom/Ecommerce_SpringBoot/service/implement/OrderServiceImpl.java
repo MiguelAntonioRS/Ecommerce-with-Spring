@@ -9,9 +9,11 @@ import com.ecom.Ecommerce_SpringBoot.repository.OrderRepository;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     private CommonUtil commonUtil;
 
     @Override
-    public void saveOrder(int userId, RequestOrder requestOrder) {
+    public void saveOrder(int userId, RequestOrder requestOrder) throws MessagingException, UnsupportedEncodingException {
 
         List<Cart> cartList = cartRepository.findByUserId(userId);
 
@@ -62,6 +64,7 @@ public class OrderServiceImpl implements OrderService {
 
             productOrder.setAddressOrder(addressOrder);
             ProductOrder orderSave = orderRepository.save(productOrder);
+            commonUtil.sendOrderMail(orderSave, "Success");
         }
     }
 
