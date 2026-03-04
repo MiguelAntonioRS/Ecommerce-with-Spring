@@ -57,6 +57,7 @@ public class CommonUtil {
                 + "<p>Price : [[price]]</p>"
                 + "<p>Payment Type : [[paymentType]]</p>";
 
+        content = content.replace("[[name]]", productOrder.getAddressOrder().getFirstName());
         content = content.replace("[[orderStatus]]", codeStatus);
         content = content.replace("[[productName]]", productOrder.getProduct().getTitle());
         content = content.replace("[[category]]", productOrder.getProduct().getCategory());
