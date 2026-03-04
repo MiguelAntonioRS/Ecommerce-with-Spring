@@ -7,6 +7,7 @@ import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.OrderRepository;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
+import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private CartRepository cartRepository;
+
+    @Autowired
+    private CommonUtil commonUtil;
 
     @Override
     public void saveOrder(int userId, RequestOrder requestOrder) {
