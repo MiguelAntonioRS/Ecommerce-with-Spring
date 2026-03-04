@@ -249,7 +249,7 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 ```
 MIT License
 
-Copyright (c) 2025 Miguel Antonio Rojas Sucarino
+Copyright (c) 2026 Miguel Antonio Rojas Sucarino
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
