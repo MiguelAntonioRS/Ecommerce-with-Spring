@@ -105,7 +105,7 @@ public class UserController {
     }
 
     @PostMapping("/save-order")
-    public String saveOrder(@ModelAttribute RequestOrder requestOrder, Principal principal) {
+    public String saveOrder(@ModelAttribute RequestOrder requestOrder, Principal principal) throws Exception {
 
         UserDtls user = getLoggedInUserDetails(principal);
         orderService.saveOrder(user.getId(), requestOrder);
