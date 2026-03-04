@@ -49,7 +49,7 @@ public class CommonUtil {
         helper.setFrom("rojassucarinomiguelantoni@gmail.com", "E-commerce");
         helper.setTo(productOrder.getAddressOrder().getEmail());
 
-        String content = "<p>[[name]]</p> <br> <p>Thanks order successfully <b>[[orderStatus]]</b>.</p>" +
+        String content = "<p>Hello [[name]]</p>,<p>Thanks order successfully <b>[[orderStatus]]</b>.</p>" +
                 "<p><b>Product Details</b> :</p>"
                 + "<p>Name : [[productName]]</p>"
                 + "<p>Category : [[category]]</p>"
@@ -66,7 +66,7 @@ public class CommonUtil {
         content = content.replace("[[paymentType]]", productOrder.getPaymentType());
 
         helper.setSubject("Order Product Status");
-        helper.setText(content);
+        helper.setText(content, true);
         mailSender.send(mimeMessage);
 
         return true;
