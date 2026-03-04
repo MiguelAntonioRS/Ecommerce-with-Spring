@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface OrderService {
 
-    public void saveOrder(int userId, RequestOrder requestOrder);
+    public void saveOrder(int userId, RequestOrder requestOrder) throws Exception;
 
     public List<ProductOrder> getOrdersByUser(int userId);
 
