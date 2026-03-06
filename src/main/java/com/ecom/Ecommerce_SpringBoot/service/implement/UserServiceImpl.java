@@ -1,10 +1,10 @@
 package com.ecom.Ecommerce_SpringBoot.service.implement;
 
+import com.ecom.Ecommerce_SpringBoot.contant.AppConstant;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.persistence.UserDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
-import com.ecom.Ecommerce_SpringBoot.contant.AppConstant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,8 @@
 package com.ecom.Ecommerce_SpringBoot.service;
 
-import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
