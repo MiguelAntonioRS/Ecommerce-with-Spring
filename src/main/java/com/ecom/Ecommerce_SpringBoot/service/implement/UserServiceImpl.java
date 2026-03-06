@@ -6,7 +6,6 @@ import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import com.ecom.Ecommerce_SpringBoot.contant.AppConstant;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

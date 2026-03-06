@@ -11,7 +11,6 @@ import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import com.ecom.Ecommerce_SpringBoot.contant.StatusOrder;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
