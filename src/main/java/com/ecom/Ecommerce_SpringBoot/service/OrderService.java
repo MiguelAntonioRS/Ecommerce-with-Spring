@@ -9,11 +9,11 @@ import java.util.List;
 @Service
 public interface OrderService {
 
-    public void saveOrder(int userId, RequestOrder requestOrder) throws Exception;
+    void saveOrder(int userId, RequestOrder requestOrder) throws Exception;
 
-    public List<ProductOrder> getOrdersByUser(int userId);
+    List<ProductOrder> getOrdersByUser(int userId);
 
-    public ProductOrder orderStatusUpdate(int id, String status);
+    ProductOrder orderStatusUpdate(int id, String status);
 
-    public List<ProductOrder> getAllOrdersByUser();
+    List<ProductOrder> getAllOrdersByUser();
 }
