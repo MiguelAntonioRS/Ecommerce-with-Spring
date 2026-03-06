@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: Ecommerce-SpringBoot
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  # Mail
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${SPRING_MAIL_USERNAME}
+    password: ${SPRING_MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+  # Photo automation
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 365d
+          cache-public: true
+      chain:
+        strategy:
+          content:
+            enabled: true
+            paths: /**
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_API_SECRET}
