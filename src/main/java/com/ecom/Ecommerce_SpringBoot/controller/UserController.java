@@ -6,7 +6,7 @@ import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
-import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
+import com.ecom.Ecommerce_SpringBoot.contant.StatusOrder;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

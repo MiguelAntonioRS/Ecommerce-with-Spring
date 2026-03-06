@@ -4,13 +4,12 @@ import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.persistence.UserDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
-import com.ecom.Ecommerce_SpringBoot.util.AppConstant;
+import com.ecom.Ecommerce_SpringBoot.contant.AppConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {

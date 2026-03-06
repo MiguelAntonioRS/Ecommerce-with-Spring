@@ -7,12 +7,11 @@ import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
 import com.ecom.Ecommerce_SpringBoot.persistence.OrderDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.OrderRepository;
-import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
+import com.ecom.Ecommerce_SpringBoot.contant.StatusOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
