@@ -3,6 +3,8 @@ package com.ecom.Ecommerce_SpringBoot.service.implement;
 import com.ecom.Ecommerce_SpringBoot.entities.Cart;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
+import com.ecom.Ecommerce_SpringBoot.exception.InsufficientException;
+import com.ecom.Ecommerce_SpringBoot.exception.NotFoundException;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
@@ -31,10 +33,10 @@ public class CartServiceImpl implements CartService {
         Product product = productRepository.findById(productId).get();
 
         if (product == null || user == null) {
-            throw new RuntimeException("User or Product not found");
+            throw new NotFoundException("User or Product not found");
         }
         if (product.getStock() <= 0) {
-            throw new RuntimeException("Out of stock");
+            throw new InsufficientException("Out of stock");
         }
         Cart existingCart = cartRepository.findByProductIdAndUserId(productId, userId);
 
@@ -53,7 +55,7 @@ public class CartServiceImpl implements CartService {
             int newQuantity = existingCart.getQuantity() + 1;
 
             if (product.getStock() < newQuantity) {
-                throw new RuntimeException("Not enough stock");
+                throw new InsufficientException("Not enough stock");
             }
 
             existingCart.setQuantity(newQuantity);
