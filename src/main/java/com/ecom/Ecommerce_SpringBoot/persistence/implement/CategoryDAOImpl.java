@@ -3,6 +3,7 @@ package com.ecom.Ecommerce_SpringBoot.persistence.implement;
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.persistence.CategoryDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.CategoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -10,11 +11,10 @@ import org.springframework.util.ObjectUtils;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class CategoryDAOImpl implements CategoryDAO {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
-
+    private final CategoryRepository categoryRepository;
 
     @Override
     public Category saveCategory(Category category) {

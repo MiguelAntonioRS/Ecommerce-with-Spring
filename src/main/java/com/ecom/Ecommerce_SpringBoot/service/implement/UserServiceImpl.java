@@ -5,6 +5,7 @@ import com.ecom.Ecommerce_SpringBoot.persistence.UserDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import com.ecom.Ecommerce_SpringBoot.contant.AppConstant;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,11 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private UserRepository userRepository;
+    private final UserDAO userDAO;
+    private final UserRepository userRepository;
 
     @Override
     public UserDtls saveUser(UserDtls user) {

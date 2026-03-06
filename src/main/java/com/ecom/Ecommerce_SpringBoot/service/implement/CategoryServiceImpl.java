@@ -3,15 +3,16 @@ package com.ecom.Ecommerce_SpringBoot.service.implement;
 import com.ecom.Ecommerce_SpringBoot.entities.Category;
 import com.ecom.Ecommerce_SpringBoot.persistence.CategoryDAO;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
-    private CategoryDAO categoryDAO;
+    private final CategoryDAO categoryDAO;
 
     @Override
     public Category saveCategory(Category category) {

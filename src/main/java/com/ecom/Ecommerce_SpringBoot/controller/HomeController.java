@@ -7,6 +7,7 @@ import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,28 +22,16 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
-    private ProductService productService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private CommonUtil commonUtil;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    private CloudinaryService cloudinaryService;
+    private final CategoryService categoryService;
+    private final ProductService productService;
+    private final UserService userService;
+    private final CartService cartService;
+    private final CommonUtil commonUtil;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final CloudinaryService cloudinaryService;
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {

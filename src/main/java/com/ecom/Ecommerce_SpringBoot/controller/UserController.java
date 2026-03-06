@@ -8,6 +8,7 @@ import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import com.ecom.Ecommerce_SpringBoot.contant.StatusOrder;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,22 +20,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private OrderService orderService;
-
-    @Autowired
-    private CommonUtil commonUtil;
+    private final CategoryService categoryService;
+    private final UserService userService;
+    private final CartService cartService;
+    private final OrderService orderService;
+    private final CommonUtil commonUtil;
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
