@@ -3,13 +3,11 @@ package com.ecom.Ecommerce_SpringBoot.persistence.implement;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import com.ecom.Ecommerce_SpringBoot.persistence.ProductDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,10 +15,10 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class ProductDAOImpl implements ProductDAO {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public Product saveProduct(Product product) {

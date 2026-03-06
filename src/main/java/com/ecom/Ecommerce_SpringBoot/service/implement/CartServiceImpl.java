@@ -3,38 +3,29 @@ package com.ecom.Ecommerce_SpringBoot.service.implement;
 import com.ecom.Ecommerce_SpringBoot.entities.Cart;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
+import com.ecom.Ecommerce_SpringBoot.exception.InsufficientException;
+import com.ecom.Ecommerce_SpringBoot.exception.NotFoundException;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.CartService;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
 
-    @Autowired
-    private CartRepository cartRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ProductService productService;
+    private final CartRepository cartRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final UserService userService;
+    private final ProductService productService;
 
     @Override
     public Cart cartSave(int productId, int userId) {
@@ -42,10 +33,10 @@ public class CartServiceImpl implements CartService {
         Product product = productRepository.findById(productId).get();
 
         if (product == null || user == null) {
-            throw new RuntimeException("User or Product not found");
+            throw new NotFoundException("User or Product not found");
         }
         if (product.getStock() <= 0) {
-            throw new RuntimeException("Out of stock");
+            throw new InsufficientException("Out of stock");
         }
         Cart existingCart = cartRepository.findByProductIdAndUserId(productId, userId);
 
@@ -64,7 +55,7 @@ public class CartServiceImpl implements CartService {
             int newQuantity = existingCart.getQuantity() + 1;
 
             if (product.getStock() < newQuantity) {
-                throw new RuntimeException("Not enough stock");
+                throw new InsufficientException("Not enough stock");
             }
 
             existingCart.setQuantity(newQuantity);

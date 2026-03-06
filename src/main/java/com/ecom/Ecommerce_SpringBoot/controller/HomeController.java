@@ -1,48 +1,41 @@
 package com.ecom.Ecommerce_SpringBoot.controller;
 
-import com.ecom.Ecommerce_SpringBoot.entities.*;
-import com.ecom.Ecommerce_SpringBoot.service.*;
+import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
+import com.ecom.Ecommerce_SpringBoot.service.CartService;
+import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.CloudinaryService;
+import com.ecom.Ecommerce_SpringBoot.service.ProductService;
+import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
-import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
-    private ProductService productService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private CommonUtil commonUtil;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    private CloudinaryService cloudinaryService;
+    private final CategoryService categoryService;
+    private final ProductService productService;
+    private final UserService userService;
+    private final CartService cartService;
+    private final CommonUtil commonUtil;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final CloudinaryService cloudinaryService;
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {
