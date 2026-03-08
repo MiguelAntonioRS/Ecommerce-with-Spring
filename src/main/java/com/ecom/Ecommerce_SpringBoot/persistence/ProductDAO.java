@@ -9,17 +9,17 @@ import java.util.List;
 @Component
 public interface ProductDAO {
 
-    public Product saveProduct(Product product);
+    Product saveProduct(Product product);
 
-    public List<Product> getAllProducts();
+    List<Product> getAllProducts();
 
-    public Boolean deleteProduct(Integer id);
+    Boolean deleteProduct(Integer id);
 
-    public Product getProductById(Integer id);
+    Product getProductById(Integer id);
 
-    public Product updateProduct(Product product, MultipartFile file);
+    Product updateProduct(Product product, MultipartFile file);
 
-    public List<Product> getAllActiveProducts(String category);
+    List<Product> getAllActiveProducts(String category);
 
-    public List<Product> searchProduct(String search);
+    List<Product> searchProduct(String search);
 }
