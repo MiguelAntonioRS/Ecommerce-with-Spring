@@ -9,11 +9,11 @@ import java.util.List;
 @Component
 public interface OrderDAO {
 
-    public void saveOrder(int userId, RequestOrder requestOrder);
+    void saveOrder(int userId, RequestOrder requestOrder);
 
-    public List<ProductOrder> getOrdersByUser(int userId);
+    List<ProductOrder> getOrdersByUser(int userId);
 
-    public ProductOrder orderStatusUpdate(int id, String status);
+    ProductOrder orderStatusUpdate(int id, String status);
 
-    public List<ProductOrder> getAllOrdersByUser();
+    List<ProductOrder> getAllOrdersByUser();
 }
