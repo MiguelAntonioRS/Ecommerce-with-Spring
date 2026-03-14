@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
 
             productOrder.setAddressOrder(addressOrder);
             ProductOrder orderSave = orderRepository.save(productOrder);
-            //commonUtil.sendOrderMail(orderSave, "Success");
+            //commonUtil.sendOrderMail(orderSave, "Success"); // Uncomment this feature when you solve the email issue
         }
     }
 
