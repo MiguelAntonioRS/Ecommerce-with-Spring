@@ -146,11 +146,12 @@ Default admin: admin@example.com / admin123 (change in production!)
 
 ### Environment Variables (for Render/Production)
 
+Create the following variables in your deployment platform (e.g., Render Dashboard):
+
 ```env
-# Database
-SPRING_DATASOURCE_URL=jdbc:postgresql://host:port/db_name
-SPRING_DATASOURCE_USERNAME=your_user
-SPRING_DATASOURCE_PASSWORD=your_password
+# Database (Supabase Connection String - JDBC Format)
+# Format: jdbc:postgresql://[host]:[port]/[db]?user=[user]&password=[pass]
+SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-us-west-2.pooler.supabase.co:5432/postgres?user=postgres.your_project_ref&password=your_secure_password
 
 # Email (SMTP)
 SPRING_MAIL_HOST=smtp.gmail.com
@@ -163,7 +164,6 @@ CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 ```
-
 ---
 
 ## Database Schema
