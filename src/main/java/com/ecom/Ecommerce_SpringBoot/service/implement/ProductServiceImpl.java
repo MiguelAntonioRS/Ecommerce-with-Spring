@@ -23,26 +23,6 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    /*@Autowired
-    private Cloudinary cloudinary;
-
-    @Override
-    public Product saveImageProduct(Product product, MultipartFile file) throws IOException {
-
-        if (file != null && !file.isEmpty()) {
-
-            Map uploadResult = cloudinary.uploader().upload(
-                    file.getBytes(),
-                    ObjectUtils.asMap("folder", "product_img")
-            );
-
-            String imageUrl = uploadResult.get("secure_url").toString();
-            product.setImage(imageUrl);
-        }
-
-        return productRepository.save(product);
-    }*/
-
     @Override
     public Product saveProduct(Product product) {
         return productDAO.saveProduct(product);
