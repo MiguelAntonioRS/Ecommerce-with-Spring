@@ -58,7 +58,7 @@ This project was built as a **personal learning initiative** to deepen my expert
 - **User Management** – Manage registered users and roles
 
 ### Technical Features
-- **PostgreSQL Database** – Relational data modeling with JPA/Hibernate (Render-compatible)
+- **Managed PostgreSQL on Supabase** – High-availability relational data with JPA/Hibernate, connected via Session Pooler for optimal performance.
 - **Spring Security** – BCrypt password hashing, CSRF protection, session management
 - **Spring Mail** – Email service integration (SMTP configuration)
 - **Cloudinary Integration** – Product and profile images stored in the cloud with CDN delivery
