@@ -111,3 +111,28 @@ After the deployment finishes:
 - Login: Try logging in with an existing user (verifies password hashes migrated correctly).
 - Data Integrity: Browse products and categories (verifies data import).
 - Write Test: Create a new product or place an order. Check Supabase Table Editor to confirm the new row appears.
+
+---
+
+🛠️ Common Troubleshooting
+
+Error: Driver org.postgresql.Driver claims to not accept jdbcUrl
+
+Cause: Missing jdbc: prefix or malformed URL.
+
+Fix: Ensure the URL starts exactly with jdbc:postgresql://.
+
+Error: Connection timed out (0x0000274C/10060)
+
+Cause: Render blocking external IPs or IPv6 mismatch.
+
+Fix:
+
+1. Verify External Database User is active in Render.
+2. Ensure you are using the Supabase Session Pooler URL (IPv4 compatible), not the direct connection URL.
+
+Error: relation "xxxx" does not exist
+
+Cause: Schema issues or import failed partially.
+
+Fix: Check Supabase logs. You may need to manually set the search path or re-run the import ensuring the public schema is targeted.
