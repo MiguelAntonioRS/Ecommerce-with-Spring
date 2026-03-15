@@ -143,3 +143,5 @@ Once verified:
 
 - You can delete the old Render Database instance to free up resources, as your app now points exclusively to Supabase.
 - Keep the backup_render.sql file locally for a few days as an extra safety net.
+
+**Migration performed by Miguel Antonio Rojas Sucarino**
