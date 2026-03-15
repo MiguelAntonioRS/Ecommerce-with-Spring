@@ -97,6 +97,8 @@ This project was built as a **personal learning initiative** to deepen my expert
 
 ## Architecture
 
+> 📘 **Interested in how we moved from Render DB to Supabase?** Check out our [Migration Guide](MIGRATION_GUIDE.md) for a step-by-step walkthrough.
+
 ```
 src/main/java/com/miguel/ecommerce/
 ├── config/              # Security, Mail, Cloudinary config
