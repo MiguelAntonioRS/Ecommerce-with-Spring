@@ -56,3 +56,22 @@ Open your terminal (CMD or PowerShell) and navigate to a folder where you want t
 
 ```bash
 pg_dump "postgresql://USER:PASSWORD@HOST.oregon-postgres.render.com:5432/DATABASE_NAME" -f backup_render.sql --no-owner --clean
+```
+
+### 4. Import Data to Supabase (Restore)
+You have two options to import the data:
+
+Option A: Using Terminal (Recommended for large datasets) 
+
+``` bash
+psql "postgresql://USER:PASSWORD@HOST.pooler.supabase.co:5432/postgres" -f backup_render.sql
+```
+
+Note: Use the Supabase Session Pooler URL here.
+
+Option B: Using Supabase SQL Editor (No terminal needed)
+
+1. Open backup_render.sql in a text editor (VS Code, Notepad++).
+2. Copy all content (Ctrl+A, Ctrl+C).
+3. Go to Supabase Dashboard → SQL Editor → New Query.
+4. Paste the content and click Run.
