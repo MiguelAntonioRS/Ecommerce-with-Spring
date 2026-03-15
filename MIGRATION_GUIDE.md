@@ -75,3 +75,26 @@ Option B: Using Supabase SQL Editor (No terminal needed)
 2. Copy all content (Ctrl+A, Ctrl+C).
 3. Go to Supabase Dashboard → SQL Editor → New Query.
 4. Paste the content and click Run.
+
+### 5. Update Application Configuration (The Switch)
+   Now that data is in Supabase, update your deployment environment.
+
+   Go to Render Dashboard → Your Web Service → Environment.
+   Edit the variable SPRING_DATASOURCE_URL.
+   Replace the old Render URL with the new JDBC formatted Supabase URL:
+   
+Format: 
+```
+jdbc:postgresql://[HOST]:[PORT]/[DB]?user=[USER]&password=[PASSWORD]
+```
+Example:
+```
+jdbc:postgresql://aws-0-us-west-2.pooler.supabase.co:5432/postgres?user=postgres.rrdmwfmbnczyraalzgym&password=YourSecurePassword!
+```
+
+⚠️ Critical Notes:
+
+    Must start with jdbc:postgresql://.
+    Use the Session Pooler host.
+    If your password contains special characters (like !, @, #), it is safer to pass them as URL parameters (&password=...) or URL-encode them (e.g., ! → %21).
+    Ensure sslmode=require is added if you encounter SSL errors (though usually default in Spring Boot 3).
