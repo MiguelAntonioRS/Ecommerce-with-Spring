@@ -136,3 +136,10 @@ Error: relation "xxxx" does not exist
 Cause: Schema issues or import failed partially.
 
 Fix: Check Supabase logs. You may need to manually set the search path or re-run the import ensuring the public schema is targeted.
+
+🧹 Cleanup (Optional)
+
+Once verified:
+
+- You can delete the old Render Database instance to free up resources, as your app now points exclusively to Supabase.
+- Keep the backup_render.sql file locally for a few days as an extra safety net.
