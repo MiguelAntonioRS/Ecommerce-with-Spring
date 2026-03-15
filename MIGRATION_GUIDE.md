@@ -100,3 +100,14 @@ jdbc:postgresql://aws-0-us-west-2.pooler.supabase.co:5432/postgres?user=postgres
     Ensure sslmode=require is added if you encounter SSL errors (though usually default in Spring Boot 3).
 
 4. Save changes. Render will automatically trigger a new deployment.
+
+---
+
+🧪 Verification Checklist
+
+After the deployment finishes:
+ 
+- App Status: Check Render logs for Started Application.
+- Login: Try logging in with an existing user (verifies password hashes migrated correctly).
+- Data Integrity: Browse products and categories (verifies data import).
+- Write Test: Create a new product or place an order. Check Supabase Table Editor to confirm the new row appears.
