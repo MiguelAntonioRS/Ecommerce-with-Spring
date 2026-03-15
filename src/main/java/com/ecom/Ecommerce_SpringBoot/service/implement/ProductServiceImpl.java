@@ -1,27 +1,20 @@
 package com.ecom.Ecommerce_SpringBoot.service.implement;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import com.ecom.Ecommerce_SpringBoot.entities.Product;
 import com.ecom.Ecommerce_SpringBoot.persistence.ProductDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import com.ecom.Ecommerce_SpringBoot.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductDAO productDAO;
-
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductDAO productDAO;
+    private final ProductRepository productRepository;
 
     @Override
     public Product saveProduct(Product product) {

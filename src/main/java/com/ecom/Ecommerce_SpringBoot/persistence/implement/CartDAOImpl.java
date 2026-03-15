@@ -7,23 +7,19 @@ import com.ecom.Ecommerce_SpringBoot.persistence.CartDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.ProductRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class CartDAOImpl implements CartDAO {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private CartRepository cartRepository;
+    private final UserRepository userRepository;
+    private final CartRepository cartRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public Cart cartSave(int productId, int userId) {
