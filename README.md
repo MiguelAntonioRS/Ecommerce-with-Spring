@@ -58,7 +58,7 @@ This project was built as a **personal learning initiative** to deepen my expert
 - **User Management** – Manage registered users and roles
 
 ### Technical Features
-- **PostgreSQL Database** – Relational data modeling with JPA/Hibernate (Render-compatible)
+- **Managed PostgreSQL on Supabase** – High-availability relational data with JPA/Hibernate, connected via Session Pooler for optimal performance.
 - **Spring Security** – BCrypt password hashing, CSRF protection, session management
 - **Spring Mail** – Email service integration (SMTP configuration)
 - **Cloudinary Integration** – Product and profile images stored in the cloud with CDN delivery
@@ -81,11 +81,12 @@ This project was built as a **personal learning initiative** to deepen my expert
 
 ### Frontend
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005C0F?style=flat-square&logo=html5&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=flat-square&logo=bootstrap&logoColor=#7952B3)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=yellow)
 
 ### Database & DevOps
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4479A1?style=flat-square&logo=postgresql&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apache-maven&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=white)
@@ -95,6 +96,8 @@ This project was built as a **personal learning initiative** to deepen my expert
 ---
 
 ## Architecture
+
+> 📘 **Interested in how we moved from Render DB to Supabase?** Check out our [Migration Guide](MIGRATION_GUIDE.md) for a step-by-step walkthrough.
 
 ```
 src/main/java/com/miguel/ecommerce/
@@ -145,11 +148,12 @@ Default admin: admin@example.com / admin123 (change in production!)
 
 ### Environment Variables (for Render/Production)
 
+Create the following variables in your deployment platform (e.g., Render Dashboard):
+
 ```env
-# Database
-SPRING_DATASOURCE_URL=jdbc:postgresql://host:port/db_name
-SPRING_DATASOURCE_USERNAME=your_user
-SPRING_DATASOURCE_PASSWORD=your_password
+# Database (Supabase Connection String - JDBC Format)
+# Format: jdbc:postgresql://[host]:[port]/[db]?user=[user]&password=[pass]
+SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-us-west-2.pooler.supabase.co:5432/postgres?user=postgres.your_project_ref&password=your_secure_password
 
 # Email (SMTP)
 SPRING_MAIL_HOST=smtp.gmail.com
@@ -162,7 +166,6 @@ CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 ```
-
 ---
 
 ## Database Schema
