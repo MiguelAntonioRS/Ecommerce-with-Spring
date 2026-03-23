@@ -23,7 +23,7 @@
 - [Database Schema](#database-schema)
 - [API Endpoints](#api-endpoints)
 - [Roadmap](#roadmap)
-- [Contributing](#contributing)
+- [Contributing](#contributing) 
 - [License](#license)
 - [Contact](#contact)
 
