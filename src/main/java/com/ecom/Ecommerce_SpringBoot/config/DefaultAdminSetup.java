@@ -4,20 +4,18 @@ package com.ecom.Ecommerce_SpringBoot.config;
 
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class DefaultAdminSetup {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Bean
     public ApplicationRunner init() {

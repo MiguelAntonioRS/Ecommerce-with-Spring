@@ -1,40 +1,40 @@
 package com.ecom.Ecommerce_SpringBoot.controller;
 
-import com.ecom.Ecommerce_SpringBoot.entities.*;
+import com.ecom.Ecommerce_SpringBoot.contant.StatusOrder;
+import com.ecom.Ecommerce_SpringBoot.entities.Cart;
+import com.ecom.Ecommerce_SpringBoot.entities.Category;
+import com.ecom.Ecommerce_SpringBoot.entities.ProductOrder;
+import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
+import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.service.CartService;
 import com.ecom.Ecommerce_SpringBoot.service.CategoryService;
 import com.ecom.Ecommerce_SpringBoot.service.OrderService;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
-import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
 
 @Controller
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private OrderService orderService;
-
-    @Autowired
-    private CommonUtil commonUtil;
+    private final CategoryService categoryService;
+    private final UserService userService;
+    private final CartService cartService;
+    private final OrderService orderService;
+    private final CommonUtil commonUtil;
 
     @ModelAttribute
     public void getUsersDetails(Principal principal, Model model) {

@@ -1,5 +1,6 @@
 package com.ecom.Ecommerce_SpringBoot.persistence.implement;
 
+import com.ecom.Ecommerce_SpringBoot.contant.StatusOrder;
 import com.ecom.Ecommerce_SpringBoot.entities.AddressOrder;
 import com.ecom.Ecommerce_SpringBoot.entities.Cart;
 import com.ecom.Ecommerce_SpringBoot.entities.ProductOrder;
@@ -7,24 +8,20 @@ import com.ecom.Ecommerce_SpringBoot.entities.RequestOrder;
 import com.ecom.Ecommerce_SpringBoot.persistence.OrderDAO;
 import com.ecom.Ecommerce_SpringBoot.repository.CartRepository;
 import com.ecom.Ecommerce_SpringBoot.repository.OrderRepository;
-import com.ecom.Ecommerce_SpringBoot.util.StatusOrder;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Component
+@RequiredArgsConstructor
 public class OrderDaoImpl implements OrderDAO {
 
-    @Autowired
-    private CartRepository cartRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
+    private final CartRepository cartRepository;
+    private final OrderRepository orderRepository;
 
     @Override
     public void saveOrder(int userId, RequestOrder requestOrder) {

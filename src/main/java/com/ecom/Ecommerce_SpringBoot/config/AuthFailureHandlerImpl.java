@@ -1,13 +1,13 @@
 package com.ecom.Ecommerce_SpringBoot.config;
 
+import com.ecom.Ecommerce_SpringBoot.contant.AppConstant;
 import com.ecom.Ecommerce_SpringBoot.entities.UserDtls;
 import com.ecom.Ecommerce_SpringBoot.repository.UserRepository;
 import com.ecom.Ecommerce_SpringBoot.service.UserService;
-import com.ecom.Ecommerce_SpringBoot.util.AppConstant;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -16,13 +16,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandler {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserService userService;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
