@@ -1,7 +1,7 @@
 # E-commerce with Spring Boot
 
 <div align="center">
-
+  
 [![Live Demo](https://img.shields.io/badge/Demo-Live-6366F1?style=for-the-badge&logo=render)](https://ecommerce-with-spring-boot.onrender.com/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github)](https://github.com/MiguelAntonioRS/Ecommerce-with-Spring)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
@@ -23,7 +23,7 @@
 - [Database Schema](#database-schema)
 - [API Endpoints](#api-endpoints)
 - [Roadmap](#roadmap)
-- [Contributing](#contributing)
+- [Contributing](#contributing) 
 - [License](#license)
 - [Contact](#contact)
 
