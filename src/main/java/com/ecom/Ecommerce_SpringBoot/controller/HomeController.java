@@ -3,6 +3,7 @@ package com.ecom.Ecommerce_SpringBoot.controller;
 import com.ecom.Ecommerce_SpringBoot.entities.*;
 import com.ecom.Ecommerce_SpringBoot.service.*;
 import com.ecom.Ecommerce_SpringBoot.service.CloudinaryService;
+import com.ecom.Ecommerce_SpringBoot.service.implement.CloudinaryService;
 import com.ecom.Ecommerce_SpringBoot.util.CommonUtil;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -93,6 +94,7 @@ public class HomeController {
 
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute UserDtls user, @RequestParam("img") MultipartFile file, HttpSession session) {
+
         String profileUrl = "https://res.cloudinary.com/demo/image/upload/v1/default-profile.png";
         if (!file.isEmpty()) {
             try {
