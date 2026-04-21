@@ -159,6 +159,7 @@ public class UserController {
 
     public String profile() {
 
+        return "/user/profile";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
