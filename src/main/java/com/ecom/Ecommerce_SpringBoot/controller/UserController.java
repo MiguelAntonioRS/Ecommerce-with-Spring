@@ -157,6 +157,7 @@ public class UserController {
         return "user/my-orders";
     }
 
+    @GetMapping("/profile")
     public String profile() {
 
         return "/user/profile";
