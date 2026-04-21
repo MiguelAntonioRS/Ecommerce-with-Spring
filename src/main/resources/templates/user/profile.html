@@ -14,8 +14,13 @@
                     <div class="card-body">
                         <p class="fs-3 text-center">My profile</p>
                         <div class="text-center">
-                            <img alt="Profile image" th:src="@{'../img/profile_img/'+${user.profileImage}}" class="border p-2"
-                                style="width: 110px; height: 110px; border-radius: 50%;">
+                            <!-- Si hay imagen de Cloudinary, úsala; si no, usa la local por defecto -->
+                            <img th:src="${user.profileImage != null and user.profileImage != ''}
+                                          ? ${user.profileImage}
+                                          : @{/img/profile_img/ecom.png}"
+                                 alt="Profile image"
+                                 class="border p-2"
+                                 style="width: 110px; height: 110px; border-radius: 50%;">
                         </div>
                     </div>
                 </div>
