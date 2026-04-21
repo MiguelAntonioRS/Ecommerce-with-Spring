@@ -157,6 +157,10 @@ public class UserController {
         return "user/my-orders";
     }
 
+    public String profile() {
+
+    }
+
     private UserDtls getLoggedInUserDetails(Principal principal) {
 
         String email = principal.getName();
