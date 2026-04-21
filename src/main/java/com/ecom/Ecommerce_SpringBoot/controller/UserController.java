@@ -160,7 +160,7 @@ public class UserController {
     @GetMapping("/profile")
     public String profile() {
 
-        return "/user/profile";
+        return "user/profile";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
