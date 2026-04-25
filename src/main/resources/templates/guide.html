@@ -1,57 +1,127 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
-    <title>User Guide - Ecom Store</title>
+    <title>User Guide — Ecom Store</title>
 </head>
+
 <body>
 <section>
-    <div class="container mt-5 mb-5">
+
+    <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-sm">
-                    <div class="card-header text-center bg-primary text-white">
-                        <h2><i class="fas fa-book-open me-2"></i>How to Use Our Store</h2>
+            <div class="col-lg-8">
+
+                <div class="text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                         style="width:72px; height:72px; background:var(--ec-primary-light);">
+                        <i class="fa-solid fa-book-open fa-2x" style="color:var(--ec-primary);"></i>
                     </div>
-                    <div class="card-body">
+                    <h2 class="fw-bold">How to Use Ecom Store</h2>
+                    <p class="text-muted">Quick guide to get the most out of your shopping experience</p>
+                </div>
 
-                        <div class="mb-4">
-                            <h5 class="fw-bold text-primary">1. Register an Account</h5>
-                            <p>Click on <strong>Register</strong> in the top-right corner and fill out the form.</p>
+                <div class="card card-ecomm">
+                    <div class="card-body p-4">
+
+                        <div class="d-flex gap-4 mb-5 step-item">
+                            <div class="step-number flex-shrink-0">
+                                <span class="fw-bold fs-5">01</span>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">
+                                    <i class="fa-solid fa-user-plus me-2" style="color:var(--ec-primary);"></i>Register
+                                </h5>
+                                <p class="text-muted mb-0">Click on <strong>Register</strong>, fill in the form with your details and create your account. It's free and quick.</p>
+                            </div>
                         </div>
 
-                        <div class="mb-4">
-                            <h5 class="fw-bold text-primary">2. Log In</h5>
-                            <p>After registering, log in with your email and password.</p>
+                        <div class="d-flex gap-4 mb-5 step-item">
+                            <div class="step-number flex-shrink-0">
+                                <span class="fw-bold fs-5">02</span>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">
+                                    <i class="fa-solid fa-right-to-bracket me-2" style="color:var(--ec-primary);"></i>Sign In
+                                </h5>
+                                <p class="text-muted mb-0">Use your email and password to access your account and start shopping.</p>
+                            </div>
                         </div>
 
-                        <div class="mb-4">
-                            <h5 class="fw-bold text-primary">3. Browse & Add to Cart</h5>
-                            <p>Explore products, click <strong>View Details</strong>, and press <strong>Add To Cart</strong>.</p>
+                        <div class="d-flex gap-4 mb-5 step-item">
+                            <div class="step-number flex-shrink-0">
+                                <span class="fw-bold fs-5">03</span>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">
+                                    <i class="fa-solid fa-magnifying-glass me-2" style="color:var(--ec-primary);"></i>Browse & Search
+                                </h5>
+                                <p class="text-muted mb-0">Navigate categories or use the search bar to find products. Filter by price, discount and availability.</p>
+                            </div>
                         </div>
 
-                        <div class="mb-4">
-                            <h5 class="fw-bold text-primary">4. Checkout</h5>
-                            <p>Go to your cart, review items, and click <strong>Proceed Payment</strong>.</p>
-                            <p>We accept <strong>Cash on Delivery (COD)</strong>!</p>
+                        <div class="d-flex gap-4 mb-5 step-item">
+                            <div class="step-number flex-shrink-0">
+                                <span class="fw-bold fs-5">04</span>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">
+                                    <i class="fa-solid fa-cart-plus me-2" style="color:var(--ec-primary);"></i>Add to Cart
+                                </h5>
+                                <p class="text-muted mb-0">Go to a product, review the details and press <strong>Add to Cart</strong>. You can adjust quantities.</p>
+                            </div>
                         </div>
 
-                        <div class="alert alert-info">
-                            <i class="fas fa-lightbulb me-2"></i>
-                            <strong>Tip:</strong> You must be logged in to add items to your cart.
-                        </div>
-
-                        <div class="text-center mt-4">
-                            <a href="/" class="btn btn-outline-primary me-2">← Back to Home</a>
-                            <a href="/register" class="btn btn-primary">Get Started</a>
+                        <div class="d-flex gap-4 step-item">
+                            <div class="step-number flex-shrink-0">
+                                <span class="fw-bold fs-5">05</span>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">
+                                    <i class="fa-solid fa-credit-card me-2" style="color:var(--ec-primary);"></i>Pay & Receive
+                                </h5>
+                                <p class="text-muted mb-0">Fill in your address, choose <strong>Cash on Delivery (COD)</strong> or <strong>Online Payment</strong> and confirm your order. Done!</p>
+                            </div>
                         </div>
 
                     </div>
                 </div>
+
+                <div class="text-center mt-4">
+                    <a href="/" class="btn-ecomm me-2">
+                        <i class="fa-solid fa-house me-1"></i>Go Home
+                    </a>
+                    <a href="/register" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-user-plus me-1"></i>Create Account
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>
+
+    <style>
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--ec-primary-light);
+            color: var(--ec-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .step-item {
+            border-bottom: 1px solid var(--ec-gray-100);
+            padding-bottom: 1.5rem;
+        }
+        .step-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    </style>
 </section>
 </body>
 </html>

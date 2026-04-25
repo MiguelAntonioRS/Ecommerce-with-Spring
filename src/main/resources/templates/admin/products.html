@@ -3,76 +3,98 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Products — Admin</title>
 </head>
 
 <body>
 <section>
-    <div class="container-fluid mt-3 mt-md-5 p-3 p-md-5">
-        <div class="card card-sh">
-            <div class="card-header text-center">
-                <p class="fs-4">View Products</p>
-                <th:block th:if="${session.succMsg}">
-                    <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">
+                <i class="fa-solid fa-box me-2" style="color:var(--ec-primary);"></i>Products
+            </h2>
+            <a href="/admin/loadAddProduct" class="btn-ecomm">
+                <i class="fa-solid fa-plus me-1"></i>Add New
+            </a>
+        </div>
 
-                <th:block th:if="${session.errorMsg}">
-                    <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mb-3">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
             </div>
-            <div class="card-body">
+        </th:block>
+        <th:block th:if="${session.errorMsg}">
+            <div class="alert alert-ecomm alert-danger mb-3">
+                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                [[${session.errorMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+            </div>
+        </th:block>
+
+        <div class="card">
+            <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-modern mb-0">
                         <thead>
-                        <tr>
-                            <th scope="col">Si No</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Discount</th>
-                            <th scope="col">Disc. Price</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Action</th>
-                        </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Final Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="p,c:${products}">
-                            <th scope="row">[[${c.count}]]</th>
-                            <td>
-                                <img th:if="${p.image != null and !p.image.isEmpty()}"
-                                     th:src="${p.image}"
-                                     width="60px"
-                                     height="60px"
-                                     class="img-fluid"
-                                     th:alt="${p.title}"
-                                     onerror="this.src='/img/default-product.png'" />
-                                <img th:unless="${p.image != null and !p.image.isEmpty()}"
-                                     src="/img/default-product.png"
-                                     width="60px"
-                                     height="60px"
-                                     class="img-fluid"
-                                     th:alt="${p.title}" />
-                            </td>
-                            <td>[[${p.title}]]</td>
-                            <td>[[${p.category}]]</td>
-                            <td>[[${p.price}]]</td>
-                            <td>[[${p.discount}]]</td>
-                            <td>[[${p.discountPrice}]]</td>
-                            <td>[[${p.isActive}]]</td>
-                            <td>[[${p.stock}]]</td>
-                            <td class="text-nowrap">
-                                <a th:href="@{'/admin/editProduct/'+${p.id}}"
-                                   class="btn btn-sm btn-primary mb-1"><i
-                                        class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                <a th:href="@{'/admin/deleteProduct/'+${p.id}}"
-                                   class="btn btn-sm btn-danger mb-1"><i class="fa-solid fa-trash"></i>
-                                    Delete</a>
-                            </td>
-                        </tr>
+                            <tr th:each="p, c : ${products}">
+                                <td data-label="#">[[${c.count}]]</td>
+                                <td data-label="Image">
+                                    <img th:if="${p.image != null and !p.image.isEmpty()}"
+                                         th:src="${p.image}"
+                                         th:alt="${p.title}"
+                                         width="50" height="50"
+                                         class="rounded object-fit-cover"
+                                         onerror="this.src='/img/default-product.png'">
+                                    <img th:unless="${p.image != null and !p.image.isEmpty()}"
+                                         src="/img/default-product.png"
+                                         th:alt="${p.title}"
+                                         width="50" height="50"
+                                         class="rounded object-fit-cover">
+                                </td>
+                                <td data-label="Title" class="fw-semibold">[[${p.title}]]</td>
+                                <td data-label="Category">[[${p.category}]]</td>
+                                <td data-label="Price">$[[${p.price}]]</td>
+                                <td data-label="Discount">
+                                    <span class="badge badge-danger">[[${p.discount}]]%</span>
+                                </td>
+                                <td data-label="Final Price" class="fw-bold" style="color:var(--ec-primary);">
+                                    $[[${p.discountPrice}]]
+                                </td>
+                                <td data-label="Stock">
+                                    <th:block th:if="${p.stock > 0}">
+                                        <span class="badge badge-success">[[${p.stock}]]</span>
+                                    </th:block>
+                                    <th:block th:unless="${p.stock > 0}">
+                                        <span class="badge badge-danger">0</span>
+                                    </th:block>
+                                </td>
+                                <td data-label="Actions">
+                                    <a th:href="@{'/admin/editProduct/' + ${p.id}}"
+                                       class="btn btn-sm" style="color:var(--ec-blue);">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a th:href="@{'/admin/deleteProduct/' + ${p.id}}"
+                                       class="btn btn-sm" style="color:var(--ec-primary);"
+                                       onclick="return confirm('Delete this product?')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -81,5 +103,4 @@
     </div>
 </section>
 </body>
-
 </html>

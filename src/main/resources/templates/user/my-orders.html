@@ -3,62 +3,99 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My Orders</title>
+    <title>My Orders — Ecom Store</title>
 </head>
 
 <body>
 <section>
-    <div class="container-fluid mt-5 p-5">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="text-center fs-3">My Orders</p>
+    <div class="container py-4">
+        <h2 class="fw-bold mb-4">
+            <i class="fa-solid fa-box me-2" style="color:var(--ec-primary);"></i>My Orders
+        </h2>
 
-                <th:block th:if="${session.succMsg}">
-                    <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mb-3">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+            </div>
+        </th:block>
+        <th:block th:if="${session.errorMsg}">
+            <div class="alert alert-ecomm alert-danger mb-3">
+                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                [[${session.errorMsg}]]
+            </div>
+        </th:block>
 
-                <th:block th:if="${session.errorMsg}">
-                    <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
-
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Order Id</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Product Details</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="o:${orders}">
-                        <th scope="row">[[${o.orderId}]]</th>
-                        <td>[[${o.orderDate}]]</td>
-                        <td>[[${o.product.title}]]</td>
-                        <td>Quantity : [[${o.quantity}]] <br>Price : [[${o.price}]] <br>Total Price
-                            [[${o.quantity * o.price}]]</td>
-                        <td>[[${o.status}]]</td>
-                        <td>
-                            <th:block th:if="${o.status!='Cancelled'}">
-                                <a th:href="@{'/user/status-update?id='+${o.id}+'&status=6'}"
-                                   class="btn btn-sm btn-danger">Cancel</a>
-                            </th:block>
-
-                            <th:block th:unless="${o.status!='Cancelled'}">
-                                <a href="#" class="btn btn-sm btn-danger disabled">Cancel</a>
-                            </th:block>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-modern mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="o : ${orders}">
+                                <td data-label="ID" class="fw-bold">#[[${o.orderId}]]</td>
+                                <td data-label="Date">[[${o.orderDate}]]</td>
+                                <td data-label="Product">
+                                    <a th:href="@{'/product/' + ${o.product.id}}"
+                                       class="text-decoration-none fw-semibold">
+                                        [[${o.product.title}]]
+                                    </a>
+                                </td>
+                                <td data-label="Price">$[[${o.price}]]</td>
+                                <td data-label="Qty">[[${o.quantity}]]</td>
+                                <td data-label="Total" class="fw-bold" style="color:var(--ec-primary);">
+                                    $[[${o.quantity * o.price}]]
+                                </td>
+                                <td data-label="Status">
+                                    <th:block th:if="${o.status == 'In Progress'}">
+                                        <span class="badge badge-info">In Progress</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Order Received'}">
+                                        <span class="badge badge-info">Received</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Product Packed'}">
+                                        <span class="badge badge-warning">Packed</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Out for Delivery'}">
+                                        <span class="badge badge-success">On the Way</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Delivered'}">
+                                        <span class="badge badge-success">Delivered</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Cancelled'}">
+                                        <span class="badge badge-danger">Cancelled</span>
+                                    </th:block>
+                                </td>
+                                <td data-label="Action">
+                                    <th:block th:if="${o.status != 'Cancelled'}">
+                                        <a th:href="@{'/user/status-update?id=' + ${o.id} + '&status=6'}"
+                                           class="btn btn-sm" style="color:var(--ec-primary); border:1px solid var(--ec-primary);"
+                                           onclick="return confirm('Cancel this order?')">
+                                            <i class="fa-solid fa-xmark me-1"></i>Cancel
+                                        </a>
+                                    </th:block>
+                                    <th:block th:unless="${o.status != 'Cancelled'}">
+                                        <span class="badge badge-danger">Cancelled</span>
+                                    </th:block>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </section>
 </body>
-
 </html>

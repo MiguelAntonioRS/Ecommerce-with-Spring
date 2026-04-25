@@ -3,73 +3,129 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>LogIn</title>
+    <title>Login — Ecom Store</title>
+    <style>body { background: var(--ec-gray-50); }</style>
 </head>
 
 <body>
-    <section>
-        <div class="container mt-3 mt-md-5 p-3 p-md-5">
-            <div class="row">
-                <!-- Image: hidden on mobile via d-none d-md-block -->
-                <div class="col-md-6 p-3 p-md-5 d-none d-md-block">
-                    <img src="img/ecom.png" alt="Ecommerce illustration" class="img-fluid"
-                        style="max-height: 400px; width: 100%; object-fit: contain;">
+<section>
+
+    <!-- Messages -->
+    <div class="container pt-4">
+        <th:block th:if="${param.error}">
+            <div class="alert alert-ecomm alert-danger mx-auto" style="max-width:600px;">
+                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+            </div>
+        </th:block>
+        <th:block th:if="${param.logout}">
+            <div class="alert alert-ecomm alert-success mx-auto" style="max-width:600px;">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                Logged out successfully.
+            </div>
+        </th:block>
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mx-auto" style="max-width:600px;">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+            </div>
+        </th:block>
+    </div>
+
+    <div class="auth-page py-5">
+        <div class="auth-card">
+            <div class="row g-0">
+
+                <!-- Sidebar visual -->
+                <div class="col-lg-5 auth-image d-none d-lg-flex">
+                    <div class="text-center text-white">
+                        <i class="fa-solid fa-bag-shopping fa-4x mb-3 opacity-75"></i>
+                        <h3 class="fw-bold">Welcome Back</h3>
+                        <p class="opacity-75 mb-0">Sign in to continue shopping</p>
+                    </div>
                 </div>
-                <div class="col-12 col-md-6 mt-3 p-2 p-md-5">
-                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-                        <div class="card-header">
-                            <p class="fs-4 text-center">Login</p>
-                            <div th:if="${param.error}" class="alert alert-danger text-center">
-                                [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
-                            </div>
 
-                            <div th:if="${param.logout}" class="alert alert-success text-center">
-                                Logout Successfully
-                            </div>
+                <!-- Form -->
+                <div class="col-lg-7">
+                    <div class="card-header pb-0">
+                        <h4 class="fw-bold mb-0 pt-3">
+                            <i class="fa-solid fa-right-to-bracket me-2" style="color:var(--ec-primary);"></i>Sign In
+                        </h4>
+                        <p class="text-muted small mt-1 mb-0">Enter your credentials to access your account</p>
+                    </div>
 
-                            <!-- Mensaje de exito al registrarse -->
-                            <div th:if="${session.succMsg}" class="alert alert-success text-center">
-                                [[${session.succMsg}]]
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <form action="/login" method="post">
-                                <div class="mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input class="form-control" name="username" type="email">
+                    <div class="card-body">
+                        <form action="/login" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="border-radius:8px 0 0 8px; border-color:var(--ec-gray-300);">
+                                        <i class="fa-solid fa-envelope text-muted"></i>
+                                    </span>
+                                    <input class="form-control" name="username" type="email"
+                                           placeholder="your@email.com"
+                                           style="border-radius:0 8px 8px 0;"
+                                           required>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Password</label>
-                                    <div style="position: relative;">
-                                        <input class="form-control" name="password" type="password" id="login-pwd">
-                                        <button type="button"
-                                                onclick="
-                                                const input = document.getElementById('login-pwd');
-                                                const icon = this.querySelector('i');
-                                                input.type = input.type === 'password' ? 'text' : 'password';
-                                                icon.classList.toggle('fa-eye');
-                                                icon.classList.toggle('fa-eye-slash');
-                                                "
-                                                                                            style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-                                                background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #6c757d;">
+                            </div>
 
-                                            <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                    </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <div class="password-wrapper">
+                                    <input class="form-control" name="password" type="password"
+                                           id="login-pwd"
+                                           placeholder="Enter your password"
+                                           style="padding-right:2.5rem;"
+                                           required>
+                                    <button type="button" class="toggle-pwd" onclick="togglePwd('login-pwd', this)">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100">Login</button>
-                            </form>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/forgot-password" class="text-decoration-none">Forgot Password</a><br>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember" style="accent-color:var(--ec-primary);">
+                                    <label class="form-check-label small text-muted" for="remember">Remember me</label>
+                                </div>
+                                <a href="/forgot-password" class="small fw-semibold" style="color:var(--ec-primary);">
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            <button type="submit" class="btn-ecomm w-100 py-2">
+                                <i class="fa-solid fa-arrow-right me-2"></i>Sign In
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="card-footer text-center py-3" style="background:var(--ec-gray-50); border-top:1px solid var(--ec-gray-100);">
+                        <p class="mb-0 small text-muted">
                             Don't have an account?
-                            <a href="/register" class="text-decoration-none">Create one</a>
-                        </div>
+                            <a href="/register" class="fw-bold text-decoration-none" style="color:var(--ec-primary);">
+                                Register here <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <script>
+        function togglePwd(id, btn) {
+            const input = document.getElementById(id);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
+</section>
 </body>
 
 </html>

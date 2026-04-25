@@ -3,94 +3,133 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Product</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Products — Ecom Store</title>
 </head>
 
 <body>
 <section>
-    <!-- Search bar -->
-    <div class="container-fluid mt-3 px-3 px-md-5">
-        <div class="row">
-            <div class="col-12 col-md-8 offset-md-2">
-                <form action="search" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control search-input" name="search"
-                               placeholder="Search Products...">
-                        <button class="btn search-btn ms-2">
-                            <i class="fa-solid fa-magnifying-glass"></i> Search
-                        </button>
-                    </div>
-                </form>
-            </div>
+
+    <!-- Search -->
+    <div class="container pt-4 pb-2">
+        <div class="search-bar-ecomm">
+            <form action="search" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search products...">
+                    <button class="btn btn-search" type="submit">
+                        <i class="fa-solid fa-magnifying-glass me-1"></i> Search
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Main content -->
-    <div class="container-fluid mt-4 px-3 px-md-4">
-        <div class="row">
-            <!-- Category sidebar: becomes horizontal list on mobile -->
-            <div class="col-12 col-md-2 mb-3 mb-md-0 p-0">
-                <div class="list-group">
-                    <p class="fs-5 d-none d-md-block">Category</p>
-                    <div class="d-flex flex-wrap d-md-block">
-                        <a href="/products" th:classappend="${paramValue == ''} ? 'active':''"
-                           class="list-group-item list-group-item-action" aria-current="true">
-                            All
+    <!-- Main Content -->
+    <div class="container pb-5">
+        <div class="row g-4">
+
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="card p-3 mb-4">
+                    <h6 class="fw-bold text-uppercase text-muted mb-3" style="font-size:.75rem; letter-spacing:1px;">
+                        <i class="fa-solid fa-filter me-1"></i> Categories
+                    </h6>
+                    <div class="d-flex flex-column gap-1">
+                        <a href="/products"
+                           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center rounded-3 px-3 py-2"
+                           th:classappend="${paramValue == '' || paramValue == null} ? 'active' : ''">
+                            <span>All Products</span>
                         </a>
-                        <a th:each="c:${categories}" th:href="@{'/products?category='+${c.name}}"
-                           th:classappend="${paramValue == c.name} ? 'active':''"
-                           class="list-group-item list-group-item-action">[[${c.name}]]</a>
+                        <a th:each="c : ${categories}"
+                           th:href="@{'/products?category=' + ${c.name}}"
+                           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center rounded-3 px-3 py-2"
+                           th:classappend="${paramValue == c.name} ? 'active' : ''">
+                            <span>[[${c.name}]]</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card p-3">
+                    <h6 class="fw-bold text-uppercase text-muted mb-3" style="font-size:.75rem; letter-spacing:1px;">
+                        <i class="fa-solid fa-bolt me-1"></i> Quick Filters
+                    </h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="/products?discount=10" class="text-decoration-none small text-dark">
+                            <i class="fa-solid fa-tag me-2" style="color:var(--ec-success);"></i>+10% Discount
+                        </a>
+                        <a href="/products?stock=available" class="text-decoration-none small text-dark">
+                            <i class="fa-solid fa-check-circle me-2" style="color:var(--ec-success);"></i>In Stock
+                        </a>
+                        <a href="/products?sort=price_asc" class="text-decoration-none small text-dark">
+                            <i class="fa-solid fa-arrow-up me-2" style="color:var(--ec-blue);"></i>Low to High
+                        </a>
+                        <a href="/products?sort=price_desc" class="text-decoration-none small text-dark">
+                            <i class="fa-solid fa-arrow-down me-2" style="color:var(--ec-primary);"></i>High to Low
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Products grid -->
-            <div class="col-12 col-md-10">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="fs-3 text-center">Products</p>
-                        <div class="row g-2 g-md-3">
-                            <th:block th:if="${products.size > 0}">
-                                <div class="col-6 col-sm-4 col-md-3" th:each="p : ${products}">
-                                    <div class="card h-100">
-                                        <div class="card-body d-flex flex-column p-2 p-md-3">
-                                            <div class="product-image-container mb-2 text-center">
-                                                <img th:if="${p.image != null and !p.image.isEmpty()}"
-                                                     th:src="${p.image}"
-                                                     class="product-card-image"
-                                                     th:alt="${p.title}"
-                                                     onerror="this.src='/img/default-product.png'" />
-                                                <img th:unless="${p.image != null and !p.image.isEmpty()}"
-                                                     src="/img/default-product.png"
-                                                     class="product-card-image"
-                                                     th:alt="${p.title}" />
-                                            </div>
-                                            <h6 class="fw-bold text-center flex-grow-1" style="font-size: 0.85rem;">
-                                                [[${p.title}]]</h6>
-                                            <p class="text-muted text-center mb-2" style="font-size: 0.8rem;">
-                                                $[[${p.discountPrice}]]
-                                                <br>
-                                                <span class="text-decoration-line-through">$[[${p.price}]]</span>
-                                                <span class="text-success">[[${p.discount}]]% off</span>
-                                            </p>
-                                            <a th:href="@{'/product/'+${p.id}}"
-                                               class="btn btn-primary btn-sm mt-auto">View Details</a>
+            <!-- Products Grid -->
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0 fw-bold">
+                        <th:block th:if="${paramValue != null and paramValue != ''}">
+                            [[${paramValue}]]
+                        </th:block>
+                        <th:block th:unless="${paramValue != null and paramValue != ''}">
+                            All Products
+                        </th:block>
+                    </h4>
+                    <span class="text-muted small">[[${products.size()}]] products</span>
+                </div>
+
+                <th:block th:if="${products.size() > 0}">
+                    <div class="row g-4">
+                        <div class="col-6 col-sm-4 col-lg-3" th:each="p : ${products}">
+                            <a th:href="@{'/product/' + ${p.id}}" class="text-decoration-none">
+                                <div class="card card-ecomm h-100">
+                                    <div class="product-image-container">
+                                        <img th:if="${p.image != null and !p.image.isEmpty()}"
+                                             th:src="${p.image}"
+                                             class="product-card-image"
+                                             th:alt="${p.title}"
+                                             onerror="this.src='/img/default-product.png'">
+                                        <img th:unless="${p.image != null and !p.image.isEmpty()}"
+                                             src="/img/default-product.png"
+                                             class="product-card-image"
+                                             th:alt="${p.title}">
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-title">[[${p.title}]]</h6>
+                                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                            <span class="product-price">$[[${p.discountPrice}]]</span>
+                                            <span class="product-original-price">$[[${p.price}]]</span>
+                                            <span class="product-discount">[[${p.discount}]]% OFF</span>
                                         </div>
+                                        <button class="btn-ecomm w-100">
+                                            <i class="fa-solid fa-eye me-1"></i> View Details
+                                        </button>
                                     </div>
                                 </div>
-                            </th:block>
-                            <th:block th:unless="${products.size > 0}">
-                                <div class="col-12">
-                                    <p class="fs-4 text-center mt-4 text-danger">Product not Available</p>
-                                </div>
-                            </th:block>
+                            </a>
                         </div>
                     </div>
-                </div>
+                </th:block>
+
+                <th:block th:unless="${products.size() > 0}">
+                    <div class="text-center py-5">
+                        <i class="fa-solid fa-box-open fa-4x text-muted mb-3"></i>
+                        <h5 class="text-muted">No products found</h5>
+                        <p class="text-muted">Try a different category or search term.</p>
+                        <a href="/products" class="btn-ecomm">
+                            <i class="fa-solid fa-arrow-left me-1"></i> View All
+                        </a>
+                    </div>
+                </th:block>
             </div>
         </div>
     </div>
+
 </section>
 </body>
 

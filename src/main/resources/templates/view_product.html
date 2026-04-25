@@ -3,105 +3,153 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Details</title>
+    <title>[[${product.title}]] — Ecom Store</title>
 </head>
 
 <body>
-    <section>
-        <div class="container card-sh p-3 p-md-5" style="margin-top: 70px; margin-bottom: 65px;">
-            <div class="row">
-                <!-- Messages -->
-                <div class="col-12">
-                    <th:block th:if="${session.succMsg}">
-                        <p class="text-success text-center fw-bold alert alert-success">[[${session.succMsg}]]</p>
-                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                    </th:block>
+<section>
 
-                    <th:block th:if="${session.errorMsg}">
-                        <p class="text-danger text-center fw-bold alert alert-danger">[[${session.errorMsg}]]</p>
-                        <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                    </th:block>
-                </div>
+    <!-- Breadcrumb -->
+    <div class="container pt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="font-size:.8rem; color:var(--ec-gray-500);">
+                <li class="breadcrumb-item"><a href="/" class="text-decoration-none" style="color:var(--ec-primary);">Home</a></li>
+                <li class="breadcrumb-item"><a href="/products" class="text-decoration-none" style="color:var(--ec-primary);">Products</a></li>
+                <li class="breadcrumb-item text-muted">[[${product.title}]]</li>
+            </ol>
+        </nav>
+    </div>
 
-                <!-- Product Image -->
-                <div class="col-12 col-md-6 mb-3 mb-md-0">
-                    <div class="product-image-container">
+    <!-- Messages -->
+    <div class="container">
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mx-auto" style="max-width:900px;">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+            </div>
+        </th:block>
+        <th:block th:if="${session.errorMsg}">
+            <div class="alert alert-ecomm alert-danger mx-auto" style="max-width:900px;">
+                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                [[${session.errorMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+            </div>
+        </th:block>
+    </div>
+
+    <!-- Product Detail -->
+    <div class="container py-4">
+        <div class="card card-ecomm">
+            <div class="row g-0">
+
+                <div class="col-lg-6">
+                    <div class="product-image-container border-end border-0 border-lg" style="min-height:400px;">
                         <img th:if="${product.image != null and !product.image.isEmpty()}"
                              th:src="${product.image}"
-                             class="product-image img-fluid"
                              th:alt="${product.title}"
-                             onerror="this.src='/img/default-product.png'" />
+                             class="product-card-image"
+                             style="max-height:380px;"
+                             onerror="this.src='/img/default-product.png'">
                         <img th:unless="${product.image != null and !product.image.isEmpty()}"
                              src="/img/default-product.png"
-                             class="product-image img-fluid"
-                             th:alt="${product.title}" />
+                             th:alt="${product.title}"
+                             class="product-card-image"
+                             style="max-height:380px;">
                     </div>
                 </div>
 
-                <!-- Product Details -->
-                <div class="col-12 col-md-6">
-                    <p class="fs-3">[[${product.title}]]</p>
-                    <p>
-                        <span class="fw-bold">Description : </span><br>[[${product.description}]]
-                    </p>
-                    <p>
-                        <span class="fw-bold"> Product Details: </span> <br>
-                        Status :
+                <div class="col-lg-6">
+                    <div class="card-body p-4">
 
-                        <th:block th:if="${product.stock>0}">
-                            <span class="badge bg-success">Available</span>
-                        </th:block>
-
-                        <th:block th:unless="${product.stock>0}">
-                            <span class="badge bg-warning">out of stock</span>
-                        </th:block>
-
-                        <br> Category : [[${product.category}]]<br> Policy : 7
-                        Days Replacement &amp; Return
-                    </p>
-
-                    <p class="fs-5 fw-bold">
-                        Price : $[[${product.discountPrice}]]
-                        <span class="fs-6 text-decoration-line-through text-secondary">$[[${product.price}]]</span>
-                        <span class="fs-6 text-success">[[${product.discount}]]% off</span>
-                    </p>
-
-                    <!-- Features row -->
-                    <div class="row g-2 mb-3">
-                        <div class="col-4 text-success text-center p-2">
-                            <i class="fas fa-money-bill-wave fa-lg fa-md-2x"></i>
-                            <p class="mb-0" style="font-size: 0.75rem;">Cash On Delivery</p>
+                        <div class="mb-3">
+                            <span class="badge mb-2" style="background:var(--ec-primary-light); color:var(--ec-primary); font-size:.7rem;">
+                                <i class="fa-solid fa-tag me-1"></i>[[${product.category}]]
+                            </span>
+                            <h2 class="fw-bold mb-1" style="font-size:1.6rem; line-height:1.2;">[[${product.title}]]</h2>
                         </div>
 
-                        <div class="col-4 text-danger text-center p-2">
-                            <i class="fas fa-undo-alt fa-lg fa-md-2x"></i>
-                            <p class="mb-0" style="font-size: 0.75rem;">Return Available</p>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center gap-3 flex-wrap">
+                                <span style="font-size:2rem; font-weight:800; color:var(--ec-primary);">$[[${product.discountPrice}]]</span>
+                                <span class="text-decoration-line-through text-muted" style="font-size:1.1rem;">$[[${product.price}]]</span>
+                                <span class="badge" style="background:var(--ec-success-light); color:#1a8a80; font-weight:700; font-size:.8rem;">
+                                    <i class="fa-solid fa-tag me-1"></i>[[${product.discount}]]% OFF
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="col-4 text-primary text-center p-2">
-                            <i class="fas fa-truck-moving fa-lg fa-md-2x"></i>
-                            <p class="mb-0" style="font-size: 0.75rem;">Free Shipping</p>
+                        <div class="mb-3">
+                            <h6 class="form-label">Description</h6>
+                            <p class="text-muted mb-0" style="font-size:.9rem; line-height:1.7;">[[${product.description}]]</p>
                         </div>
+
+                        <div class="mb-3">
+                            <h6 class="form-label">Availability</h6>
+                            <th:block th:if="${product.stock > 0}">
+                                <span class="badge badge-success">
+                                    <i class="fa-solid fa-check-circle me-1"></i>In Stock ([[${product.stock}]] units)
+                                </span>
+                            </th:block>
+                            <th:block th:unless="${product.stock > 0}">
+                                <span class="badge badge-danger">
+                                    <i class="fa-solid fa-xmark-circle me-1"></i>Out of Stock
+                                </span>
+                            </th:block>
+                        </div>
+
+                        <div class="mb-4 p-3 rounded" style="background:var(--ec-gray-50);">
+                            <h6 class="form-label mb-2"><i class="fa-solid fa-shield-check me-1" style="color:var(--ec-success);"></i>Policy</h6>
+                            <ul class="mb-0 small text-muted ps-3">
+                                <li>Free return within 7 days</li>
+                                <li>Cash on Delivery (COD)</li>
+                                <li>Free shipping on selected orders</li>
+                            </ul>
+                        </div>
+
+                        <div class="row g-2 mb-4">
+                            <div class="col-4 text-center p-2 rounded" style="background:var(--ec-primary-light);">
+                                <i class="fa-solid fa-money-bill-wave fa-lg" style="color:var(--ec-primary);"></i>
+                                <p class="mb-0 mt-1 small fw-semibold" style="font-size:.7rem;">Cash on Delivery</p>
+                            </div>
+                            <div class="col-4 text-center p-2 rounded" style="background:var(--ec-success-light);">
+                                <i class="fa-solid fa-rotate-left fa-lg" style="color:var(--ec-success);"></i>
+                                <p class="mb-0 mt-1 small fw-semibold" style="font-size:.7rem;">7-Day Return</p>
+                            </div>
+                            <div class="col-4 text-center p-2 rounded" style="background:var(--ec-blue-light);">
+                                <i class="fa-solid fa-truck-fast fa-lg" style="color:var(--ec-blue);"></i>
+                                <p class="mb-0 mt-1 small fw-semibold" style="font-size:.7rem;">Free Shipping</p>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <th:block th:if="${product.stock > 0}">
+                                <th:block th:if="${user == null}">
+                                    <a href="/signin" class="btn-ecomm py-2 fs-5">
+                                        <i class="fa-solid fa-cart-plus me-2"></i>Sign in to purchase
+                                    </a>
+                                </th:block>
+                                <th:block th:unless="${user == null}">
+                                    <a th:href="@{/user/addCart(productId=${product.id}, userId=${user.id})}"
+                                       class="btn-ecomm py-2 fs-5">
+                                        <i class="fa-solid fa-cart-plus me-2"></i>Add to Cart
+                                    </a>
+                                </th:block>
+                            </th:block>
+                            <th:block th:unless="${product.stock > 0}">
+                                <button class="btn btn-secondary py-2 fs-5" disabled>
+                                    <i class="fa-solid fa-xmark me-2"></i>Out of Stock
+                                </button>
+                            </th:block>
+                        </div>
+
                     </div>
-
-                    <th:block th:if="${product.stock>0}">
-                        <th:block th:if="${user==null}">
-                            <a href="/signin" class="btn btn-danger w-100">Add To Cart</a>
-                        </th:block>
-
-                        <th:block th:unless="${user==null}">
-                            <a th:href="@{/user/addCart(productId=${product.id}, userId=${user.id})}"
-                                class="btn btn-danger w-100">Add To Cart</a>
-                        </th:block>
-                    </th:block>
-
-                    <th:block th:unless="${product.stock>0}">
-                        <a href="#" class="btn text-white btn-warning w-100">Out Of Stock</a>
-                    </th:block>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+</section>
 </body>
 
 </html>

@@ -3,104 +3,125 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>All Orders</title>
+    <title>All Orders — Admin</title>
 </head>
 
 <body>
 <section>
-    <div class="container-fluid mt-5 p-5">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="text-center fs-3">All Orders</p>
-                <hr>
+    <div class="container py-4">
 
-                <th:block th:if="${session.succMsg}">
-                    <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
-                <th:block th:if="${session.errorMsg}">
-                    <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
-            </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">
+                <i class="fa-solid fa-box-open me-2" style="color:var(--ec-primary);"></i>All Orders
+            </h2>
         </div>
 
-        <!-- Formulario de búsqueda -->
-        <div class="row mb-4">
-            <div class="col-md-4">
-                <form class="d-flex gap-2" method="get">
-                    <input type="text" name="orderId" class="form-control flex-grow-1" placeholder="Enter order id"
-                           aria-label="Order ID">
-                    <button class="btn btn-danger" type="submit">Search</button>
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mb-3">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+            </div>
+        </th:block>
+
+        <div class="card mb-4">
+            <div class="card-body py-3">
+                <form class="row g-2 align-items-center" method="get">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text" style="border-radius:8px 0 0 8px;">
+                                <i class="fa-solid fa-magnifying-glass text-muted"></i>
+                            </span>
+                            <input type="text" name="orderId" class="form-control"
+                                   placeholder="Search by order ID..."
+                                   style="border-radius:0 8px 8px 0;">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn-ecomm">
+                            <i class="fa-solid fa-search me-1"></i>Search
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
 
-        <!-- Tabla de órdenes -->
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Order Id</th>
-                        <th scope="col">Deliver Details</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Product Details</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="o : ${orders}">
-                        <th scope="row">[[${o.orderId}]]</th>
-                        <td>
-                            Name : [[${o.addressOrder.firstName+' '+o.addressOrder.lastName}]] <br>
-                            Email : [[${o.addressOrder.email}]]<br>
-                            Mobile : [[${o.addressOrder.mobile}]]<br>
-                            Address : [[${o.addressOrder.address}]] <br>
-                            City : [[${o.addressOrder.city}]] <br>
-                            state : [[${o.addressOrder.state}]] <br>
-                            Pin Code : [[${o.addressOrder.pincode}]]
-                        </td>
-                        <td>[[${#temporals.format(o.orderDate, 'dd/MM/yyyy')}]]</td>
-                        <td>[[${o.product.title}]]</td>
-                        <td>
-                            Quantity: [[${o.quantity}]]<br>
-                            Price: $[[${o.price}]]<br>
-                            Total: $[[${o.quantity * o.price}]]
-                        </td>
-                        <td>[[${o.status}]]</td>
-                        <td>
-                            <form action="/admin/status-order-update" class="d-flex gap-2" method="post">
-                                <select class="form-control" name="status">
-                                    <option value="">-- Select status --</option>
-                                    <option value="1">In Progress</option>
-                                    <option value="2">Order Received</option>
-                                    <option value="3">Product Packed</option>
-                                    <option value="4">Out for Delivery</option>
-                                    <option value="5">Delivered</option>
-                                    <option value="6">Cancelled</option>
-                                </select>
-                                <input th:value="${o.id}" name="id" type="hidden">
-                                <div class="col">
-                                    <th:block th:if="${o.status=='Cancelled' || o.status=='Delivered'}">
-                                        <button class="btn btn-primary btn-sm disabled">Update</button>
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-modern mb-0">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Shipping Details</th>
+                                <th>Date</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Change Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="o : ${orders}">
+                                <td data-label="Order ID" class="fw-bold">#[[${o.orderId}]]</td>
+                                <td data-label="Shipping" style="font-size:.8rem;">
+                                    <strong>[[${o.addressOrder.firstName}]] [[${o.addressOrder.lastName}]]</strong><br>
+                                    <span class="text-muted">[[${o.addressOrder.email}]]</span><br>
+                                    [[${o.addressOrder.mobile}]]<br>
+                                    <span class="small">[[${o.addressOrder.address}]], [[${o.addressOrder.city}]], [[${o.addressOrder.state}]] [[${o.addressOrder.pincode}]]</span>
+                                </td>
+                                <td data-label="Date">[[${#temporals.format(o.orderDate, 'dd/MM/yyyy')}]]</td>
+                                <td data-label="Product">[[${o.product.title}]]</td>
+                                <td data-label="Price">
+                                    <span class="small text-muted">Qty: [[${o.quantity}]]</span><br>
+                                    <span class="fw-bold">$[[${o.quantity * o.price}]]</span>
+                                </td>
+                                <td data-label="Status">
+                                    <th:block th:if="${o.status == 'In Progress'}">
+                                        <span class="badge badge-info">In Progress</span>
                                     </th:block>
-
-                                    <th:block th:unless="${o.status=='Cancelled' || o.status=='Delivered'}">
-                                        <button class="btn btn-primary btn-sm">Update</button>
+                                    <th:block th:if="${o.status == 'Order Received'}">
+                                        <span class="badge badge-info">Received</span>
                                     </th:block>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                                    <th:block th:if="${o.status == 'Product Packed'}">
+                                        <span class="badge badge-warning">Packed</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Out for Delivery'}">
+                                        <span class="badge badge-success">On the Way</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Delivered'}">
+                                        <span class="badge badge-success">Delivered</span>
+                                    </th:block>
+                                    <th:block th:if="${o.status == 'Cancelled'}">
+                                        <span class="badge badge-danger">Cancelled</span>
+                                    </th:block>
+                                </td>
+                                <td data-label="Change Status">
+                                    <th:block th:if="${o.status != 'Cancelled' and o.status != 'Delivered'}">
+                                        <form action="/admin/status-order-update" method="post" class="d-flex gap-2">
+                                            <select class="form-control form-control-sm" name="status" style="font-size:.8rem;">
+                                                <option value="">-- Status --</option>
+                                                <option value="1">In Progress</option>
+                                                <option value="2">Received</option>
+                                                <option value="3">Packed</option>
+                                                <option value="4">On the Way</option>
+                                                <option value="5">Delivered</option>
+                                                <option value="6">Cancelled</option>
+                                            </select>
+                                            <input type="hidden" name="id" th:value="${o.id}">
+                                            <button type="submit" class="btn-sm btn-ecomm" style="padding:.35rem .75rem;">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                        </form>
+                                    </th:block>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </section>
 </body>
-
 </html>

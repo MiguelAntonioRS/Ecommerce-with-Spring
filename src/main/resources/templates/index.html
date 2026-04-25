@@ -3,110 +3,208 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ecommerce-with-Spring</title>
+    <title>Ecom Store — Home</title>
 </head>
 
 <body>
 <section>
-    <!-- Start Slider -->
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+
+    <!-- ===== HERO CAROUSEL ===== -->
+    <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/img/ecom4.png" class="d-block w-100 slider-image" alt="Ecommerce banner 1" loading="lazy">
+                <img src="/img/ecom4.png" class="d-block w-100" alt="New arrivals" loading="eager">
+                <div class="carousel-caption">
+                    <h4 class="fw-bold mb-1">New Arrivals!</h4>
+                    <p class="mb-0 d-none d-md-block">Find the best in technology and fashion</p>
+                </div>
             </div>
             <div class="carousel-item">
-                <img src="/img/ecom1.png" class="d-block w-100 slider-image" alt="Ecommerce banner 2" loading="lazy">
+                <img src="/img/ecom1.png" class="d-block w-100" alt="Best deals" loading="lazy">
+                <div class="carousel-caption">
+                    <h4 class="fw-bold mb-1">Best Deals</h4>
+                    <p class="mb-0 d-none d-md-block">Incredible discounts on selected products</p>
+                </div>
             </div>
             <div class="carousel-item">
-                <img src="/img/ecom5.avif" class="d-block w-100 slider-image" alt="Ecommerce banner 3" loading="lazy">
+                <img src="/img/ecom5.avif" class="d-block w-100" alt="Free shipping" loading="lazy">
+                <div class="carousel-caption">
+                    <h4 class="fw-bold mb-1">Free Shipping</h4>
+                    <p class="mb-0 d-none d-md-block">On orders over $50</p>
+                </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
         </button>
     </div>
-    <!-- End Slider -->
 
-    <!-- Start Category Module -->
-    <div class="container mt-4">
-        <p class="text-center fs-4">Category</p>
-        <div class="row justify-content-center g-2 g-md-3">
+    <!-- ===== CATEGORIES ===== -->
+    <div class="container py-5">
+        <h2 class="section-title text-center mx-auto">Shop by Category</h2>
+        <div class="row g-4 justify-content-center">
             <div class="col-4 col-sm-3 col-md-2 text-center">
-                <div class="category-circle">
-                    <img src="/img/category_img/appli.png" alt="Electronics" loading="lazy">
-                </div>
-                <p>Electronics</p>
+                <a href="/products?category=Electronics" class="text-decoration-none">
+                    <div class="category-circle mx-auto">
+                        <img src="/img/category_img/appli.png" alt="Electronics" loading="lazy">
+                    </div>
+                    <p class="mt-2 mb-0 small fw-semibold text-dark">Electronics</p>
+                </a>
             </div>
             <div class="col-4 col-sm-3 col-md-2 text-center">
-                <div class="category-circle">
-                    <img src="/img/category_img/beuty.png" alt="Beauty" loading="lazy">
-                </div>
-                <p>Beauty</p>
+                <a href="/products?category=Beauty" class="text-decoration-none">
+                    <div class="category-circle mx-auto">
+                        <img src="/img/category_img/beuty.png" alt="Beauty" loading="lazy">
+                    </div>
+                    <p class="mt-2 mb-0 small fw-semibold text-dark">Beauty</p>
+                </a>
             </div>
             <div class="col-4 col-sm-3 col-md-2 text-center">
-                <div class="category-circle">
-                    <img src="/img/category_img/pant.png" alt="Clothes" loading="lazy">
-                </div>
-                <p>Clothes</p>
+                <a href="/products?category=Clothes" class="text-decoration-none">
+                    <div class="category-circle mx-auto">
+                        <img src="/img/category_img/pant.png" alt="Clothes" loading="lazy">
+                    </div>
+                    <p class="mt-2 mb-0 small fw-semibold text-dark">Clothes</p>
+                </a>
             </div>
             <div class="col-4 col-sm-3 col-md-2 text-center">
-                <div class="category-circle">
-                    <img src="/img/category_img/mobile.png" alt="Mobile" loading="lazy">
-                </div>
-                <p>Mobile</p>
+                <a href="/products?category=Mobile" class="text-decoration-none">
+                    <div class="category-circle mx-auto">
+                        <img src="/img/category_img/mobile.png" alt="Mobile" loading="lazy">
+                    </div>
+                    <p class="mt-2 mb-0 small fw-semibold text-dark">Mobile</p>
+                </a>
             </div>
             <div class="col-4 col-sm-3 col-md-2 text-center">
-                <div class="category-circle">
-                    <img src="/img/category_img/laptop.jpg" alt="Laptop" loading="lazy">
-                </div>
-                <p>Laptop</p>
+                <a href="/products?category=Laptop" class="text-decoration-none">
+                    <div class="category-circle mx-auto">
+                        <img src="/img/category_img/laptop.jpg" alt="Laptop" loading="lazy">
+                    </div>
+                    <p class="mt-2 mb-0 small fw-semibold text-dark">Laptop</p>
+                </a>
             </div>
             <div class="col-4 col-sm-3 col-md-2 text-center">
-                <div class="category-circle">
-                    <img src="/img/category_img/groccery.jpg" alt="Trinkets" loading="lazy">
-                </div>
-                <p>Trinkets</p>
+                <a href="/products?category=Trinkets" class="text-decoration-none">
+                    <div class="category-circle mx-auto">
+                        <img src="/img/category_img/groccery.jpg" alt="Trinkets" loading="lazy">
+                    </div>
+                    <p class="mt-2 mb-0 small fw-semibold text-dark">Trinkets</p>
+                </a>
             </div>
         </div>
     </div>
-    <!-- End Category Module -->
 
-    <!-- Start Latest Product Module -->
-    <div class="container-fluid bg-light p-3 mt-5">
-        <p class="text-center fs-4">Latest Product</p>
-        <div class="row justify-content-center g-2 g-md-3">
-            <div class="col-6 col-md-3 text-center mb-3">
-                <div class="product-card">
-                    <img src="/img/product_img/grinder.jpg" alt="Grinder" loading="lazy">
+    <!-- ===== FEATURED PRODUCTS ===== -->
+    <div class="bg-white py-5">
+        <div class="container">
+            <h2 class="section-title text-center mx-auto">Featured Products</h2>
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="card-ecomm h-100">
+                        <div class="product-image-container">
+                            <img src="/img/product_img/grinder.jpg" alt="Grinder" class="product-card-image" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">Grinder Premium</h6>
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="product-price">$29.99</span>
+                                <span class="product-original-price">$39.99</span>
+                                <span class="product-discount">25% OFF</span>
+                            </div>
+                            <a href="/products" class="btn-ecomm w-100">
+                                <i class="fa-solid fa-eye me-1"></i> View Product
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <p class="mt-1">Grinder</p>
+                <div class="col-6 col-md-3">
+                    <div class="card-ecomm h-100">
+                        <div class="product-image-container">
+                            <img src="/img/product_img/iphone-14.jpg" alt="Iphone 14" class="product-card-image" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">Iphone 14 Pro Max</h6>
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="product-price">$899.00</span>
+                                <span class="product-original-price">$999.00</span>
+                                <span class="product-discount">10% OFF</span>
+                            </div>
+                            <a href="/products" class="btn-ecomm w-100">
+                                <i class="fa-solid fa-eye me-1"></i> View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card-ecomm h-100">
+                        <div class="product-image-container">
+                            <img src="/img/product_img/oneplus-mobile.jpg" alt="OnePlus" class="product-card-image" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">OnePlus Nord CE</h6>
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="product-price">$249.00</span>
+                                <span class="product-original-price">$299.00</span>
+                                <span class="product-discount">17% OFF</span>
+                            </div>
+                            <a href="/products" class="btn-ecomm w-100">
+                                <i class="fa-solid fa-eye me-1"></i> View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card-ecomm h-100">
+                        <div class="product-image-container">
+                            <img src="/img/product_img/fridge.png" alt="Fridge" class="product-card-image" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">Mini Fridge</h6>
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="product-price">$149.99</span>
+                                <span class="product-original-price">$199.99</span>
+                                <span class="product-discount">25% OFF</span>
+                            </div>
+                            <a href="/products" class="btn-ecomm w-100">
+                                <i class="fa-solid fa-eye me-1"></i> View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-6 col-md-3 text-center mb-3">
-                <div class="product-card">
-                    <img src="/img/product_img/iphone-14.jpg" alt="Iphone 14" loading="lazy">
-                </div>
-                <p class="mt-1">Iphone 14</p>
-            </div>
-            <div class="col-6 col-md-3 text-center mb-3">
-                <div class="product-card">
-                    <img src="/img/product_img/oneplus-mobile.jpg" alt="One Plus Mobile" loading="lazy">
-                </div>
-                <p class="mt-1">One Plus Mobile</p>
-            </div>
-            <div class="col-6 col-md-3 text-center mb-3">
-                <div class="product-card">
-                    <img src="/img/product_img/fridge.png" alt="Fridge" loading="lazy">
-                </div>
-                <p class="mt-1">Fridge</p>
+            <div class="text-center mt-4">
+                <a href="/products" class="btn-ecomm">
+                    <i class="fa-solid fa-arrow-right me-1"></i> View All Products
+                </a>
             </div>
         </div>
     </div>
-    <!-- End Latest Product Module -->
+
+    <!-- ===== CTA BANNER ===== -->
+    <div class="container py-5">
+        <div class="p-5 rounded-4" style="background: linear-gradient(135deg, var(--ec-dark) 0%, var(--ec-blue) 100%);">
+            <div class="row align-items-center">
+                <div class="col-md-7 text-white">
+                    <h3 class="fw-bold mb-2">Don't have an account yet?</h3>
+                    <p class="mb-0 opacity-75">Register for free and get access to exclusive offers, order tracking and more.</p>
+                </div>
+                <div class="col-md-5 text-md-end mt-3 mt-md-0">
+                    <a href="/register" class="btn btn-light fw-bold px-4">
+                        <i class="fa-solid fa-user-plus me-2"></i>Create Account
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 </body>
 

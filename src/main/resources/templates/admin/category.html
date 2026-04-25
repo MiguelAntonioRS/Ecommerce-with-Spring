@@ -3,110 +3,130 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Category</title>
+    <title>Categories — Admin</title>
 </head>
 
 <body>
-    <section>
-        <div class="container-fluid p-3 p-md-5 mt-3 mt-md-5">
-            <div class="row">
-                <div class="col-12 col-md-4 mb-4 mb-md-0">
-                    <div class="card card-sh">
-                        <div class="card-header text-center fs-4">Add Category</div>
+<section>
+    <div class="container py-4">
+        <h2 class="fw-bold mb-4">
+            <i class="fa-solid fa-tags me-2" style="color:var(--ec-primary);"></i>Categories
+        </h2>
+
+        <div class="row g-4">
+
+            <!-- Add Form -->
+            <div class="col-lg-4">
+                <div class="card card-ecomm">
+                    <div class="card-header">
+                        <h5 class="fw-bold mb-0">
+                            <i class="fa-solid fa-plus me-2" style="color:var(--ec-primary);"></i>New Category
+                        </h5>
+                    </div>
+                    <div class="card-body">
                         <th:block th:if="${session.succMsg}">
-                            <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                            <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                            <div class="alert alert-ecomm alert-success mb-3">
+                                <i class="fa-solid fa-circle-check fa-lg"></i>
+                                [[${session.succMsg}]]
+                            </div>
                         </th:block>
-
                         <th:block th:if="${session.errorMsg}">
-                            <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                            <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                            <div class="alert alert-ecomm alert-danger mb-3">
+                                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                                [[${session.errorMsg}]]
+                            </div>
                         </th:block>
-                        <div class="card-body">
-                            <form action="/admin/saveCategory" method="post" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label>Enter Category</label>
-                                    <input type="text" name="name" class="form-control">
-                                </div>
 
-                                <div class="mb-3">
-                                    <label>Status</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="isActive"
-                                            id="flexRadioDefault1" value="true" checked>
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Active
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="isActive"
-                                            id="flexRadioDefault2" value="false">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Inactive
-                                        </label>
-                                    </div>
+                        <form action="/admin/saveCategory" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label">Category Name</label>
+                                <input type="text" name="name" class="form-control" placeholder="e.g. Electronics" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isActive" id="catActive" value="true" checked style="accent-color:var(--ec-primary);">
+                                    <label class="form-check-label" for="catActive">Active</label>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label>Upload Image</label>
-                                    <input type="file" name="file" class="form-control">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isActive" id="catInactive" value="false" style="accent-color:var(--ec-primary);">
+                                    <label class="form-check-label" for="catInactive">Inactive</label>
                                 </div>
-                                <button class="btn btn-primary w-100 mt-2">Add</button>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Image (optional)</label>
+                                <input type="file" name="file" class="form-control" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn-ecomm w-100">
+                                <i class="fa-solid fa-plus me-1"></i>Add
+                            </button>
+                        </form>
                     </div>
                 </div>
+            </div>
 
-                <!-- Category Details Table -->
-                <div class="col-12 col-md-8">
-                    <div class="card card-sh">
-                        <div class="card-header text-center fs-4">Category Details</div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Si No</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="cat,c:${categorys}">
-                                            <th scope="row">[[${c.count}]]</th>
-                                            <td>[[${cat.name}]]</td>
-                                            <td>[[${cat.isActive}]]</td>
-                                            <td>
-                                                <img th:if="${cat.imageName != null and !cat.imageName.isEmpty()}"
-                                                     th:src="${cat.imageName}"
-                                                     width="50px" height="50px"
-                                                     alt="Category image"
-                                                     onerror="this.src='/img/default-category.png'" />
-                                                <img th:unless="${cat.imageName != null and !cat.imageName.isEmpty()}"
-                                                     src="/img/default-category.png"
-                                                     width="50px" height="50px"
-                                                     alt="Default category" />
-                                            </td>
-                                            <td class="text-nowrap">
-                                                <a th:href="@{'/admin/loadEditCategory/'+${cat.id}}"
-                                                    class="btn btn-primary btn-sm mb-1"><i
-                                                        class="fa-solid fa-pen-to-square fa-1x"></i> Edit</a>
-                                                <a th:href="@{'/admin/deleteCategory/'+${cat.id}}"
-                                                    class="btn btn-danger btn-sm mb-1"><i
-                                                        class="fa-solid fa-trash fa-1x"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+            <!-- List -->
+            <div class="col-lg-8">
+                <div class="card card-ecomm">
+                    <div class="card-header">
+                        <h5 class="fw-bold mb-0">Existing Categories</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-modern mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="cat, c : ${categorys}">
+                                        <td data-label="#">[[${c.count}]]</td>
+                                        <td data-label="Image">
+                                            <img th:if="${cat.imageName != null and !cat.imageName.isEmpty()}"
+                                                 th:src="${cat.imageName}"
+                                                 width="48" height="48"
+                                                 class="rounded object-fit-cover"
+                                                 onerror="this.src='/img/default-category.png'">
+                                            <img th:unless="${cat.imageName != null and !cat.imageName.isEmpty()}"
+                                                 src="/img/default-category.png"
+                                                 width="48" height="48"
+                                                 class="rounded object-fit-cover">
+                                        </td>
+                                        <td data-label="Name" class="fw-semibold">[[${cat.name}]]</td>
+                                        <td data-label="Status">
+                                            <th:block th:if="${cat.isActive}">
+                                                <span class="badge badge-success">Active</span>
+                                            </th:block>
+                                            <th:block th:unless="${cat.isActive}">
+                                                <span class="badge badge-danger">Inactive</span>
+                                            </th:block>
+                                        </td>
+                                        <td data-label="Actions">
+                                            <a th:href="@{'/admin/loadEditCategory/' + ${cat.id}}"
+                                               class="btn btn-sm" style="color:var(--ec-blue);" title="Edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a th:href="@{'/admin/deleteCategory/' + ${cat.id}}"
+                                               class="btn btn-sm" style="color:var(--ec-primary);"
+                                               title="Delete"
+                                               onclick="return confirm('Delete this category?')">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
-
 </html>

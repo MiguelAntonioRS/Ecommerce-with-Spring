@@ -3,137 +3,163 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Register — Ecom Store</title>
+    <style>body { background: var(--ec-gray-50); }</style>
 </head>
 
 <body>
-    <section>
-        <div class="container mt-3 mt-md-5 p-3 p-md-5">
-            <div class="row">
-                <!-- Image: hidden on mobile -->
-                <div class="col-md-5 p-3 p-md-5 d-none d-md-block">
-                    <img src="img/ecom.png" alt="Ecommerce illustration" class="img-fluid"
-                        style="max-height: 400px; width: 100%; object-fit: contain;">
+<section>
+
+    <div class="container pt-4">
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mx-auto" style="max-width:700px;">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+            </div>
+        </th:block>
+        <th:block th:if="${session.errorMsg}">
+            <div class="alert alert-ecomm alert-danger mx-auto" style="max-width:700px;">
+                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                [[${session.errorMsg}]]
+            </div>
+        </th:block>
+    </div>
+
+    <div class="auth-page py-4">
+        <div class="auth-card">
+            <div class="row g-0">
+
+                <div class="col-lg-5 auth-image d-none d-lg-flex" style="background: linear-gradient(135deg, var(--ec-blue) 0%, #7b2ff7 100%);">
+                    <div class="text-center text-white">
+                        <i class="fa-solid fa-user-plus fa-4x mb-3 opacity-75"></i>
+                        <h3 class="fw-bold">Join Ecom Store</h3>
+                        <p class="opacity-75 mb-0">Create your account and enjoy exclusive offers</p>
+                    </div>
                 </div>
-                <div class="col-12 col-md-7 p-2">
-                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-                        <div class="card-header">
-                            <p class="fs-4 text-center">Register</p>
 
-                            <th:block th:if="${session.succMsg}">
-                                <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                            </th:block>
+                <div class="col-lg-7">
+                    <div class="card-header pb-0">
+                        <h4 class="fw-bold mb-0 pt-3">
+                            <i class="fa-solid fa-user-plus me-2" style="color:var(--ec-primary);"></i>Create Account
+                        </h4>
+                        <p class="text-muted small mt-1 mb-0">Fill in your details to register</p>
+                    </div>
 
-                            <th:block th:if="${session.errorMsg}">
-                                <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                            </th:block>
-                        </div>
-                        <div class="card-body">
-                            <form action="/saveUser" enctype="multipart/form-data" method="post">
-                                <!-- Row 1: Name and Phone -->
-                                <div class="row mb-3">
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label">Full Name</label>
-                                        <input required="true" class="form-control" name="name" type="text">
-                                    </div>
-                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                        <label class="form-label">Mobile Number</label>
-                                        <input required="true" class="form-control" name="mobileNumber" type="number">
+                    <div class="card-body">
+                        <form action="/saveUser" enctype="multipart/form-data" method="post">
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Full Name *</label>
+                                    <input class="form-control" name="name" type="text" placeholder="Your name" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Phone *</label>
+                                    <input class="form-control" name="mobileNumber" type="number" placeholder="+1 234 5678" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email Address *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="border-radius:8px 0 0 8px; border-color:var(--ec-gray-300);">
+                                        <i class="fa-solid fa-envelope text-muted"></i>
+                                    </span>
+                                    <input class="form-control" name="email" type="email" placeholder="your@email.com"
+                                           style="border-radius:0 8px 8px 0;" required>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Address *</label>
+                                    <input class="form-control" name="address" type="text" placeholder="123 Main St" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">City *</label>
+                                    <input class="form-control" name="city" type="text" placeholder="New York" required>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">State *</label>
+                                    <input class="form-control" name="state" type="text" placeholder="NY" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Zip Code *</label>
+                                    <input class="form-control" name="pinCode" type="number" placeholder="10001" required>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Password *</label>
+                                    <div class="password-wrapper">
+                                        <input class="form-control" name="password" type="password" id="reg-pwd"
+                                               placeholder="Min. 6 characters" style="padding-right:2.5rem;" required>
+                                        <button type="button" class="toggle-pwd" onclick="togglePwd('reg-pwd', this)">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
                                     </div>
                                 </div>
-
-                                <!-- Row 2: Email -->
-                                <div class="row mb-3">
-                                    <div class="col-12">
-                                        <label class="form-label">Email</label>
-                                        <input required="true" class="form-control" name="email" type="email">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Confirm Password *</label>
+                                    <div class="password-wrapper">
+                                        <input class="form-control" name="confirmPassword" type="password" id="reg-conf"
+                                               placeholder="Repeat password" style="padding-right:2.5rem;" required>
+                                        <button type="button" class="toggle-pwd" onclick="togglePwd('reg-conf', this)">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- Row 3: Address and City -->
-                                <div class="row mb-3">
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label">Address</label>
-                                        <input required="true" class="form-control" name="address" type="text">
-                                    </div>
-                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                        <label class="form-label">City</label>
-                                        <input required="true" class="form-control" name="city" type="text">
-                                    </div>
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label">Profile Image (optional)</label>
+                                <input class="form-control" name="img" type="file" accept="image/*">
+                            </div>
 
-                                <!-- Row 4: State and Pin Code -->
-                                <div class="row mb-3">
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label">State</label>
-                                        <input required="true" class="form-control" name="state" type="text">
-                                    </div>
-                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                        <label class="form-label">Pin Code</label>
-                                        <input required="true" class="form-control" name="pinCode" type="number">
-                                    </div>
-                                </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="terms" style="accent-color:var(--ec-primary);" required>
+                                <label class="form-check-label small text-muted" for="terms">
+                                    I agree to the <a href="#" class="fw-bold" style="color:var(--ec-primary);">Terms & Conditions</a>
+                                </label>
+                            </div>
 
-                                <!-- Row 5: Password and Confirm -->
-                                <div class="row mb-3">
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label">Password</label>
-                                        <div style="position: relative;">
-                                            <input required="true" class="form-control" name="password" type="password" id="register-pwd">
-                                            <button type="button"
-                                                    onclick="
-                                                      const input = document.getElementById('register-pwd');
-                                                      const icon = this.querySelector('i');
-                                                      input.type = input.type === 'password' ? 'text' : 'password';
-                                                      icon.classList.toggle('fa-eye');
-                                                      icon.classList.toggle('fa-eye-slash');
-                                                    "
-                                                    style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #6c757d;">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                        <label class="form-label">Confirm Password</label>
-                                        <div style="position: relative;">
-                                            <input required="true" class="form-control" name="confirmPassword" type="password" id="register-confirm-pwd">
-                                            <button type="button"
-                                                    onclick="
-                                                      const input = document.getElementById('register-confirm-pwd');
-                                                      const icon = this.querySelector('i');
-                                                      input.type = input.type === 'password' ? 'text' : 'password';
-                                                      icon.classList.toggle('fa-eye');
-                                                      icon.classList.toggle('fa-eye-slash');
-                                                    "
-                                                    style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #6c757d;">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <button type="submit" class="btn-ecomm w-100 py-2">
+                                <i class="fa-solid fa-user-plus me-2"></i>Create My Account
+                            </button>
+                        </form>
+                    </div>
 
-                                <!-- Row 6: Image -->
-                                <div class="row mb-3">
-                                    <div class="col-12">
-                                        <label class="form-label">Profile Image</label>
-                                        <input class="form-control" name="img" type="file" accept="image/*">
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary w-100">Register</button>
-                            </form>
-                        </div>
-                        <div class="card-footer">
-                            Have an account?
-                            <a href="/signin" class="text-decoration-none">Login</a>
-                        </div>
+                    <div class="card-footer text-center py-3" style="background:var(--ec-gray-50); border-top:1px solid var(--ec-gray-100);">
+                        <p class="mb-0 small text-muted">
+                            Already have an account?
+                            <a href="/signin" class="fw-bold text-decoration-none" style="color:var(--ec-primary);">
+                                Sign in <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <script>
+        function togglePwd(id, btn) {
+            const input = document.getElementById(id);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
+</section>
 </body>
 
 </html>

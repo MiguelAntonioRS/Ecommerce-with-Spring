@@ -3,77 +3,98 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title>Admin Dashboard — Ecom Store</title>
 </head>
 
 <body>
-    <section>
-        <div class="container p-3 p-md-5">
-            <p class="text-center fs-3 mt-4">Admin Dashboard</p>
-            <div class="row g-3 p-2 p-md-5">
-                <div class="col-6 col-md-4">
-                    <a href="/admin/loadAddProduct" class="text-decoration-none">
-                        <div class="card card-sh">
-                            <div class="card-body text-center text-primary">
-                                <i class="fa-solid fa-square-plus fa-2x fa-md-3x"></i>
-                                <h4 class="mt-2">Add Product</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4">
-                    <a href="/admin/category" class="text-decoration-none">
-                        <div class="card card-sh">
-                            <div class="card-body text-center text-warning">
-                                <i class="fa-solid fa-list fa-2x fa-md-3x"></i>
-                                <h4 class="mt-2">Add Category</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4">
-                    <a href="/admin/products" class="text-decoration-none">
-                        <div class="card card-sh">
-                            <div class="card-body text-center text-success">
-                                <i class="fa-solid fa-list fa-2x fa-md-3x"></i>
-                                <h4 class="mt-2">View Product</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4">
-                    <a href="/admin/orders" class="text-decoration-none">
-                        <div class="card card-sh">
-                            <div class="card-body text-center text-primary">
-                                <i class="fa-solid fa-box-open fa-2x fa-md-3x"></i>
-                                <h4 class="mt-2">Orders</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4">
-                    <a href="/admin/users" class="text-decoration-none">
-                        <div class="card card-sh">
-                            <div class="card-body text-center text-warning">
-                                <i class="fa-solid fa-circle-user fa-2x fa-md-3x"></i>
-                                <h4 class="mt-2">Users</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card card-sh">
-                            <div class="card-body text-center text-success">
-                                <i class="fa-solid fa-user-plus fa-2x fa-md-3x"></i>
-                                <h4 class="mt-2">Add Admin</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-</body>
+<section>
 
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">
+                <i class="fa-solid fa-gauge-high me-2" style="color:var(--ec-primary);"></i>Dashboard
+            </h2>
+            <span class="badge" style="background:var(--ec-primary-light); color:var(--ec-primary);">
+                <i class="fa-solid fa-user-shield me-1"></i>Admin Panel
+            </span>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-6 col-lg-4">
+                <a href="/admin/products" class="dashboard-card">
+                    <div class="card-body">
+                        <div class="dash-icon" style="background:var(--ec-primary-light); color:var(--ec-primary);">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <h5 class="dash-title">View Products</h5>
+                        <p class="small text-muted mb-0">Manage your catalog</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-4">
+                <a href="/admin/loadAddProduct" class="dashboard-card">
+                    <div class="card-body">
+                        <div class="dash-icon" style="background:rgba(255,159,28,.12); color:var(--ec-warning);">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <h5 class="dash-title">Add Product</h5>
+                        <p class="small text-muted mb-0">New item</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-4">
+                <a href="/admin/orders" class="dashboard-card">
+                    <div class="card-body">
+                        <div class="dash-icon" style="background:var(--ec-success-light); color:var(--ec-success);">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <h5 class="dash-title">Orders</h5>
+                        <p class="small text-muted mb-0">Pending orders</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-4">
+                <a href="/admin/category" class="dashboard-card">
+                    <div class="card-body">
+                        <div class="dash-icon" style="background:var(--ec-blue-light); color:var(--ec-blue);">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+                        <h5 class="dash-title">Categories</h5>
+                        <p class="small text-muted mb-0">Manage categories</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-4">
+                <a href="/admin/users" class="dashboard-card">
+                    <div class="card-body">
+                        <div class="dash-icon" style="background:rgba(123,47,247,.1); color:#7b2ff7;">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h5 class="dash-title">Users</h5>
+                        <p class="small text-muted mb-0">Manage accounts</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-4">
+                <a href="#" class="dashboard-card">
+                    <div class="card-body">
+                        <div class="dash-icon" style="background:rgba(220,53,69,.08); color:var(--ec-primary);">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h5 class="dash-title">Reports</h5>
+                        <p class="small text-muted mb-0">Statistics</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+</body>
 </html>

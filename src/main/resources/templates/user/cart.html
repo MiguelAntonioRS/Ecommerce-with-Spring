@@ -1,80 +1,163 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Cart</title>
+    <title>My Cart — Ecom Store</title>
 </head>
+
 <body>
 <section>
-    <div class="container-fluid mt-3 mt-md-5 p-3 p-md-5">
-        <div class="card card-sh">
-            <div class="card-header text-center">
-                <p class="fs-4">View Cart</p>
-                <th:block th:if="${session.succMsg}">
-                    <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
 
-                <th:block th:if="${session.errorMsg}">
-                    <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
+    <div class="container pt-4">
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mx-auto" style="max-width:800px;">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Si No</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="cart,c:${carts}">
-                            <th scope="row">[[${c.count}]]</th>
-                            <td>
-                                <img th:if="${cart.product.image != null and !cart.product.image.isEmpty()}"
-                                     th:src="${cart.product.image}"
-                                     width="60px"
-                                     height="60px"
-                                     class="img-fluid"
-                                     th:alt="${cart.product.title}"
-                                     onerror="this.src='/img/default-product.png'" />
+        </th:block>
+        <th:block th:if="${session.errorMsg}">
+            <div class="alert alert-ecomm alert-danger mx-auto" style="max-width:800px;">
+                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                [[${session.errorMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+            </div>
+        </th:block>
+    </div>
 
-                                <img th:unless="${cart.product.image != null and !cart.product.image.isEmpty()}"
-                                     src="/img/default-product.png"
-                                     width="60px"
-                                     height="60px"
-                                     class="img-fluid"
-                                     th:alt="${cart.product.title}" />
-                            </td>
-                            <td>[[${cart.product.title}]]</td>
-                            <td>$[[${cart.product.discountPrice}]]</td>
-                            <td class="text-center text-nowrap">
-                                <a th:href="@{'/user/cartUpdate?action=de&cid='+${cart.id}}"><i class="fa-solid fa-minus"></i></a>
-                                [ [[${cart.quantity}]] ]
-                                <a th:href="@{'/user/cartUpdate?action=in&cid='+${cart.id}}"><i class="fa-solid fa-plus"></i></a>
-                            </td>
-                            <td>$[[${cart.totalPrice}]]</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td class="fw-bold">Total Price</td>
-                            <td>$[[${totalOrderPrice}]]</td>
-                        </tr>
-                        </tbody>
-                    </table>
+    <div class="container py-4">
+        <h2 class="fw-bold mb-4">
+            <i class="fa-solid fa-cart-shopping me-2" style="color:var(--ec-primary);"></i>My Cart
+        </h2>
+
+        <th:block th:if="${carts != null and carts.size() > 0}">
+            <div class="row g-4">
+
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-modern mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:50px;">#</th>
+                                            <th style="width:80px;">Image</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="cart, c : ${carts}">
+                                            <td data-label="#">[[${c.count}]]</td>
+                                            <td data-label="Image">
+                                                <img th:if="${cart.product.image != null and !cart.product.image.isEmpty()}"
+                                                     th:src="${cart.product.image}"
+                                                     th:alt="${cart.product.title}"
+                                                     width="60" height="60"
+                                                     class="rounded object-fit-cover"
+                                                     onerror="this.src='/img/default-product.png'">
+                                                <img th:unless="${cart.product.image != null and !cart.product.image.isEmpty()}"
+                                                     src="/img/default-product.png"
+                                                     th:alt="${cart.product.title}"
+                                                     width="60" height="60"
+                                                     class="rounded object-fit-cover">
+                                            </td>
+                                            <td data-label="Product">
+                                                <a th:href="@{'/product/' + ${cart.product.id}}"
+                                                   class="fw-semibold text-decoration-none text-dark">
+                                                    [[${cart.product.title}]]
+                                                </a>
+                                            </td>
+                                            <td data-label="Price" class="fw-bold" style="color:var(--ec-primary);">
+                                                $[[${cart.product.discountPrice}]]
+                                            </td>
+                                            <td data-label="Quantity">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <a th:href="@{'/user/cartUpdate?action=de&cid=' + ${cart.id}}"
+                                                       class="btn btn-sm btn-outline-danger rounded-circle"
+                                                       style="width:28px; height:28px; display:flex; align-items:center; justify-content:center;">
+                                                        <i class="fa-solid fa-minus fa-xs"></i>
+                                                    </a>
+                                                    <span class="fw-bold px-2">[[${cart.quantity}]]</span>
+                                                    <a th:href="@{'/user/cartUpdate?action=in&cid=' + ${cart.id}}"
+                                                       class="btn btn-sm btn-outline-danger rounded-circle"
+                                                       style="width:28px; height:28px; display:flex; align-items:center; justify-content:center;">
+                                                        <i class="fa-solid fa-plus fa-xs"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td data-label="Total" class="fw-bold">$[[${cart.totalPrice}]]</td>
+                                            <td>
+                                                <a th:href="@{'/user/cartDelete?cid=' + ${cart.id}}"
+                                                   class="btn btn-sm text-danger"
+                                                   onclick="return confirm('Remove this item?')"
+                                                   title="Remove">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-center mt-3">
-                    <a href="/user/orders" class="btn btn-primary">Proceed Payment</a>
+
+                <!-- Summary -->
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top:1rem;">
+                        <div class="card-header">
+                            <h5 class="fw-bold mb-0">
+                                <i class="fa-solid fa-receipt me-2" style="color:var(--ec-primary);"></i>Summary
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="order-summary">
+                                <div class="summary-row">
+                                    <span class="text-muted">Subtotal</span>
+                                    <span class="fw-semibold">$[[${totalOrderPrice}]]</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="text-muted">Shipping</span>
+                                    <span class="text-success fw-semibold">Free</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="text-muted">Tax</span>
+                                    <span class="fw-semibold">Included</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total</span>
+                                    <span style="color:var(--ec-primary);">$[[${totalOrderPrice}]]</span>
+                                </div>
+                            </div>
+                            <a href="/user/orders" class="btn-ecomm w-100 mt-3 py-2">
+                                <i class="fa-solid fa-credit-card me-2"></i>Proceed to Checkout
+                            </a>
+                            <a href="/products" class="btn btn-outline-secondary w-100 mt-2">
+                                <i class="fa-solid fa-arrow-left me-2"></i>Continue Shopping
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-        </div>
+        </th:block>
+
+        <th:block th:unless="${carts != null and carts.size() > 0}">
+            <div class="text-center py-5">
+                <i class="fa-solid fa-cart-xmark fa-5x text-muted mb-4"></i>
+                <h4 class="text-muted">Your cart is empty</h4>
+                <p class="text-muted mb-4">Explore our products and add what you like!</p>
+                <a href="/products" class="btn-ecomm">
+                    <i class="fa-solid fa-store me-2"></i>Browse Products
+                </a>
+            </div>
+        </th:block>
+
     </div>
 </section>
 </body>

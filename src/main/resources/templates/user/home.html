@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My Account — Ecom Store</title>
 </head>
+
 <body>
-    <h1>User Home Page</h1>
+<section>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                     style="width:80px; height:80px; background:var(--ec-primary-light);">
+                    <i class="fa-solid fa-user fa-2x" style="color:var(--ec-primary);"></i>
+                </div>
+                <h3 class="fw-bold">My Account</h3>
+                <p class="text-muted mb-4">Welcome, <strong>[[${user.name}]]</strong></p>
+
+                <div class="row g-3 justify-content-center">
+                    <div class="col-6 col-md-4">
+                        <a href="/user/cart" class="dashboard-card">
+                            <div class="card-body">
+                                <div class="dash-icon" style="background:var(--ec-primary-light); color:var(--ec-primary);">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <h6 class="dash-title">My Cart</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <a href="/user/user-orders" class="dashboard-card">
+                            <div class="card-body">
+                                <div class="dash-icon" style="background:var(--ec-success-light); color:var(--ec-success);">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+                                <h6 class="dash-title">My Orders</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <a href="/products" class="dashboard-card">
+                            <div class="card-body">
+                                <div class="dash-icon" style="background:var(--ec-blue-light); color:var(--ec-blue);">
+                                    <i class="fa-solid fa-store"></i>
+                                </div>
+                                <h6 class="dash-title">Shop</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

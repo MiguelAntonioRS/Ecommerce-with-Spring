@@ -1,25 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Success</title>
+    <title>Order Confirmed — Ecom Store</title>
+    <style>body { background: var(--ec-gray-50); }</style>
 </head>
+
 <body>
-    <section>
-        <div class="container mt-5 p-5">
-            <div class="row">
-                <div class="col-md-6 offset-md-3 text-center">
-                    <i class="fa-solid fa-circle-check fa-5x text-success"></i>
-                    <p class="fs-3">Your Product Ordered Successfully</p>
-                    <p class="fs-4">Product will be delivered with in 7 days</p>
-                    <div class="text-center">
-                        <a href="/" class="btn btn-primary">Home</a>
-                        <a href="/user/user-orders" class="btn btn-primary">Your Order</a>
+<section>
+
+    <div class="auth-page py-5">
+        <div class="auth-card" style="max-width:550px;">
+            <div class="row g-0">
+                <div class="col-12">
+
+                    <div class="text-center pt-5 pb-4 px-4">
+                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                             style="width:90px; height:90px; background:var(--ec-success-light);">
+                            <i class="fa-solid fa-circle-check fa-3x" style="color:var(--ec-success);"></i>
+                        </div>
+                        <h3 class="fw-bold">Order Confirmed!</h3>
+                        <p class="text-muted px-2">
+                            Your order has been successfully placed. We'll notify you when it's on its way.
+                        </p>
                     </div>
+
+                    <div class="card-body text-center pb-5 px-4">
+                        <div class="p-4 rounded mb-4" style="background:var(--ec-success-light);">
+                            <i class="fa-solid fa-truck-fast fa-2x mb-2" style="color:var(--ec-success);"></i>
+                            <p class="mb-0 fw-semibold" style="color:var(--ec-success);">
+                                Estimated delivery: 3-7 business days
+                            </p>
+                        </div>
+
+                        <div class="d-flex gap-3 justify-content-center flex-wrap">
+                            <a href="/" class="btn-ecomm">
+                                <i class="fa-solid fa-house me-2"></i>Back to Home
+                            </a>
+                            <a href="/user/user-orders" class="btn btn-outline-secondary">
+                                <i class="fa-solid fa-box me-2"></i>View My Orders
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 </html>

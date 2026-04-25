@@ -1,67 +1,93 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Users — Admin</title>
 </head>
+
 <body>
 <section>
-    <div class="container-fluid mt-3 mt-md-5 p-3 p-md-5">
-        <div class="card card-sh">
-            <div class="card-header text-center">
-                <p class="fs-4">Users</p>
-                <th:block th:if="${session.succMsg}">
-                    <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
+    <div class="container py-4">
+        <h2 class="fw-bold mb-4">
+            <i class="fa-solid fa-users me-2" style="color:var(--ec-primary);"></i>Users
+        </h2>
 
-                <th:block th:if="${session.errorMsg}">
-                    <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
+        <th:block th:if="${session.succMsg}">
+            <div class="alert alert-ecomm alert-success mb-3">
+                <i class="fa-solid fa-circle-check fa-lg"></i>
+                [[${session.succMsg}]]
+                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
             </div>
-            <div class="card-body">
+        </th:block>
+
+        <div class="card">
+            <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-modern mb-0">
                         <thead>
-                        <tr>
-                            <th scope="col">Si No</th>
-                            <th scope="col">Profile</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Mobile</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="u,c:${users}">
-                            <th scope="row">[[${c.count}]]</th>
-                            <td>
-                                <img th:if="${u.profileImage != null and !u.profileImage.isEmpty()}"
-                                     th:src="${u.profileImage}"
-                                     width="60px"
-                                     height="60px"
-                                     onerror="this.src='/images/default-profile.png'"
-                                     alt="Profile image" />
-                                <img th:unless="${u.profileImage != null and !u.profileImage.isEmpty()}"
-                                     src="/images/default-profile.png"
-                                     width="60px"
-                                     height="60px"
-                                     alt="Default profile" />
-                            </td>
-                            <td>[[${u.name}]]</td>
-                            <td>[[${u.email}]]</td>
-                            <td>[[${u.mobileNumber}]]</td>
-                            <td>[[${u.address+',' +u.city+ ',' +u.state+ ',' +u.pinCode}]]</td>
-                            <td>[[${u.isEnabled}]]</td>
-                            <td class="text-nowrap">
-                                <a th:href="@{'/admin/updateStatus?status=true&id='+${u.id}}" class="btn btn-sm btn-primary mb-1">Active</a>
-                                <a th:href="@{'/admin/updateStatus?status=false&id='+${u.id}}" class="btn btn-sm btn-danger mb-1">Inactive</a>
-                            </td>
-                        </tr>
+                            <tr th:each="u, c : ${users}">
+                                <td data-label="#">[[${c.count}]]</td>
+                                <td data-label="Photo">
+                                    <img th:if="${u.profileImage != null and !u.profileImage.isEmpty()}"
+                                         th:src="${u.profileImage}"
+                                         alt="${u.name}"
+                                         width="48" height="48"
+                                         class="rounded-circle object-fit-cover"
+                                         onerror="this.src='/images/default-profile.png'">
+                                    <img th:unless="${u.profileImage != null and !u.profileImage.isEmpty()}"
+                                         src="/images/default-profile.png"
+                                         alt="${u.name}"
+                                         width="48" height="48"
+                                         class="rounded-circle object-fit-cover">
+                                </td>
+                                <td data-label="Name" class="fw-semibold">[[${u.name}]]</td>
+                                <td data-label="Email">[[${u.email}]]</td>
+                                <td data-label="Phone">[[${u.mobileNumber}]]</td>
+                                <td data-label="Address" class="small">
+                                    [[${u.address}]]<br>
+                                    [[${u.city}]], [[${u.state}]] [[${u.pinCode}]]
+                                </td>
+                                <td data-label="Status">
+                                    <th:block th:if="${u.isEnabled}">
+                                        <span class="badge badge-success">
+                                            <i class="fa-solid fa-check-circle me-1"></i>Active
+                                        </span>
+                                    </th:block>
+                                    <th:block th:unless="${u.isEnabled}">
+                                        <span class="badge badge-danger">
+                                            <i class="fa-solid fa-ban me-1"></i>Inactive
+                                        </span>
+                                    </th:block>
+                                </td>
+                                <td data-label="Actions">
+                                    <th:block th:if="${!u.isEnabled}">
+                                        <a th:href="@{'/admin/updateStatus?status=true&id=' + ${u.id}}"
+                                           class="btn btn-sm btn-outline-success rounded-pill px-3">
+                                            <i class="fa-solid fa-check me-1"></i>Activate
+                                        </a>
+                                    </th:block>
+                                    <th:block th:if="${u.isEnabled}">
+                                        <a th:href="@{'/admin/updateStatus?status=false&id=' + ${u.id}}"
+                                           class="btn btn-sm btn-outline-danger rounded-pill px-3"
+                                           onclick="return confirm('Deactivate this user?')">
+                                            <i class="fa-solid fa-ban me-1"></i>Deactivate
+                                        </a>
+                                    </th:block>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

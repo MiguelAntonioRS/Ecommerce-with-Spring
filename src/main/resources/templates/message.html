@@ -3,28 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Password Reset</title>
+    <title>Password Changed — Ecom Store</title>
+    <style>body { background: var(--ec-gray-50); }</style>
 </head>
 
 <body>
-    <section>
-        <div class="container mt-3 mt-md-5">
-            <div class="row justify-content-center">
-                <div class="col-11 col-sm-8 col-md-6">
-                    <div class="success-card">
-                        <div class="success-icon">
-                            <i class="fa-solid fa-check-circle"></i>
+<section>
+
+    <div class="auth-page py-5">
+        <div class="auth-card" style="max-width:500px;">
+            <div class="row g-0">
+                <div class="col-12">
+
+                    <div class="text-center pt-5 pb-3">
+                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                             style="width:80px; height:80px; background:var(--ec-success-light);">
+                            <i class="fa-solid fa-check-circle fa-3x" style="color:var(--ec-success);"></i>
                         </div>
-                        <h2 class="success-title">Password Changed Successfully!</h2>
-                        <p class="success-message">
-                            Your password has been updated. You can now log in with your new password.
+                        <h3 class="fw-bold">Password Updated!</h3>
+                        <p class="text-muted px-4">
+                            Your password has been successfully changed. You can now sign in with your new password.
                         </p>
-                        <a href="/signin" class="btn btn-success w-100">Go to Login</a>
                     </div>
+
+                    <div class="card-body text-center pb-5 px-4">
+                        <a href="/signin" class="btn-ecomm w-100 py-2">
+                            <i class="fa-solid fa-right-to-bracket me-2"></i>Go to Login
+                        </a>
+                        <div class="mt-3">
+                            <a href="/" class="btn btn-outline-secondary w-100">
+                                <i class="fa-solid fa-house me-2"></i>Back to Home
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 
 </html>

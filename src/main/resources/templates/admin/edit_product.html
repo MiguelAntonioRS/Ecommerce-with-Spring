@@ -3,118 +3,114 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Edit Product</title>
+    <title>Edit Product — Admin</title>
 </head>
 
 <body>
 <section>
-    <div class="container p-3 p-md-5 mt-3">
-        <div class="row">
-            <div class="col-12 col-md-8 offset-md-2">
-                <div class="card card-sh">
-                    <div class="card-header text-center">
-                        <p class="fs-4">Edit Product</p>
-                        <th:block th:if="${session.succMsg}">
-                            <p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
-                            <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                        </th:block>
-
-                        <th:block th:if="${session.errorMsg}">
-                            <p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
-                            <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-                        </th:block>
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card card-ecomm">
+                    <div class="card-header">
+                        <h4 class="fw-bold mb-0">
+                            <i class="fa-solid fa-pen-to-square me-2" style="color:var(--ec-primary);"></i>Edit Product
+                        </h4>
                     </div>
                     <div class="card-body">
+
+                        <th:block th:if="${session.succMsg}">
+                            <div class="alert alert-ecomm alert-success mb-3">
+                                <i class="fa-solid fa-circle-check fa-lg"></i>
+                                [[${session.succMsg}]]
+                            </div>
+                        </th:block>
+                        <th:block th:if="${session.errorMsg}">
+                            <div class="alert alert-ecomm alert-danger mb-3">
+                                <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                                [[${session.errorMsg}]]
+                            </div>
+                        </th:block>
+
                         <form action="/admin/updateProduct" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id" th:value="${product.id}">
+
                             <div class="mb-3">
-                                <label>Enter Title</label>
-                                <input type="text" name="title" th:value="${product.title}" class="form-control">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" th:value="${product.title}" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label>Enter Description</label>
-                                <textarea rows="3" class="form-control"
-                                          name="description">[[${product.description}]]</textarea>
+                                <label class="form-label">Description</label>
+                                <textarea rows="3" name="description" class="form-control">[[${product.description}]]</textarea>
                             </div>
 
-                            <!-- Category + Price: stack on mobile -->
-                            <div class="row">
-                                <div class="mb-3 col-12 col-sm-6">
-                                    <label>Category</label>
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Category</label>
                                     <select class="form-control" name="category">
                                         <option>[[${product.category}]]</option>
-                                        <option th:each="c:${categories}">[[${c.name}]]</option>
+                                        <option th:each="c : ${categories}">[[${c.name}]]</option>
                                     </select>
                                 </div>
-                                <div class="mb-3 col-12 col-sm-6">
-                                    <label>Enter Price</label>
-                                    <input type="number" name="price" th:value="${product.price}"
-                                           class="form-control">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Price ($)</label>
+                                    <input type="number" step="0.01" name="price" th:value="${product.price}" class="form-control">
                                 </div>
                             </div>
 
-                            <!-- Discount + Discount Price: stack on mobile -->
-                            <div class="row">
-                                <div class="mb-3 col-12 col-sm-6">
-                                    <label>Discount</label>
-                                    <input type="number" name="discount" th:value="${product.discount}"
-                                           class="form-control">
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Discount (%)</label>
+                                    <input type="number" name="discount" th:value="${product.discount}" class="form-control">
                                 </div>
-
-                                <div class="mb-3 col-12 col-sm-6">
-                                    <label>Discount Price</label>
-                                    <input type="number" th:value="${product.discountPrice}" class="form-control"
-                                           readonly>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Final Price</label>
+                                    <input type="number" step="0.01" th:value="${product.discountPrice}" class="form-control" readonly
+                                           style="background:var(--ec-gray-50);">
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label>Status</label>
+                                <label class="form-label">Status</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="isActive"
-                                           id="flexRadioDefault1" value="true" th:checked="${product.isActive==true}">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Active
-                                    </label>
+                                    <input class="form-check-input" type="radio" name="isActive" value="true"
+                                           id="activeY" th:checked="${product.isActive == true}" style="accent-color:var(--ec-primary);">
+                                    <label class="form-check-label" for="activeY">Active</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="isActive"
-                                           id="flexRadioDefault2" value="false"
-                                           th:checked="${product.isActive==false}">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Inactive
-                                    </label>
+                                    <input class="form-check-input" type="radio" name="isActive" value="false"
+                                           id="activeN" th:checked="${product.isActive == false}" style="accent-color:var(--ec-primary);">
+                                    <label class="form-check-label" for="activeN">Inactive</label>
                                 </div>
                             </div>
 
-                            <!-- Stock + Image: stack on mobile -->
-                            <div class="row">
-                                <div class="mb-3 col-12 col-sm-6">
-                                    <label>Enter Stock</label>
-                                    <input type="text" name="stock" th:value="${product.stock}"
-                                           class="form-control">
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Stock</label>
+                                    <input type="number" name="stock" th:value="${product.stock}" class="form-control">
                                 </div>
-
-                                <div class="mb-3 col-12 col-sm-6">
-                                    <label>Upload Image</label>
-                                    <input type="file" name="file" class="form-control">
+                                <div class="col-sm-6">
+                                    <label class="form-label">New Image</label>
+                                    <input type="file" name="file" class="form-control" accept="image/*">
                                 </div>
                             </div>
-                            <img th:if="${product.image != null and !product.image.isEmpty()}"
-                                 th:src="${product.image}"
-                                 width="100px"
-                                 height="100px"
-                                 class="p-2 img-fluid"
-                                 th:alt="${product.title}"
-                                 onerror="this.src='/img/default-product.png'" />
-                            <img th:unless="${product.image != null and !product.image.isEmpty()}"
-                                 src="/img/default-product.png"
-                                 width="100px"
-                                 height="100px"
-                                 class="p-2 img-fluid"
-                                 th:alt="${product.title}" />
-                            <button class="btn btn-primary w-100 mt-3">Update</button>
+
+                            <div class="text-center mb-3">
+                                <img th:if="${product.image != null and !product.image.isEmpty()}"
+                                     th:src="${product.image}"
+                                     width="100" height="100"
+                                     class="rounded object-fit-cover"
+                                     onerror="this.src='/img/default-product.png'">
+                                <img th:unless="${product.image != null and !product.image.isEmpty()}"
+                                     src="/img/default-product.png"
+                                     width="100" height="100"
+                                     class="rounded object-fit-cover">
+                            </div>
+
+                            <button type="submit" class="btn-ecomm w-100">
+                                <i class="fa-solid fa-check me-1"></i>Update
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -122,7 +118,5 @@
         </div>
     </div>
 </section>
-
 </body>
-
 </html>
