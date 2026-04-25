@@ -29,6 +29,10 @@
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar navbar-expand-lg navbar-ecomm sticky-top">
         <div class="container">
+            <button class="btn btn-sm me-2" onclick="history.back()"
+                style="background:rgba(255,255,255,.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
             <a class="navbar-brand" href="/">
                 <i class="fa-solid fa-bag-shopping me-1" style="color: var(--ec-primary);"></i>
                 Ecom Store
@@ -102,21 +106,21 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-circle-user me-1"></i> [[${user.name}]]
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
+                            <ul class="dropdown-menu dropdown-menu-end" style="background:#212529; border:1px solid rgba(255,255,255,.1);">
                                 <li>
-                                    <a class="dropdown-item" href="/user/profile">
-                                        <i class="fa-solid fa-user me-2 text-muted"></i> Profile
+                                    <a class="dropdown-item" href="/user/profile" style="color:rgba(255,255,255,.85);">
+                                        <i class="fa-solid fa-user me-2" style="color:#fff;"></i> Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/user/user-orders">
-                                        <i class="fa-solid fa-box me-2 text-muted"></i> My Orders
+                                    <a class="dropdown-item" href="/user/user-orders" style="color:rgba(255,255,255,.85);">
+                                        <i class="fa-solid fa-box me-2" style="color:#fff;"></i> My Orders
                                     </a>
                                 </li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li><hr class="dropdown-divider" style="border-color:rgba(255,255,255,.15);"></hr></li>
                                 <li>
-                                    <a class="dropdown-item text-danger" href="/logout">
-                                        <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+                                    <a class="dropdown-item" href="/logout" style="color:#ff6b6b;">
+                                        <i class="fa-solid fa-right-from-bracket me-2" style="color:#ff6b6b;"></i> Logout
                                     </a>
                                 </li>
                             </ul>
