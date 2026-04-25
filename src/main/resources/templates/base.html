@@ -60,10 +60,10 @@
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-tags me-1"></i> Categories
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="background:#212529; border:1px solid rgba(255,255,255,.1);">
                             <li th:each="c : ${categorys}">
-                                <a class="dropdown-item" th:href="@{'/products?category=' + ${c.name}}">
-                                    <i class="fa-solid fa-tag me-2 text-muted"></i>[[${c.name}]]
+                                <a class="dropdown-item" th:href="@{'/products?category=' + ${c.name}}" style="color:rgba(255,255,255,.85);">
+                                    <i class="fa-solid fa-tag me-2" style="color:#fff;"></i>[[${c.name}]]
                                 </a>
                             </li>
                         </ul>
