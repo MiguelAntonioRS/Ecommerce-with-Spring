@@ -29,10 +29,11 @@
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar navbar-expand-lg navbar-ecomm sticky-top">
         <div class="container">
-            <button class="btn btn-sm me-2" onclick="history.back()"
+            <button class="btn btn-sm me-2" id="backBtn"
                 style="background:rgba(255,255,255,.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
                 <i class="fa-solid fa-arrow-left"></i>
             </button>
+            <script>if (window.location.pathname === "/") document.getElementById("backBtn").style.display = "none";</script>
             <a class="navbar-brand" href="/">
                 <i class="fa-solid fa-bag-shopping me-1" style="color: var(--ec-primary);"></i>
                 Ecom Store
