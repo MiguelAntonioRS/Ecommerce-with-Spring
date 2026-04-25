@@ -19,7 +19,7 @@
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
-- [Getting Started](#getting-started)
+- [Getting Started](#getting-started) 
 - [Database Schema](#database-schema)
 - [API Endpoints](#api-endpoints)
 - [Roadmap](#roadmap)
