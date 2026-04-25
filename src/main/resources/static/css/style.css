@@ -264,16 +264,28 @@ footer a:hover {
 
 .hero-carousel .carousel-control-prev,
 .hero-carousel .carousel-control-next {
-  width: 48px;
-  height: 48px;
-  background: rgba(255,255,255,.9);
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 1;
-  box-shadow: var(--ec-shadow);
-  transition: var(--ec-transition);
-  margin: 0 1rem;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.hero-carousel:hover .carousel-control-prev,
+.hero-carousel:hover .carousel-control-next {
+    opacity: 1;
+}
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,.9);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: var(--ec-shadow);
+    margin: 0 1rem;
+}
+.hero-carousel .carousel-control-prev:hover,
+.hero-carousel .carousel-control-next:hover {
+    background: #fff;
+    box-shadow: var(--ec-shadow-lg);
 }
 
 .hero-carousel .carousel-control-prev:hover,
