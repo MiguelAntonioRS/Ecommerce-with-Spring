@@ -42,6 +42,7 @@ body {
 
 /* ---------- Navbar: Black matching footer ---------- */
 .navbar-ecomm {
+    z-index: 10000 !important;
     background: #212529 !important;
     border-bottom: 1px solid #343a40;
     box-shadow: 0 2px 8px rgba(0,0,0,.3);
