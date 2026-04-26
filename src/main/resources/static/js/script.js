@@ -1,6 +1,21 @@
 $(function(){
 
-// User Register validation
+	// Back button functionality
+	document.addEventListener("DOMContentLoaded", function() {
+		var backBtn = document.getElementById("backBtn");
+		if (backBtn) {
+			backBtn.addEventListener("click", function() {
+				window.history.back();
+			});
+
+			// Hide on home page
+			if (window.location.pathname === "/" || window.location.pathname === "") {
+				backBtn.style.display = "none";
+			}
+		}
+	});
+
+	// User Register validation
 
 	var $userRegister=$("#userRegister");
 
