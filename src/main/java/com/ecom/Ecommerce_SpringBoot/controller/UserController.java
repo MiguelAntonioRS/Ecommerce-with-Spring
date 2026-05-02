@@ -163,6 +163,10 @@ public class UserController {
         return "user/profile";
     }
 
+    public String updateProfile() {
+        return "";
+    }
+
     private UserDtls getLoggedInUserDetails(Principal principal) {
 
         String email = principal.getName();
