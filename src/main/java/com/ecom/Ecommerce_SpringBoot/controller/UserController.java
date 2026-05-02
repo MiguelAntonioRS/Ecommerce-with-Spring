@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.List;
@@ -164,7 +165,7 @@ public class UserController {
     }
 
     @PostMapping("/update-profile")
-    public String updateProfile(@ModelAttribute UserDtls user) {
+    public String updateProfile(@ModelAttribute UserDtls user, @RequestParam MultipartFile file) {
 
         return "redirect:/user/profile";
     }
