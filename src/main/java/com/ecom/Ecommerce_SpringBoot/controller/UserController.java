@@ -163,6 +163,7 @@ public class UserController {
         return "user/profile";
     }
 
+    @PostMapping
     public String updateProfile(@ModelAttribute UserDtls user) {
 
         return "redirect:/user/profile";
