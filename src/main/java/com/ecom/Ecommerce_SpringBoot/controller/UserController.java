@@ -163,7 +163,7 @@ public class UserController {
         return "user/profile";
     }
 
-    public String updateProfile() {
+    public String updateProfile(@ModelAttribute UserDtls user) {
         return "";
     }
 
