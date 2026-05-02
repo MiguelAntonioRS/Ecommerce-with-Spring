@@ -164,7 +164,8 @@ public class UserController {
     }
 
     public String updateProfile(@ModelAttribute UserDtls user) {
-        return "";
+
+        return "redirect:/user/profile";
     }
 
     private UserDtls getLoggedInUserDetails(Principal principal) {
